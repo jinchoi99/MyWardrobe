@@ -29,66 +29,87 @@ Virtual closet where you can store and organize clothes, and save outfits, and g
 **Required Must-have Stories**
 
 * [fill in your required user stories here]
-* Store clothes into different categories
-* can add/delete categories (within categories too?)
-* take pictures/load pictures from gallery
-* Save outfit combination
-* See today's weather
-* Get outfit recommendations based on weather
-* log what outfit you wore/will wear on calendar
-* clothes detail shows where the clothes are physically stored (prevents losing clothes, buying same/very similar clothes again because you forgot you already had one, having to dig around piles of clothes when you are searching for a certain clothes)
-* Add favorites
+* [] User can log in/out
+* [] User can sign up
+* [] The current signed in user is persisted across app restarts
+* [] User can take pictures/load pictures from gallery
+* [] User can save pictures of their clothes into different categories
+* [] User can add/delete categories
+* [] User can add/delete/edit clothes
+* [] User can select clothes and create a custom outfit combination
+* [] User can view today's weather
+* [] User can get recommendations for what to wear based on the weather
+* [] User can view calendar
+* [] User can log their outfits on specific days on the calendar
+* [] User can click on the clothes to see more detail (description, location, price, etc)
+* [] User can see the TOP 10 clothes they wear most often (ranking, sorting)
+* [] User can add "favorites"
 
 **Optional Nice-to-have Stories**
 
 * [fill in your required user stories here]
-* AR/XR features
-* AI recommendations
-* social media features (share, like, comment on others' closets/outfits)
-* marketplace (users can exchange/buy clothes from others)
+* [] Pretty UI
+* [] Delete background for clothes pictures
+* [] AR/XR features
+* [] AI recommendations
+* [] Social media features (post, share, like, comment on others' closets/outfits)
+* [] Marketplace (users can exchange/buy clothes from others)
 
 ### 2. Screen Archetypes
-
-* Main Home
-   * Categories (empty at first)
-       * e.g. Jackets, Shirts, Pants, etc
-   * Weather & Recommendation
-* Specific Category
-   * take picture/load picture of clothes from gallery
-   * save clothes into category
+* Login / Register
+  * User can log in/out
+  * User can sign up
+* Home
+  * User can view categories
+  * User can save pictures of their clothes into different categories
+  * User can add/delete categories
+  * User can view today's weather
+  * User can get recommendations for what to wear based on the weather
+* Category X (specific category)
+  * User can add/delete/edit clothes
+* Detail
+  * User can click on the clothes to see more detail (description, location, price, etc)
+* Outfit Creation
+  * User can select clothes and create a custom outfit combination
 * Calendar
-    * save outfits to wear/that you wore on a certain day
-* Combinations
-    * outfit combination
+  * User can view calendar
+  * User can log their outfits on specific days on the calendar
 * Favorites
-    * favorite outfits/clothes saved
+  * User can add "favorites"
+  * User can see the TOP 10 clothes they wear most often (ranking, sorting)
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 This is when the user switches between screens by simply clicking on a tab displayed at the top or bottom of the app.
 
-* Main Home
+* Home
 * Calendar
 * Favorites
 
 **Flow Navigation** (Screen to Screen)
 This is when the user taps on something on a screen and is taken to another screen. From that screen, they can go back to the previous screen, or navigate to another screen.
 
-* Main Home
-   => Specific Category
-* Specific Category
-   => Home (back)
+* Login / Register
+  => Home
+* Home
+  => Category X
+  => Calendar
+  => Favorites
+* Category X (specific category)
+  => Detail
+  => Home
+* Detail
+  => Category X
+* Outfit Creation
 * Calendar
-   => Home (back)
-* Combinations
-   => Home (back)
+  => Home
 * Favorites
-   => Home (back)
+  => Home
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="wireframe.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
