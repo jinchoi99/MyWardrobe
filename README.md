@@ -120,7 +120,10 @@ This is when the user taps on something on a screen and is taken to another scre
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user post (default field) |
-   | name          | String   | name of owner of wardrobe |
+   | username      | String   | name of owner of wardrobe |
+   | password      | String.  | password    |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | updatedAt     | DateTime | date when post is last updated (default field) |
 
 #### Clothing
    | Property      | Type     | Description |
