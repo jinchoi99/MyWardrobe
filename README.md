@@ -221,3 +221,13 @@ example:
     `GET`    | /characters/?name=name | return specific character by name
     `GET`    | /houses   | get all houses
     `GET`    | /houses/?name=name | return specific house by name
+
+## App expectations by week
+| Week                       	| Goals                            	|
+|----------------------------	|----------------------------------	|
+| FBU week 3, project week 0 	| - Create your app idea and your project plan |
+| FBU week 4, project week 1  | - Set up your data models and validate they work<br> - Build the navigational skeleton of your app<br> - Build out skeleton views for your app<br> - At the end of the week, review and update your project plan with your mentor (this should be an ongoing process, but be EXTRA SURE to do this after your first week of work!) |
+| FBU week 5, project week 2 | - Build basic login/logout (and account creation flow)<br> - Build a feature around using the camera<br> - we don't care if it's simple or complicated<br> - Get your core functionality working atop the skeleton you built last week (it doesn't have to be pretty!) |
+| FBU week 6, project week 3 | - Finish building out and polishing any views you haven't finished in previous weeks<br> - Integrate with a SDK<br> - Integrate a more complex algorithm into your app<br> - Begin adding visual polish<br> - Begin adding an animation<br> - Begin adding a gesture recognizer |
+| FBU week 7, project week 4 | - Finish adding animations / gestures<br> - Finish visual polish<br> - Bring in an external library or two that you can use to make your UI look fancier |
+| FBU week 8, project week 5 | Apps are code complete! Present to others! |
