@@ -121,7 +121,7 @@ This is when the user taps on something on a screen and is taken to another scre
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user post (default field) |
    | username      | String   | name of owner of wardrobe |
-   | password      | String.  | password    |
+   | password      | String   | password    |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
 
@@ -132,11 +132,11 @@ This is when the user taps on something on a screen and is taken to another scre
    | owner         | Pointer to User|  owner of clothing |
    | category      | String   | name of category |
    | image         | File     | image of clothing |
-   | name          | String   | name of clothing |
+   | clothingName  | String   | name of clothing |
    | description   | String   | description for clothing |
    | price         | Number   | cost of clothing |
    | brand         | String   | name of brand |
-   | favorite      | Bool.    | favoried or not |
+   | favorite      | Boolean  | favoried or not |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
 
@@ -144,10 +144,10 @@ This is when the user taps on something on a screen and is taken to another scre
    | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user post (default field) |
-   | clothes       | Array.   | list of clothes that make up the outfit |
+   | clothes       | Array    | list of clothes that make up the outfit |
    | image (?)     | File     | image of outfit |
-   | name          | String   | name of outfit |
-   | description   | String   | description for outfit |
+   | outfitName    | String   | name of outfit |
+   | outfitDescription   | String   | description for outfit |
    | count         | Number   | number of times outfit has been worn | 
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
