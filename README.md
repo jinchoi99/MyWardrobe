@@ -14,7 +14,6 @@ Original App Design Project - README Template
 Virtual closet where you can store and organize clothes, and save outfits, and get recommendations based on today's weather
 
 ### App Evaluation
-[Evaluation of your app across the following attributes]
 - **Category:** Clothes, Organizer, social networking
 - **Mobile:** Camera used to post pic of clothes. Easy access to virtual closet, can prepare for what to wear whenever/wherever, instantly log clothes combination ideas
 - **Story:** Allows users to add, organize, categorize, share clothes they have in their real closet, helps user keep track of what type of clothes and the location of where they had stored their clothes in real closet. Allows users to save clothes combination. Platform where they can share daily outfits with friends, give recommendations, exchange clothes.
@@ -27,8 +26,6 @@ Virtual closet where you can store and organize clothes, and save outfits, and g
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-
-* [fill in your required user stories here]
 * [ ] User can log in/out using gmail/fb account (use Google/FB SDK)
 * [ ] User can sign up
 * [ ] The current signed in user is persisted across app restarts
@@ -46,8 +43,6 @@ Virtual closet where you can store and organize clothes, and save outfits, and g
 * [ ] User can add "favorites"
 
 **Optional Nice-to-have Stories**
-
-* [fill in your required user stories here]
 * [ ] Pretty UI
 * [ ] Delete background for clothes pictures
 * [ ] AR/XR features
@@ -113,7 +108,6 @@ This is when the user taps on something on a screen and is taken to another scre
   => hOME
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
 <img src="wireframe.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
@@ -144,6 +138,7 @@ This is when the user taps on something on a screen and is taken to another scre
    | updatedAt     | DateTime | date when post is last updated (default field) |
 
 #### Outfit
+   | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user post (default field) |
    | clothes       | Array.   | list of clothes that make up the outfit |
@@ -156,7 +151,6 @@ This is when the user taps on something on a screen and is taken to another scre
 
 
 ### Networking
-#### [Add list of network requests by screen ]
 CRUD: Create, Read, Update, Delete
 - Login / Register Screen
   - (Create/POST) Creates new USER when sign up
