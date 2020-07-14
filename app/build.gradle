@@ -36,4 +36,6 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:${appCompatVersion}"
     implementation "com.google.android.material:material:${designSupportVersion}"
+
+    implementation 'com.facebook.android:facebook-login:[5,6)'
 }
