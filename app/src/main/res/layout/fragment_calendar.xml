@@ -5,10 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".fragments.CalendarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="this is calendar fragment" />
+        android:layout_height="match_parent">
+
+        <CalendarView
+            android:id="@+id/cvCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </CalendarView>
+    </LinearLayout>
 
 </FrameLayout>

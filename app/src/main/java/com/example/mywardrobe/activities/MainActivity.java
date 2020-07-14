@@ -1,4 +1,4 @@
-package com.example.mywardrobe;
+package com.example.mywardrobe.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.mywardrobe.R;
 import com.example.mywardrobe.fragments.CalendarFragment;
 import com.example.mywardrobe.fragments.ClothesFragment;
 import com.example.mywardrobe.fragments.OutfitsFragment;
