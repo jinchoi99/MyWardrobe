@@ -12,5 +12,4 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:text="Category1"></Button>
-
 </RelativeLayout>
