@@ -25,6 +25,7 @@ import com.example.mywardrobe.models.Category;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,7 @@ public class CategoriesFragment extends Fragment {
     protected void queryCategories() {
         ParseQuery<Category> query = ParseQuery.getQuery(Category.class);
         query.setLimit(20);
+        query.whereEqualTo(Category.KEY_CATEGORY_OWNER, ParseUser.getCurrentUser());
         query.addDescendingOrder(Category.KEY_CAT_CREATED_KEY);
         query.findInBackground(new FindCallback<Category>() {
             @Override

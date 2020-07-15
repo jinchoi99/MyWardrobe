@@ -17,6 +17,7 @@ import com.example.mywardrobe.models.Clothing;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
@@ -24,6 +25,8 @@ import java.util.List;
 
 public class ClothesFragment extends Fragment {
     public static final String TAG = "ClothesFragment";
+    Category currentCategory;
+
     public ClothesFragment() {
         // Required empty public constructor
     }
@@ -51,12 +54,15 @@ public class ClothesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //currentCategory = Parcels.unwrap(getArguments().getParcelable("currentCategory"));
         queryClothes();
     }
 
     protected void queryClothes() {
         ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
         query.setLimit(20);
+        //query.whereEqualTo(Clothing.KEY_CLOTHING_OWNER, ParseUser.getCurrentUser());
+        //query.whereEqualTo(Clothing.KEY_CLOTHING_CATEGORY, currentCategory.getCategoryName());
         query.addDescendingOrder(Clothing.KEY_CLOTHING_CREATED_KEY);
         query.findInBackground(new FindCallback<Clothing>() {
             @Override
