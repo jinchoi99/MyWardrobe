@@ -11,11 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.MainActivity;
 import com.example.mywardrobe.fragments.ClothesFragment;
 import com.example.mywardrobe.models.Category;
 import com.example.mywardrobe.models.Clothing;
+import com.parse.ParseFile;
 
 import java.util.List;
 
@@ -58,6 +60,10 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
 
         public void bind(Clothing clothing) {
             tvClothingName.setText(clothing.getClothingName());
+            ParseFile image = clothing.getClothingImage();
+            if(image!=null){
+                Glide.with(context).load(image.getUrl()).into(ivClothing);
+            }
         }
     }
 }
