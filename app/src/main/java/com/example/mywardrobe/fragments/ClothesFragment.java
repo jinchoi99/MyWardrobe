@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -21,16 +22,20 @@ import android.widget.Toast;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ComposeCategoryActivity;
+import com.example.mywardrobe.adapters.CategoriesAdapter;
 import com.example.mywardrobe.models.Category;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClothesFragment extends Fragment {
     public static final String TAG = "ClothesFragment";
     private RecyclerView rvCategories;
+    private CategoriesAdapter adapter;
+    private List<Category> allCategories;
 
     public ClothesFragment() {
         // Required empty public constructor
@@ -53,6 +58,12 @@ public class ClothesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvCategories = view.findViewById(R.id.rvCategories);
+        allCategories = new ArrayList<>();
+        adapter = new CategoriesAdapter(getContext(), allCategories);
+        rvCategories.setAdapter(adapter);
+        rvCategories.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        queryCategories();
+
     }
 
     protected void queryCategories() {
@@ -69,6 +80,8 @@ public class ClothesFragment extends Fragment {
                 for(Category category : categories){
                     Log.i(TAG, "Category Name: " + category.getCategoryName());
                 }
+                allCategories.addAll(categories);
+                adapter.notifyDataSetChanged();
             }
         });
     }

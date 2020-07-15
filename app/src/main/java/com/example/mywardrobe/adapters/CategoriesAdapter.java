@@ -1,4 +1,57 @@
 package com.example.mywardrobe.adapters;
 
-public class CategoriesAdapter {
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mywardrobe.R;
+import com.example.mywardrobe.models.Category;
+
+import java.util.List;
+
+public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
+
+    private Context context;
+    private List<Category> categories;
+
+    public CategoriesAdapter(Context context, List<Category> categories) {
+        this.context = context;
+        this.categories = categories;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_category, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Category category = categories.get(position);
+        holder.bind(category);
+    }
+
+    @Override
+    public int getItemCount() {
+        return categories.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder{
+        private Button btnCategroy;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            btnCategroy = itemView.findViewById(R.id.btnCategory);
+        }
+
+        public void bind(Category category) {
+            btnCategroy.setText(category.getCategoryName());
+        }
+    }
 }
