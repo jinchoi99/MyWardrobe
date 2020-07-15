@@ -54,15 +54,15 @@ public class ClothesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //currentCategory = Parcels.unwrap(getArguments().getParcelable("currentCategory"));
+        currentCategory = Parcels.unwrap(getArguments().getParcelable("currentCategory"));
         queryClothes();
     }
 
     protected void queryClothes() {
         ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
         query.setLimit(20);
-        //query.whereEqualTo(Clothing.KEY_CLOTHING_OWNER, ParseUser.getCurrentUser());
-        //query.whereEqualTo(Clothing.KEY_CLOTHING_CATEGORY, currentCategory.getCategoryName());
+        query.whereEqualTo(Clothing.KEY_CLOTHING_OWNER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Clothing.KEY_CLOTHING_CATEGORY, currentCategory.getCategoryName());
         query.addDescendingOrder(Clothing.KEY_CLOTHING_CREATED_KEY);
         query.findInBackground(new FindCallback<Clothing>() {
             @Override
