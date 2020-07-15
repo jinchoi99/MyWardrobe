@@ -2,6 +2,7 @@ package com.example.mywardrobe.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,5 +63,8 @@ public class ComposeCategoryActivity extends AppCompatActivity {
                 etCategoryName.setText("");
             }
         });
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }

@@ -1,12 +1,14 @@
 package com.example.mywardrobe.fragments;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
+import com.example.mywardrobe.activities.ComposeCategoryActivity;
 import com.example.mywardrobe.models.Category;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -27,6 +30,7 @@ import java.util.List;
 
 public class ClothesFragment extends Fragment {
     public static final String TAG = "ClothesFragment";
+    private RecyclerView rvCategories;
 
     public ClothesFragment() {
         // Required empty public constructor
@@ -48,11 +52,10 @@ public class ClothesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        queryPosts();
+        rvCategories = view.findViewById(R.id.rvCategories);
     }
 
-    protected void queryPosts() {
+    protected void queryCategories() {
         ParseQuery<Category> query = ParseQuery.getQuery(Category.class);
         query.setLimit(20);
         query.addDescendingOrder(Category.KEY_CAT_CREATED_KEY);
@@ -80,6 +83,8 @@ public class ClothesFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.compose){
             Toast.makeText(getContext(), "compose new category", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), ComposeCategoryActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
