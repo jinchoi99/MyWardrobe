@@ -72,7 +72,7 @@ public class CategoriesFragment extends Fragment {
             @Override
             public void done(List<Category> categories, ParseException e) {
                 if(e!=null){
-                    Log.e(TAG, "Issue with getting posts",e);
+                    Log.e(TAG, "Issue with getting categories",e);
                     return;
                 }
                 for(Category category : categories){
