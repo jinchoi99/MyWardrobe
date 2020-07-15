@@ -18,12 +18,22 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import org.parceler.Parcels;
+
 import java.util.List;
 
 public class ClothesFragment extends Fragment {
     public static final String TAG = "ClothesFragment";
     public ClothesFragment() {
         // Required empty public constructor
+    }
+
+    public static ClothesFragment newInstance(Category currentCategory) {
+        ClothesFragment fragmentClothes = new ClothesFragment();
+        Bundle args = new Bundle();
+        args.putParcelable("currentCategory", Parcels.wrap(currentCategory));
+        fragmentClothes.setArguments(args);
+        return fragmentClothes;
     }
 
     @Override
