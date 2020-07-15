@@ -6,13 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.fragments.CalendarFragment;
-import com.example.mywardrobe.fragments.ClothesFragment;
+import com.example.mywardrobe.fragments.CategoriesFragment;
 import com.example.mywardrobe.fragments.OutfitsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_clothes:
-                        fragment = new ClothesFragment();
+                        fragment = new CategoriesFragment();
                         break;
                     case R.id.action_outfits:
                         fragment = new OutfitsFragment();

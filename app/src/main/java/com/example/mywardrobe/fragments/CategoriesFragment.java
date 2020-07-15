@@ -1,12 +1,10 @@
 package com.example.mywardrobe.fragments;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,13 +29,13 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClothesFragment extends Fragment {
-    public static final String TAG = "ClothesFragment";
+public class CategoriesFragment extends Fragment {
+    public static final String TAG = "CategoriesFragment";
     private RecyclerView rvCategories;
     private CategoriesAdapter adapter;
     private List<Category> allCategories;
 
-    public ClothesFragment() {
+    public CategoriesFragment() {
         // Required empty public constructor
     }
 
@@ -51,7 +49,7 @@ public class ClothesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_clothes, container, false);
+        return inflater.inflate(R.layout.fragment_categories, container, false);
     }
 
     @Override
