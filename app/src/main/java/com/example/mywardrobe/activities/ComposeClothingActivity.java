@@ -40,6 +40,8 @@ public class ComposeClothingActivity extends AppCompatActivity {
     private EditText etPrice;
     private EditText etBrand;
     private Button btnClothingSubmit;
+    private Button btnDone;
+
     Category currentCategory;
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
@@ -58,6 +60,7 @@ public class ComposeClothingActivity extends AppCompatActivity {
         etPrice = findViewById(R.id.etPrice);
         etBrand = findViewById(R.id.etBrand);
         btnClothingSubmit = findViewById(R.id.btnClothingSubmit);
+        btnDone = findViewById(R.id.btnDone);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +102,21 @@ public class ComposeClothingActivity extends AppCompatActivity {
                 saveClothing(clothingName, clothingDescription, clothingPrice, clothingBrand, clothingOwner, categoryName, photoFile);
             }
         });
+
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goClothes();
+            }
+        });
     }
+
+    private void goClothes() {
+        Intent i = new Intent(this, ClothesActivity.class);
+        startActivity(i);
+        finish();
+    }
+
 
     private void launchCamera() {
         // create Intent to take a picture and return control to the calling application
@@ -181,7 +198,5 @@ public class ComposeClothingActivity extends AppCompatActivity {
                 ivClothing.setImageResource(0);
             }
         });
-        Intent intent = new Intent(this, ClothesActivity.class);
-        startActivity(intent);
     }
 }

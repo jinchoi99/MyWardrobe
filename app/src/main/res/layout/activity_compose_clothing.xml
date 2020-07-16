@@ -55,4 +55,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit" />
+
+    <Button
+        android:id="@+id/btnDone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done" />
 </LinearLayout>
