@@ -1,6 +1,7 @@
 package com.example.mywardrobe.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mywardrobe.R;
-import com.example.mywardrobe.activities.MainActivity;
-import com.example.mywardrobe.fragments.ClothesFragment;
+import com.example.mywardrobe.activities.ClothesActivity;
 import com.example.mywardrobe.models.Category;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -54,9 +56,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             btnCategroy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity) context).fragmentManager.beginTransaction().replace(R.id.flContainer, ClothesFragment.newInstance(currentCategory)).commit();
-                    //if do'nt need to send argument currenCategory,
-                    // ((MainActivity) context).fragmentManager.beginTransaction().replace(R.id.flContainer, new ClothesFragment()).commit();
+                    Intent intent = new Intent(context, ClothesActivity.class);
+                    intent.putExtra("categoryName", Parcels.wrap(currentCategory));
+                    context.startActivity(intent);
                 }
             });
         }

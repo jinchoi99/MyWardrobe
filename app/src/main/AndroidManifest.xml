@@ -13,8 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.ComposeClothingActivity"></activity>
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -28,6 +26,8 @@
         </activity>
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.ComposeCategoryActivity" />
+        <activity android:name=".activities.ComposeClothingActivity" />
+        <activity android:name=".activities.ClothesActivity"></activity>
     </application>
 
 </manifest>

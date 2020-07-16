@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
-import com.example.mywardrobe.fragments.ClothesFragment;
 import com.example.mywardrobe.models.Category;
 import com.example.mywardrobe.models.Clothing;
 import com.parse.ParseException;
@@ -56,17 +55,17 @@ public class ComposeClothingActivity extends AppCompatActivity {
                     return;
                 }
                 String clothingDescription = etClothingDescription.getText().toString();
-                String price = etPrice.getText().toString();
-                if(price.isEmpty() || price.charAt(0)!='$'){
+                String rawInputPrice = etPrice.getText().toString();
+                if(rawInputPrice.isEmpty() || rawInputPrice.charAt(0)!='$'){
                     Toast.makeText(ComposeClothingActivity.this, "Price needs to start with '$'", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Number clothingPrice;
-                if(price.length()==1){
+                if(rawInputPrice.length()==1){
                     clothingPrice=0;
                 }
                 else {
-                    clothingPrice=Integer.valueOf(price.substring(1));
+                    clothingPrice=Integer.valueOf(rawInputPrice.substring(1));
                 }
                 String clothingBrand = etBrand.getText().toString();
                 ParseUser clothingOwner = ParseUser.getCurrentUser();
@@ -101,5 +100,7 @@ public class ComposeClothingActivity extends AppCompatActivity {
                 etBrand.setText("");
             }
         });
+        Intent intent = new Intent(this, ClothesActivity.class);
+        startActivity(intent);
     }
 }

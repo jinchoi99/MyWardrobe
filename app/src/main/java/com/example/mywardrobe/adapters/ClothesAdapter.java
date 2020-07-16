@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,9 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mywardrobe.R;
-import com.example.mywardrobe.activities.MainActivity;
-import com.example.mywardrobe.fragments.ClothesFragment;
-import com.example.mywardrobe.models.Category;
 import com.example.mywardrobe.models.Clothing;
 import com.parse.ParseFile;
 
