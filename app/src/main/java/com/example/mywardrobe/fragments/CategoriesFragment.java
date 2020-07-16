@@ -62,7 +62,6 @@ public class CategoriesFragment extends Fragment {
         rvCategories.setAdapter(adapter);
         rvCategories.setLayoutManager(new GridLayoutManager(getContext(), 2));
         queryCategories();
-
     }
 
     protected void queryCategories() {

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ComposeCategoryActivity;
+import com.example.mywardrobe.activities.ComposeClothingActivity;
 import com.example.mywardrobe.adapters.CategoriesAdapter;
 import com.example.mywardrobe.adapters.ClothesAdapter;
 import com.example.mywardrobe.models.Category;
@@ -46,6 +48,7 @@ public class ClothesFragment extends Fragment {
         // Required empty public constructor
     }
 
+    //Fragment with argument
     public static ClothesFragment newInstance(Category currentCategory) {
         ClothesFragment fragmentClothes = new ClothesFragment();
         Bundle args = new Bundle();
@@ -111,7 +114,9 @@ public class ClothesFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.composeClothing){
             Toast.makeText(getContext(), "compose new clothing", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), ComposeCategoryActivity.class);
+            //getActivity = MainActivity since that's where this fragment lies upon
+            Intent intent = new Intent(getActivity(), ComposeClothingActivity.class);
+            intent.putExtra("categoryName", Parcels.wrap(currentCategory));
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

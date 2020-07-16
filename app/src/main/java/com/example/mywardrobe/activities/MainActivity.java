@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.fragments.CalendarFragment;
 import com.example.mywardrobe.fragments.CategoriesFragment;
+import com.example.mywardrobe.fragments.ClothesFragment;
 import com.example.mywardrobe.fragments.OutfitsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

@@ -55,6 +55,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 @Override
                 public void onClick(View view) {
                     ((MainActivity) context).fragmentManager.beginTransaction().replace(R.id.flContainer, ClothesFragment.newInstance(currentCategory)).commit();
+                    //if do'nt need to send argument currenCategory,
+                    // ((MainActivity) context).fragmentManager.beginTransaction().replace(R.id.flContainer, new ClothesFragment()).commit();
                 }
             });
         }
