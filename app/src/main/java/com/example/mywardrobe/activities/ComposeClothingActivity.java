@@ -56,7 +56,18 @@ public class ComposeClothingActivity extends AppCompatActivity {
                     return;
                 }
                 String clothingDescription = etClothingDescription.getText().toString();
-                Number clothingPrice=Integer.valueOf(etPrice.getText().toString().substring(1));
+                String price = etPrice.getText().toString();
+                if(price.isEmpty() || price.charAt(0)!='$'){
+                    Toast.makeText(ComposeClothingActivity.this, "Price needs to start with '$'", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Number clothingPrice;
+                if(price.length()==1){
+                    clothingPrice=0;
+                }
+                else {
+                    clothingPrice=Integer.valueOf(price.substring(1));
+                }
                 String clothingBrand = etBrand.getText().toString();
                 ParseUser clothingOwner = ParseUser.getCurrentUser();
                 currentCategory = Parcels.unwrap(getIntent().getParcelableExtra("categoryName"));
