@@ -73,7 +73,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fblogin();
-                goMainActivity();
             }
         });
     }
@@ -89,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Log.d("MyApp", "User logged in through Facebook!");
                 }
+                goMainActivity();
             }
         });
     }
