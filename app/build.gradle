@@ -47,4 +47,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //Facebook SDK
+    implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
+
+    //Facebook with Parse
+    implementation "com.github.parse-community.Parse-SDK-Android:facebook:1.24.2"
 }

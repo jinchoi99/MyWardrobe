@@ -94,7 +94,7 @@ public class CategoriesFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.compose){
+        if(item.getItemId() == R.id.composeCategory){
             Toast.makeText(getContext(), "compose new category", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), ComposeCategoryActivity.class);
             startActivity(intent);

@@ -59,6 +59,15 @@
             android:layout_weight="1"
             android:text="SIGN UP" />
 
+        <Button
+            android:id="@+id/btnLoginFB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorAccent"
+            android:text="FB LOG IN" />
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -3,9 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/composeCategory"
+        android:id="@+id/composeClothing"
         android:icon="@drawable/ic_addplus"
         android:title="Compose"
         android:visible="true"
-        app:showAsAction="always" />
+        app:showAsAction="always"></item>
+
 </menu>

@@ -7,6 +7,9 @@ import com.example.mywardrobe.models.Clothing;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
+import com.facebook.FacebookSdk;
+import com.parse.facebook.ParseFacebookUtils;
+
 public class ParseApplication extends Application {
     @Override
     public void onCreate() {
@@ -22,5 +25,7 @@ public class ParseApplication extends Application {
                 .applicationId("jinny-wardrobe") // should correspond to APP_ID env variable
                 .clientKey("JinnyMoveFast")  // set explicitly unless clientKey is explicitly configured on Parse server
                 .server("https://jinny-wardrobe.herokuapp.com/parse/").build());
+
+        ParseFacebookUtils.initialize(this);
     }
 }

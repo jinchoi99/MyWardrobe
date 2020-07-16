@@ -11,10 +11,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
+import com.facebook.login.LoginManager;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+import com.parse.facebook.ParseFacebookUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = "LoginActivity";
@@ -22,6 +29,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etPassword;
     private Button btnLogin;
     private Button btnSignup;
+    private Button btnLoginFB;
+    public static final Collection<String> permissions = new ArrayList<String>(){{
+        add("email");
+    }};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnSignup = findViewById(R.id.btnSignup);
+        btnLoginFB = findViewById(R.id.btnLoginFB);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +69,36 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btnLoginFB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fblogin();
+                goMainActivity();
+            }
+        });
     }
+
+    private void fblogin(){
+        ParseFacebookUtils.logInWithReadPermissionsInBackground(this, permissions, new LogInCallback() {
+            @Override
+            public void done(ParseUser user, ParseException err) {
+                if (user == null) {
+                    Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                } else if (user.isNew()) {
+                    Log.d("MyApp", "User signed up and logged in through Facebook!");
+                } else {
+                    Log.d("MyApp", "User logged in through Facebook!");
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
+    }
+
 
     private void signupUser(String username, String password) {
         // Create the ParseUser
