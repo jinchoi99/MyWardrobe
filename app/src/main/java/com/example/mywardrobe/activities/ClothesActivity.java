@@ -2,6 +2,7 @@ package com.example.mywardrobe.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,12 +40,18 @@ public class ClothesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothes);
 
+        Toolbar clothesToolbar = findViewById(R.id.clothesToolbar);
+        setSupportActionBar(clothesToolbar);
+
         rvClothesList = findViewById(R.id.rvClothesList);
         allClothes = new ArrayList<>();
         adapter = new ClothesAdapter(this, allClothes);
         rvClothesList.setAdapter(adapter);
         rvClothesList.setLayoutManager(new GridLayoutManager(this, 3));
         currentCategory = Parcels.unwrap(getIntent().getParcelableExtra("categoryName"));
+
+        getSupportActionBar().setTitle(currentCategory.getCategoryName());
+
         queryClothes();
     }
 

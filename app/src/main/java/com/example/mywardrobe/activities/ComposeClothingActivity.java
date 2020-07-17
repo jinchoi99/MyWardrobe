@@ -114,6 +114,7 @@ public class ComposeClothingActivity extends AppCompatActivity {
     private void goClothes() {
         Intent i = new Intent(this, ClothesActivity.class);
         startActivity(i);
+        i.putExtra("categoryName", Parcels.wrap(currentCategory));
         finish();
     }
 
@@ -172,7 +173,7 @@ public class ComposeClothingActivity extends AppCompatActivity {
         return file;
     }
 
-    private void saveClothing(String clothingName, String clothingDescription, Number clothingPrice, String clothingBrand, ParseUser clothingOwner, String categoryName, File photoFile) {
+    private void saveClothing(String clothingName, String clothingDescription, Number clothingPrice, String clothingBrand, ParseUser clothingOwner, String categoryName, final File photoFile) {
         Clothing clothing = new Clothing();
         clothing.setClothingName(clothingName);
         clothing.setClothingDescription(clothingDescription);
