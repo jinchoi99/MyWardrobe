@@ -76,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         nvNavigationView.setNavigationItemSelectedListener(this);
+
+        //Set NavigtaionView Menu
+        Menu menu = nvNavigationView.getMenu();
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        menu.findItem(R.id.nav_username).setTitle("Welcome, " + currentUser.getUsername());
     }
 
     @Override
