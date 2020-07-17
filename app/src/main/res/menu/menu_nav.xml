@@ -4,15 +4,15 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_first_fragment"
+            android:id="@+id/navItem1"
             android:icon="@drawable/ic_baseline_accessibility_24"
             android:title="First" />
         <item
-            android:id="@+id/nav_second_fragment"
+            android:id="@+id/navItem2"
             android:icon="@drawable/ic_reply_back"
             android:title="Second" />
         <item
-            android:id="@+id/nav_third_fragment"
+            android:id="@+id/navItem3"
             android:icon="@drawable/ic_addplus"
             android:title="Third" />
     </group>

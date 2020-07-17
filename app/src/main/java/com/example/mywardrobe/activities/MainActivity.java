@@ -4,12 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.fragments.CalendarFragment;
@@ -18,11 +21,14 @@ import com.example.mywardrobe.fragments.OutfitsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+import org.parceler.Parcels;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String TAG = "MainActivity";
     public final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
 
+    Toolbar toolbar;
     DrawerLayout dlDrawerLayout;
     NavigationView nvNavigationView;
 
@@ -31,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -60,8 +66,44 @@ public class MainActivity extends AppCompatActivity {
 
         dlDrawerLayout = findViewById(R.id.dlDrawerLayout);
         nvNavigationView = findViewById(R.id.nvNavigationView);
+
+        nvNavigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, dlDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         dlDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        nvNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(dlDrawerLayout.isDrawerOpen(GravityCompat.START)){
+            dlDrawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            //TODO: navigate to login page after logging out, settings page, etc
+            case R.id.navItem1:
+                Toast.makeText(this, "hello1", Toast.LENGTH_SHORT).show();
+                fragmentManager.beginTransaction().replace(R.id.flContainer, new OutfitsFragment()).commit();
+                dlDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.navItem2:
+                Toast.makeText(this, "hello2", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ComposeCategoryActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.navItem3:
+            default:
+                Toast.makeText(this, "hello3", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
     }
 }
