@@ -99,6 +99,7 @@ public class ClothesActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ComposeClothingActivity.class);
             intent.putExtra("categoryName", Parcels.wrap(currentCategory));
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
