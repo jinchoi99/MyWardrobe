@@ -1,39 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.MainActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    android:id="@+id/dlDrawerLayout"
+    >
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"></include>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nvNavigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/header"
+        android:layout_gravity = "start"
+        app:menu="@menu/menu_nav">
+    </com.google.android.material.navigation.NavigationView>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="56dp">
-
-        <FrameLayout
-            android:id="@+id/flContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+        
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar">
+        </include>
+    
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/bottomNavigation" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:itemIconSize="30dp"
-            app:itemIconTint="@color/black"
-            app:itemTextColor="@color/black"
-            app:menu="@menu/menu_bottom_navigation" />
-
+            android:layout_marginTop="56dp">
+    
+            <FrameLayout
+                android:id="@+id/flContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/bottomNavigation" />
+    
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:itemIconSize="30dp"
+                app:itemIconTint="@color/black"
+                app:itemTextColor="@color/black"
+                app:menu="@menu/menu_bottom_navigation" />
+            
+        </RelativeLayout>
+        
     </RelativeLayout>
-
-</RelativeLayout>
+    
+</androidx.drawerlayout.widget.DrawerLayout>
