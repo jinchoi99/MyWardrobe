@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         nvNavigationView.setNavigationItemSelectedListener(this);
 
-        //Set NavigtaionView Menu
+        //Set NavigationView Menu
         Menu menu = nvNavigationView.getMenu();
         ParseUser currentUser = ParseUser.getCurrentUser();
         menu.findItem(R.id.nav_username).setTitle("Welcome, " + currentUser.getUsername());
@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logot:
-                Intent intent = new Intent(this, ComposeCategoryActivity.class);
+                ParseUser.logOut();
+                Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 break;
