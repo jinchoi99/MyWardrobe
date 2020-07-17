@@ -68,6 +68,14 @@ public class ComposeClothingActivity extends AppCompatActivity {
                 launchCamera();
             }
         });
+        currentCategory = Parcels.unwrap(getIntent().getParcelableExtra("categoryName"));
+
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goClothes();
+            }
+        });
 
         //Create a new instance of Clothing entity/model/parseobject
         btnClothingSubmit.setOnClickListener(new View.OnClickListener() {
@@ -93,28 +101,20 @@ public class ComposeClothingActivity extends AppCompatActivity {
                 }
                 String clothingBrand = etBrand.getText().toString();
                 ParseUser clothingOwner = ParseUser.getCurrentUser();
-                currentCategory = Parcels.unwrap(getIntent().getParcelableExtra("categoryName"));
                 final String categoryName = currentCategory.getCategoryName();
-//                if(photoFile == null || ivClothing.getDrawable() == null){
-//                    Toast.makeText(ComposeClothingActivity.this, "There is no image!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+                if(photoFile == null || ivClothing.getDrawable() == null){
+                    Toast.makeText(ComposeClothingActivity.this, "There is no image!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 saveClothing(clothingName, clothingDescription, clothingPrice, clothingBrand, clothingOwner, categoryName, photoFile);
-            }
-        });
-
-        btnDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goClothes();
             }
         });
     }
 
     private void goClothes() {
         Intent i = new Intent(this, ClothesActivity.class);
+        i.putExtra("fromCompose", Parcels.wrap(currentCategory));
         startActivity(i);
-        i.putExtra("categoryName", Parcels.wrap(currentCategory));
         finish();
     }
 
@@ -133,10 +133,10 @@ public class ComposeClothingActivity extends AppCompatActivity {
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.
-        if (intent.resolveActivity(getPackageManager()) == null) {
+        //if (intent.resolveActivity(getPackageManager()) == null) {
             // Start the image capture intent to take photo
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-        }
+        //}
     }
 
     @Override

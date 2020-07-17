@@ -48,7 +48,15 @@ public class ClothesActivity extends AppCompatActivity {
         adapter = new ClothesAdapter(this, allClothes);
         rvClothesList.setAdapter(adapter);
         rvClothesList.setLayoutManager(new GridLayoutManager(this, 3));
-        currentCategory = Parcels.unwrap(getIntent().getParcelableExtra("categoryName"));
+
+        if(getIntent().hasExtra("fromCategories"))
+        {
+            currentCategory = Parcels.unwrap(getIntent().getParcelableExtra("fromCategories"));
+        }
+        else if(getIntent().hasExtra("fromCompose"))
+        {
+            currentCategory = Parcels.unwrap(getIntent().getParcelableExtra("fromCompose"));
+        }
 
         getSupportActionBar().setTitle(currentCategory.getCategoryName());
 
