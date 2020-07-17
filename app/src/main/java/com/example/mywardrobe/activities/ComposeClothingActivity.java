@@ -97,7 +97,7 @@ public class ComposeClothingActivity extends AppCompatActivity {
                     clothingPrice=0;
                 }
                 else {
-                    clothingPrice=Integer.valueOf(rawInputPrice.substring(1));
+                    clothingPrice=Double.valueOf(rawInputPrice.substring(1));
                 }
                 String clothingBrand = etBrand.getText().toString();
                 ParseUser clothingOwner = ParseUser.getCurrentUser();
