@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -18,8 +19,10 @@ import com.example.mywardrobe.R;
 import com.example.mywardrobe.fragments.CalendarFragment;
 import com.example.mywardrobe.fragments.CategoriesFragment;
 import com.example.mywardrobe.fragments.OutfitsFragment;
+import com.example.mywardrobe.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
@@ -88,22 +91,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            //TODO: navigate to login page after logging out, settings page, etc
-            case R.id.navItem1:
-                Toast.makeText(this, "hello1", Toast.LENGTH_SHORT).show();
-                fragmentManager.beginTransaction().replace(R.id.flContainer, new OutfitsFragment()).commit();
-                dlDrawerLayout.closeDrawer(GravityCompat.START);
+            case R.id.nav_profile:
+                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.navItem2:
-                Toast.makeText(this, "hello2", Toast.LENGTH_SHORT).show();
+            case R.id.nav_logot:
                 Intent intent = new Intent(this, ComposeCategoryActivity.class);
                 startActivity(intent);
+                finish();
                 break;
-            case R.id.navItem3:
+            case R.id.nav_settings:
             default:
-                Toast.makeText(this, "hello3", Toast.LENGTH_SHORT).show();
+                fragmentManager.beginTransaction().replace(R.id.flContainer, new SettingsFragment()).commit();
                 break;
         }
+        dlDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
