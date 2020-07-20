@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".fragments.OutfitsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvOutfits"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="this is outfits fragment" />
+        android:layout_marginTop="20dp"
+        android:padding="8dp" />
 
 </FrameLayout>

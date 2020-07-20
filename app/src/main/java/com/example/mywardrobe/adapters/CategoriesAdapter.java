@@ -47,13 +47,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        private Button btnCategroy;
+        private Button btnCategory;
         private Category currentCategory;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            btnCategroy = itemView.findViewById(R.id.btnCategory);
-            btnCategroy.setOnClickListener(new View.OnClickListener() {
+            btnCategory = itemView.findViewById(R.id.btnCategory);
+            btnCategory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, ClothesActivity.class);
@@ -65,7 +65,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
         public void bind(Category category) {
             currentCategory = category;
-            btnCategroy.setText(category.getCategoryName());
+            btnCategory.setText(category.getCategoryName());
         }
     }
 }

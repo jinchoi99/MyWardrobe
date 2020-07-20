@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.mywardrobe.models.Category;
 import com.example.mywardrobe.models.Clothing;
+import com.example.mywardrobe.models.Outfit;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -17,6 +18,7 @@ public class ParseApplication extends Application {
 
         ParseObject.registerSubclass(Category.class);
         ParseObject.registerSubclass(Clothing.class);
+        ParseObject.registerSubclass(Outfit.class);
 
         // set applicationId, and server server based on the values in the Heroku settings.
         // clientKey is not needed unless explicitly configured

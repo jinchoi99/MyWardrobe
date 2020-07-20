@@ -6,7 +6,7 @@ import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 @ParseClassName("Outfit")
-public class Outfit extends ParseObject {
+public class Outfit extends ParseObject{
     public static final String KEY_OUTFIT_CREATED_KEY = "createdAt";
     public static final String KEY_OUTFIT_NAME = "outfitName";
     public static final String KEY_OUTFIT_DESCRIPTION = "outfitDescription";
