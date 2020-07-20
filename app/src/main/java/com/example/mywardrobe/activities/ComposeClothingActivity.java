@@ -118,7 +118,6 @@ public class ComposeClothingActivity extends AppCompatActivity {
         finish();
     }
 
-
     private void launchCamera() {
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -133,10 +132,8 @@ public class ComposeClothingActivity extends AppCompatActivity {
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.
-        //if (intent.resolveActivity(getPackageManager()) == null) {
-            // Start the image capture intent to take photo
-            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-        //}
+        // Start the image capture intent to take photo
+        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
 
     @Override
