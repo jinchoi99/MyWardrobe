@@ -72,16 +72,7 @@ public class OutfitsFragment extends Fragment {
                     return;
                 }
                 for(final Outfit outfit : outfits){
-                    ParseQuery queryRelations = outfit.getClothingRelation().getQuery();
-                    queryRelations.findInBackground(new FindCallback<Clothing>() {
-                        @Override
-                        public void done(List<Clothing> clothes, ParseException e) {
-                            Log.i(TAG, "Outfit Name: " + outfit.getOutfitName());
-                            for(Clothing clothing : clothes) {
-                                Log.i(TAG, "Clothing Name: " + clothing.getClothingName());
-                            }
-                        }
-                    });
+                    Log.i(TAG, "Outfit Name: " + outfit.getOutfitName());
                 }
                 allOutfits.addAll(outfits);
                 adapter.notifyDataSetChanged();
