@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -64,8 +65,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             }
         });
-        // Set default menu item selection so that there is fragment showing, never empty
-        bottomNavigationView.setSelectedItemId(R.id.action_clothes);
+        if(getIntent().getStringExtra("EXTRA") == null)
+        {
+            // Set default menu item selection so that there is fragment showing, never empty
+            bottomNavigationView.setSelectedItemId(R.id.action_clothes);
+            Log.i(TAG, "here1" + getIntent().getStringExtra("EXTRA"));
+
+        }
+        else{
+            bottomNavigationView.setSelectedItemId(R.id.action_outfits);
+            //getIntent().getStringExtra("EXTRA") = "open OutfitsFragment"
+            Log.i(TAG, "here2" + getIntent().getStringExtra("EXTRA"));
+        }
 
         dlDrawerLayout = findViewById(R.id.dlDrawerLayout);
         nvNavigationView = findViewById(R.id.nvNavigationView);
