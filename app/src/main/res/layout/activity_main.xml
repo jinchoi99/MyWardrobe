@@ -8,8 +8,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    android:id="@+id/dlDrawerLayout"
-    >
+    android:id="@+id/dlDrawerLayout">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nvNavigationView"

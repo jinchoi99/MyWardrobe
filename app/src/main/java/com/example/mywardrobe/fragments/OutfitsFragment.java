@@ -1,5 +1,6 @@
 package com.example.mywardrobe.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,12 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ComposeCategoryActivity;
+import com.example.mywardrobe.activities.ComposeOutfitActivity;
 import com.example.mywardrobe.adapters.OutfitsAdapter;
 import com.example.mywardrobe.models.Category;
 import com.example.mywardrobe.models.Clothing;
@@ -78,5 +83,21 @@ public class OutfitsFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_outfit, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.composeOutfit){
+            Toast.makeText(getContext(), "compose new outfit", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), ComposeOutfitActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
