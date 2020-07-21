@@ -5,7 +5,7 @@
     <item
         android:id="@+id/composeOutfit"
         android:icon="@drawable/ic_addplus"
-        android:title="Compose"
+        android:title="ComposeOutfit"
         android:visible="true"
         app:showAsAction="always" />
 </menu>
