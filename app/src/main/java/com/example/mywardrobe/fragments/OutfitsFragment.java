@@ -18,6 +18,7 @@ import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ComposeCategoryActivity;
 import com.example.mywardrobe.adapters.OutfitsAdapter;
 import com.example.mywardrobe.models.Category;
+import com.example.mywardrobe.models.Clothing;
 import com.example.mywardrobe.models.Outfit;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -26,6 +27,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class OutfitsFragment extends Fragment {
@@ -58,6 +60,7 @@ public class OutfitsFragment extends Fragment {
 
     private void queryOutfits() {
         ParseQuery<Outfit> query = ParseQuery.getQuery(Outfit.class);
+        query.include(Outfit.KEY_OUTFIT_CLOTHES);
         query.setLimit(20);
         query.whereEqualTo(Outfit.KEY_OUTFIT_OWNER, ParseUser.getCurrentUser());
         query.addDescendingOrder(Outfit.KEY_OUTFIT_CREATED_KEY);
@@ -68,8 +71,17 @@ public class OutfitsFragment extends Fragment {
                     Log.e(TAG, "Issue with getting outfits",e);
                     return;
                 }
-                for(Outfit outfit : outfits){
-                    Log.i(TAG, "Outfit Name: " + outfit.getOutfitName());
+                for(final Outfit outfit : outfits){
+                    ParseQuery queryRelations = outfit.getClothingRelation().getQuery();
+                    queryRelations.findInBackground(new FindCallback<Clothing>() {
+                        @Override
+                        public void done(List<Clothing> clothes, ParseException e) {
+                            Log.i(TAG, "Outfit Name: " + outfit.getOutfitName());
+                            for(Clothing clothing : clothes) {
+                                Log.i(TAG, "Clothing Name: " + clothing.getClothingName());
+                            }
+                        }
+                    });
                 }
                 allOutfits.addAll(outfits);
                 adapter.notifyDataSetChanged();

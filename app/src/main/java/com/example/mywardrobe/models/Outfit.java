@@ -12,7 +12,7 @@ public class Outfit extends ParseObject{
     public static final String KEY_OUTFIT_DESCRIPTION = "outfitDescription";
     public static final String KEY_OUTFIT_COUNT = "count";
     public static final String KEY_OUTFIT_OWNER = "outfitOwner";
-    public static final String KEY_OUTFIT_CLOTHES = "clothes";
+    public static final String KEY_OUTFIT_CLOTHES = "clothesRelation";
 
     public String getOutfitName(){
         return getString(KEY_OUTFIT_NAME);

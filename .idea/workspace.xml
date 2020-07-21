@@ -12,17 +12,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f07a2dc4-4fd3-4655-9347-510e2398620b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/adapters/OutfitsAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_outfit.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/ParseApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/ParseApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/adapters/CategoriesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/adapters/CategoriesAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/OutfitsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/OutfitsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/models/Outfit.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/models/Outfit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_outfits.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_outfits.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_outfit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_outfit.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +70,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="memory.settings.postsync.last.time.stamp" value="1595205162910" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1595343873243" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -189,10 +185,11 @@
       <screen x="0" y="23" width="1792" height="1015" />
     </state>
     <state x="589" y="170" key="#app/0.23.1792.1015@0.23.1792.1015" timestamp="1595020244878" />
-    <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser" timestamp="1595281799759">
-      <screen x="0" y="0" width="1792" height="1120" />
+    <state x="709" y="273" key="#com.intellij.ide.util.MemberChooser" timestamp="1595346564355">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
     <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1595281799759" />
+    <state x="709" y="273" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1020@0.23.1792.1020" timestamp="1595346564355" />
     <state x="634" y="314" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595283922825">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -201,30 +198,34 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="484" y="322" key="AndroidCreateResourceFileDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1595280626833" />
-    <state width="1750" height="334" key="GridCell.Tab.0.bottom" timestamp="1595283905251">
-      <screen x="0" y="0" width="1792" height="1120" />
+    <state width="1750" height="250" key="GridCell.Tab.0.bottom" timestamp="1595346698408">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
-    <state width="1750" height="334" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1595283905251" />
+    <state width="1750" height="334" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1595285806458" />
     <state width="1750" height="234" key="GridCell.Tab.0.bottom/0.23.1792.1015@0.23.1792.1015" timestamp="1595022100865" />
     <state width="1750" height="286" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1595283728202" />
-    <state width="1750" height="334" key="GridCell.Tab.0.center" timestamp="1595283905250">
-      <screen x="0" y="0" width="1792" height="1120" />
+    <state width="1750" height="250" key="GridCell.Tab.0.bottom/0.23.1792.1020@0.23.1792.1020" timestamp="1595346698408" />
+    <state width="1750" height="250" key="GridCell.Tab.0.center" timestamp="1595346698408">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
-    <state width="1750" height="334" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1595283905250" />
+    <state width="1750" height="334" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1595285806457" />
     <state width="1750" height="234" key="GridCell.Tab.0.center/0.23.1792.1015@0.23.1792.1015" timestamp="1595022100865" />
     <state width="1750" height="286" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1595283728202" />
-    <state width="1750" height="334" key="GridCell.Tab.0.left" timestamp="1595283905249">
-      <screen x="0" y="0" width="1792" height="1120" />
+    <state width="1750" height="250" key="GridCell.Tab.0.center/0.23.1792.1020@0.23.1792.1020" timestamp="1595346698408" />
+    <state width="1750" height="250" key="GridCell.Tab.0.left" timestamp="1595346698407">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
-    <state width="1750" height="334" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1595283905249" />
+    <state width="1750" height="334" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1595285806457" />
     <state width="1750" height="234" key="GridCell.Tab.0.left/0.23.1792.1015@0.23.1792.1015" timestamp="1595022100864" />
     <state width="1750" height="286" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1595283728201" />
-    <state width="1750" height="334" key="GridCell.Tab.0.right" timestamp="1595283905250">
-      <screen x="0" y="0" width="1792" height="1120" />
+    <state width="1750" height="250" key="GridCell.Tab.0.left/0.23.1792.1020@0.23.1792.1020" timestamp="1595346698407" />
+    <state width="1750" height="250" key="GridCell.Tab.0.right" timestamp="1595346698408">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
-    <state width="1750" height="334" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1595283905250" />
+    <state width="1750" height="334" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1595285806458" />
     <state width="1750" height="234" key="GridCell.Tab.0.right/0.23.1792.1015@0.23.1792.1015" timestamp="1595022100865" />
     <state width="1750" height="286" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1595283728202" />
+    <state width="1750" height="250" key="GridCell.Tab.0.right/0.23.1792.1020@0.23.1792.1020" timestamp="1595346698408" />
     <state x="397" y="203" key="SettingsEditor" timestamp="1595021566063">
       <screen x="0" y="23" width="1792" height="1015" />
     </state>

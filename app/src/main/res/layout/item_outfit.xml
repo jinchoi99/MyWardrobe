@@ -11,4 +11,10 @@
         android:layout_height="wrap_content"
         android:text="Outfit1"
         android:textSize="30dp"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
 </LinearLayout>
