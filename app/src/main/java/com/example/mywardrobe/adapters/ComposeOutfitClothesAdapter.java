@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,10 +45,12 @@ public class ComposeOutfitClothesAdapter extends RecyclerView.Adapter<ComposeOut
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvComposeOutfitClothingName;
+        private CheckBox cbComposeOutfitClothing;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvComposeOutfitClothingName = itemView.findViewById(R.id.tvComposeOutfitClothingName);
+            cbComposeOutfitClothing = itemView.findViewById(R.id.cbComposeOutfitClothing);
         }
 
         public void bind(Clothing composeOutfitClothing) {
