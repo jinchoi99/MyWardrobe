@@ -13,6 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Outfit" />
+    
+    <EditText
+        android:id="@+id/etNewOutfitName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Outfit Name"></EditText>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvComposeOutfitsCategories"

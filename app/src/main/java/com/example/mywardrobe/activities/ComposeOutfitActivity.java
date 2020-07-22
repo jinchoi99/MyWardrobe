@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.adapters.ComposeOutfitAdapter;
@@ -20,6 +21,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,19 +32,14 @@ public class ComposeOutfitActivity extends AppCompatActivity {
     private ComposeOutfitAdapter adapter;
     private List<Category> allComposeOutfitsCategories;
     private Button btnAddOutfit;
+    private EditText etNewOutfitName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose_outfit);
 
-        btnAddOutfit = findViewById(R.id.btnAddOutfit);
-        btnAddOutfit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goOutfitsFragment();
-            }
-        });
+        etNewOutfitName = findViewById(R.id.etNewOutfitName);
 
         rvComposeOutfitsCategories = findViewById(R.id.rvComposeOutfitsCategories);
         allComposeOutfitsCategories = new ArrayList<>();
@@ -50,6 +47,40 @@ public class ComposeOutfitActivity extends AppCompatActivity {
         rvComposeOutfitsCategories.setAdapter(adapter);
         rvComposeOutfitsCategories.setLayoutManager(new LinearLayoutManager(this));
         queryComposeOutfitsCategories();
+
+        btnAddOutfit = findViewById(R.id.btnAddOutfit);
+        btnAddOutfit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newOutfitName = etNewOutfitName.getText().toString();
+                if(newOutfitName.isEmpty()){
+                    Toast.makeText(ComposeOutfitActivity.this, "New Outfit name can't be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ParseUser outfitOwner = ParseUser.getCurrentUser();
+                saveNewOutfit(newOutfitName, outfitOwner);
+            }
+        });
+    }
+
+    private void saveNewOutfit(String newOutfitName, ParseUser outfitOwner) {
+        Outfit newOutfit = new Outfit();
+        newOutfit.setOutfitName(newOutfitName);
+        newOutfit.setOutfitOwner(outfitOwner);
+        newOutfit.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e!=null){
+                    Log.e(TAG, "Error while saving new outfit",e);
+                    Toast.makeText(ComposeOutfitActivity.this, "Error while saving new outfit!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Log.i(TAG, "New Outfit was saved successfully!");
+                Toast.makeText(ComposeOutfitActivity.this, "New outfit was saved successfully!", Toast.LENGTH_SHORT).show();
+                etNewOutfitName.setText("");
+            }
+        });
+        goOutfitsFragment();
     }
 
     private void queryComposeOutfitsCategories() {
