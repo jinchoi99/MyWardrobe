@@ -53,4 +53,7 @@ dependencies {
 
     //Facebook with Parse
     implementation "com.github.parse-community.Parse-SDK-Android:facebook:1.24.2"
+
+    //CodePath Async Http Client
+    implementation 'com.codepath.libraries:asynchttpclient:0.0.9'
 }
