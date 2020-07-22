@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.example.mywardrobe.R;
 import com.example.mywardrobe.adapters.ComposeOutfitAdapter;
 import com.example.mywardrobe.adapters.OutfitsAdapter;
 import com.example.mywardrobe.models.Category;
+import com.example.mywardrobe.models.Clothing;
 import com.example.mywardrobe.models.Outfit;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -34,6 +36,8 @@ public class ComposeOutfitActivity extends AppCompatActivity {
     private Button btnAddOutfit;
     private EditText etNewOutfitName;
 
+    private static List<Clothing> selectedClothings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,8 @@ public class ComposeOutfitActivity extends AppCompatActivity {
         rvComposeOutfitsCategories.setLayoutManager(new LinearLayoutManager(this));
         queryComposeOutfitsCategories();
 
+        selectedClothings = new ArrayList<>();
+
         btnAddOutfit = findViewById(R.id.btnAddOutfit);
         btnAddOutfit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +65,38 @@ public class ComposeOutfitActivity extends AppCompatActivity {
                 }
                 ParseUser outfitOwner = ParseUser.getCurrentUser();
                 saveNewOutfit(newOutfitName, outfitOwner);
+            }
+        });
+    }
+
+    public static void makeSelection(View view, Clothing currentClothing) {
+        if(((CheckBox)view).isChecked()){
+            selectedClothings.add(currentClothing);
+            Log.i(TAG, selectedClothings.toString());
+        }
+        else{
+            selectedClothings.remove(currentClothing);
+            Log.i(TAG, selectedClothings.toString());
+        }
+    }
+
+    private void queryComposeOutfitsCategories() {
+        ParseQuery<Category> query = ParseQuery.getQuery(Category.class);
+        query.setLimit(20);
+        query.whereEqualTo(Category.KEY_CATEGORY_OWNER, ParseUser.getCurrentUser());
+        query.addDescendingOrder(Category.KEY_CAT_CREATED_KEY);
+        query.findInBackground(new FindCallback<Category>() {
+            @Override
+            public void done(List<Category> composeOutfitsCategories, ParseException e) {
+                if(e!=null){
+                    Log.e(TAG, "Issue with getting categories",e);
+                    return;
+                }
+                for(Category category : composeOutfitsCategories){
+                    Log.i(TAG, "Category Name: " + category.getCategoryName());
+                }
+                allComposeOutfitsCategories.addAll(composeOutfitsCategories);
+                adapter.notifyDataSetChanged();
             }
         });
     }
@@ -81,27 +119,6 @@ public class ComposeOutfitActivity extends AppCompatActivity {
             }
         });
         goOutfitsFragment();
-    }
-
-    private void queryComposeOutfitsCategories() {
-        ParseQuery<Category> query = ParseQuery.getQuery(Category.class);
-        query.setLimit(20);
-        query.whereEqualTo(Category.KEY_CATEGORY_OWNER, ParseUser.getCurrentUser());
-        query.addDescendingOrder(Category.KEY_CAT_CREATED_KEY);
-        query.findInBackground(new FindCallback<Category>() {
-            @Override
-            public void done(List<Category> composeOutfitsCategories, ParseException e) {
-                if(e!=null){
-                    Log.e(TAG, "Issue with getting categories",e);
-                    return;
-                }
-                for(Category category : composeOutfitsCategories){
-                    Log.i(TAG, "Category Name: " + category.getCategoryName());
-                }
-                allComposeOutfitsCategories.addAll(composeOutfitsCategories);
-                adapter.notifyDataSetChanged();
-            }
-        });
     }
 
     private void goOutfitsFragment() {

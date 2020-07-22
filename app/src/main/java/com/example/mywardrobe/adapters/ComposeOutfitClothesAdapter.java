@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mywardrobe.R;
+import com.example.mywardrobe.activities.ComposeOutfitActivity;
 import com.example.mywardrobe.models.Clothing;
 
 import java.util.List;
@@ -46,14 +47,22 @@ public class ComposeOutfitClothesAdapter extends RecyclerView.Adapter<ComposeOut
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvComposeOutfitClothingName;
         private CheckBox cbComposeOutfitClothing;
+        Clothing currentClothing;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvComposeOutfitClothingName = itemView.findViewById(R.id.tvComposeOutfitClothingName);
             cbComposeOutfitClothing = itemView.findViewById(R.id.cbComposeOutfitClothing);
+            cbComposeOutfitClothing.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ComposeOutfitActivity.makeSelection(view, currentClothing);
+                }
+            });
         }
 
         public void bind(Clothing composeOutfitClothing) {
+            currentClothing=composeOutfitClothing;
             tvComposeOutfitClothingName.setText(composeOutfitClothing.getClothingName());
         }
     }

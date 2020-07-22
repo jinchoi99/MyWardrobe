@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.models.Category;
 import com.example.mywardrobe.models.Clothing;
-import com.example.mywardrobe.models.Outfit;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -55,7 +54,7 @@ public class ComposeOutfitAdapter extends RecyclerView.Adapter<ComposeOutfitAdap
         private TextView tvComposeOutfitCategoryName;
         private RecyclerView rvComposeOutfitClothes;
         private ComposeOutfitClothesAdapter adapter;
-        private List<Clothing> allComposeOutfitClothes;
+        public List<Clothing> allComposeOutfitClothes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
