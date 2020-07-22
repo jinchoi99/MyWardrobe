@@ -38,6 +38,7 @@ public class ComposeOutfitActivity extends AppCompatActivity {
     private EditText etNewOutfitName;
 
     private static List<Clothing> selectedClothings;
+    private static List<CheckBox> selectedCheckboxes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class ComposeOutfitActivity extends AppCompatActivity {
         queryComposeOutfitsCategories();
 
         selectedClothings = new ArrayList<>();
+        selectedCheckboxes = new ArrayList<>();
 
         btnAddOutfit = findViewById(R.id.btnAddOutfit);
         btnAddOutfit.setOnClickListener(new View.OnClickListener() {
@@ -82,10 +84,12 @@ public class ComposeOutfitActivity extends AppCompatActivity {
         if(((CheckBox)view).isChecked()){
             selectedClothings.add(currentClothing);
             Log.i(TAG, selectedClothings.toString());
+            selectedCheckboxes.add(((CheckBox)view));
         }
         else{
             selectedClothings.remove(currentClothing);
             Log.i(TAG, selectedClothings.toString());
+            selectedCheckboxes.remove(((CheckBox)view));
         }
     }
 
@@ -128,7 +132,11 @@ public class ComposeOutfitActivity extends AppCompatActivity {
         });
         for (int i = 0; i < selectedClothings.size(); i++) {
             newOutfit.addClothing(selectedClothings.get(i));
+            selectedCheckboxes.get(i).setChecked(false);
         }
+        selectedClothings.clear();
+        selectedCheckboxes.clear();
+        Log.i(TAG, "selectedClothings is empty: " + selectedClothings.toString());
         Toast.makeText(ComposeOutfitActivity.this, "New outfit was saved successfully!", Toast.LENGTH_SHORT).show();
     }
 

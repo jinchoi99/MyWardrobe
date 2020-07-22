@@ -19,6 +19,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="230dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/tvComposeOutfitClothingName" />
+        android:layout_toEndOf="@+id/tvComposeOutfitClothingName"
+        android:checked="false" />
 
 </RelativeLayout>
