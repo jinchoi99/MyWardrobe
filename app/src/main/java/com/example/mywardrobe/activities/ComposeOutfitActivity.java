@@ -34,6 +34,7 @@ public class ComposeOutfitActivity extends AppCompatActivity {
     private ComposeOutfitAdapter adapter;
     private List<Category> allComposeOutfitsCategories;
     private Button btnAddOutfit;
+    private Button btnDoneComposeOutfit;
     private EditText etNewOutfitName;
 
     private static List<Clothing> selectedClothings;
@@ -65,6 +66,14 @@ public class ComposeOutfitActivity extends AppCompatActivity {
                 }
                 ParseUser outfitOwner = ParseUser.getCurrentUser();
                 saveNewOutfit(newOutfitName, outfitOwner);
+            }
+        });
+
+        btnDoneComposeOutfit = findViewById(R.id.btnDoneComposeOutfit);
+        btnDoneComposeOutfit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goOutfitsFragment();
             }
         });
     }
@@ -114,11 +123,13 @@ public class ComposeOutfitActivity extends AppCompatActivity {
                     return;
                 }
                 Log.i(TAG, "New Outfit was saved successfully!");
-                Toast.makeText(ComposeOutfitActivity.this, "New outfit was saved successfully!", Toast.LENGTH_SHORT).show();
                 etNewOutfitName.setText("");
             }
         });
-        goOutfitsFragment();
+        for (int i = 0; i < selectedClothings.size(); i++) {
+            newOutfit.addClothing(selectedClothings.get(i));
+        }
+        Toast.makeText(ComposeOutfitActivity.this, "New outfit was saved successfully!", Toast.LENGTH_SHORT).show();
     }
 
     private void goOutfitsFragment() {

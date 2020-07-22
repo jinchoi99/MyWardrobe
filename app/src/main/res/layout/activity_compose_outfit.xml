@@ -13,6 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Outfit" />
+
+    <Button
+        android:id="@+id/btnDoneComposeOutfit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done" />
     
     <EditText
         android:id="@+id/etNewOutfitName"
