@@ -81,6 +81,7 @@ public class CalendarFragment extends Fragment {
                 }
             }
 
+
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                 Log.d(TAG, "onFailure");

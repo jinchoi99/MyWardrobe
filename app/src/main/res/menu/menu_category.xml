@@ -3,9 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:icon="@drawable/ic_baseline_edit_24"
+        android:title="Item"
+        app:showAsAction="always" >
+        <menu>
+            <item
+                android:title="Delete Category"
+                android:id="@+id/deleteCategory" />
+            <item
+                android:title="Edit Category"
+                android:id="@+id/editCategory" />
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/composeCategory"
         android:icon="@drawable/ic_addplus"
-        android:title="Compose"
-        android:visible="true"
+        android:title="Compose new category"
         app:showAsAction="always" />
+
 </menu>
