@@ -20,6 +20,10 @@ import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.mywardrobe.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import okhttp3.Headers;
 
 import static com.parse.Parse.getApplicationContext;
@@ -59,11 +63,22 @@ public class CalendarFragment extends Fragment {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("appid", getString(R.string.weather_api_key));
-        params.put("q", "Seoul");
+        params.put("q", "Los Angeles");
+        params.put("units", "metric");
+
         client.get(CURRENT_WEATHER_URL, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    JSONObject main = jsonObject.getJSONObject("main");
+                    double temp = main.getDouble("temp");
+                    Log.d(TAG, "temp: " + temp);
+                    tvWeatherDegree.setText("The currect temperature is " + Double.toString(temp) + "°C");
+                } catch (JSONException e) {
+                    Log.e(TAG, "Hit json exception",e);
+                }
             }
 
             @Override
