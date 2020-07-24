@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
@@ -35,6 +36,9 @@ public class CategoriesFragment extends Fragment {
     private RecyclerView rvCategories;
     private CategoriesAdapter adapter;
     private List<Category> allCategories;
+
+    public static boolean deleteCategoryMode = false;
+    public static boolean editCategoryMode = false;
 
     public CategoriesFragment() {
         // Required empty public constructor
@@ -93,10 +97,22 @@ public class CategoriesFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.composeCategory){
-            Toast.makeText(getContext(), "compose new category", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), ComposeCategoryActivity.class);
-            startActivity(intent);
+        switch (item.getItemId()){
+            case R.id.composeCategory:
+                Toast.makeText(getContext(), "compose new category", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), ComposeCategoryActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.deleteCategory:
+                Toast.makeText(getContext(), "delete category", Toast.LENGTH_SHORT).show();
+                deleteCategoryMode = true;
+                adapter.notifyDataSetChanged();
+                break;
+            case R.id.editCategory:
+                Toast.makeText(getContext(), "edit category", Toast.LENGTH_SHORT).show();
+                editCategoryMode = true;
+                adapter.notifyDataSetChanged();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

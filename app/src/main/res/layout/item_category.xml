@@ -8,8 +8,23 @@
     android:layout_margin="8dp">
 
     <Button
+        android:stateListAnimator="@null"
         android:id="@+id/btnCategory"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:text="Category1"></Button>
+
+    <CheckBox
+        android:id="@+id/cbDeleteCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="6dp"/>
+
+    <CheckBox
+        android:id="@+id/cbEditCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="6dp"/>
 </RelativeLayout>

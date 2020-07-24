@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ClothesActivity;
+import com.example.mywardrobe.fragments.CategoriesFragment;
 import com.example.mywardrobe.models.Category;
 
 import org.parceler.Parcels;
@@ -49,6 +51,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     class ViewHolder extends RecyclerView.ViewHolder{
         private Button btnCategory;
         private Category currentCategory;
+        private CheckBox cbDeleteCategory;
+        private CheckBox cbEditCategory;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,11 +66,28 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                     context.startActivity(intent);
                 }
             });
+
+            cbDeleteCategory = itemView.findViewById(R.id.cbDeleteCategory);
+            cbEditCategory = itemView.findViewById(R.id.cbEditCategory);
         }
 
         public void bind(Category category) {
             currentCategory = category;
             btnCategory.setText(category.getCategoryName());
+
+            if(CategoriesFragment.deleteCategoryMode){
+                cbDeleteCategory.setVisibility(View.VISIBLE);
+            }
+            else {
+                cbDeleteCategory.setVisibility(View.GONE);
+            }
+
+            if(CategoriesFragment.editCategoryMode){
+                cbEditCategory.setVisibility(View.VISIBLE);
+            }
+            else {
+                cbEditCategory.setVisibility(View.GONE);
+            }
         }
     }
 }
