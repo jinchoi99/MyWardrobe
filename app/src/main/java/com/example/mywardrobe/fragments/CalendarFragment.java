@@ -19,11 +19,19 @@ import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.mywardrobe.R;
+import com.example.mywardrobe.activities.MainActivity;
+import com.example.mywardrobe.models.Clothing;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import okhttp3.Headers;
 
@@ -31,11 +39,16 @@ import static com.parse.Parse.getApplicationContext;
 
 public class CalendarFragment extends Fragment {
     public static final String TAG = "CalendarFragment";
+
+    //Weather
     public static final String CURRENT_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
     //api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
     private TextView tvWeatherDegree;
 
+    //Calendar
     private CompactCalendarView ccvCalendar;
+    private SimpleDateFormat dataFormatMonth;
+    private TextView tvMonthYear;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -81,5 +94,30 @@ public class CalendarFragment extends Fragment {
 
         //Calendar
         ccvCalendar = view.findViewById(R.id.ccvCalendar);
+        tvMonthYear = view.findViewById(R.id.tvMonthYear);
+        dataFormatMonth = new SimpleDateFormat("MMM-YYYY", Locale.getDefault());
+        final Clothing exampleClothing = new Clothing();
+        exampleClothing.setClothingName("exampleClo1");
+        final Event ev1 = new Event(Color.WHITE, 1595833200000L, exampleClothing);
+        ccvCalendar.addEvent(ev1);
+
+        ccvCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+            @Override
+            public void onDayClick(Date dateClicked) {
+                long time = dateClicked.getTime();
+                Toast.makeText(getContext(), Long.toString(time), Toast.LENGTH_SHORT).show();
+                if(dateClicked.getTime()==1595833200000L){
+                    Clothing eventclothing = (Clothing) ev1.getData();
+                    Toast.makeText(getContext(), eventclothing.getClothingName(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onMonthScroll(Date firstDayOfNewMonth) {
+                tvMonthYear.setText(dataFormatMonth.format(firstDayOfNewMonth));
+            }
+        });
+
+
     }
 }
