@@ -19,6 +19,7 @@ import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.mywardrobe.R;
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +35,7 @@ public class CalendarFragment extends Fragment {
     //api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
     private TextView tvWeatherDegree;
 
-    private CalendarView cvCalendar;
+    private CompactCalendarView ccvCalendar;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -50,16 +51,9 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        cvCalendar = (CalendarView) view.findViewById(R.id.cvCalendar);
-        cvCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                Toast.makeText(getApplicationContext(), (month+1) + "/" + dayOfMonth + "/" + year, Toast.LENGTH_SHORT).show();
-            }
-        });
 
+        //Weather and temperature
         tvWeatherDegree = view.findViewById(R.id.tvWeatherDegree);
-
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("appid", getString(R.string.weather_api_key));
@@ -79,12 +73,13 @@ public class CalendarFragment extends Fragment {
                     Log.e(TAG, "Hit json exception",e);
                 }
             }
-
-
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
                 Log.d(TAG, "onFailure");
             }
         });
+
+        //Calendar
+        ccvCalendar = view.findViewById(R.id.ccvCalendar);
     }
 }

@@ -56,4 +56,7 @@ dependencies {
 
     //CodePath Async Http Client
     implementation 'com.codepath.libraries:asynchttpclient:0.0.9'
+
+    // CompactCalendarView
+    implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
 }
