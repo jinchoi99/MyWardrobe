@@ -102,6 +102,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                         // Remove clothes with that category from Parse
                         removeClothesOfCategory(category.getCategoryName());
                         CategoriesFragment.deleteCategoryMode=false;
+                        cbDeleteCategory.setChecked(false);
                         notifyDataSetChanged();
                     }
                 });
@@ -120,6 +121,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                         // btnCategory.setText(new name)
                         // Save changes for the category in Parse
                         CategoriesFragment.editCategoryMode=false;
+                        cbEditCategory.setChecked(false);
                         notifyDataSetChanged();
                     }
                 });
