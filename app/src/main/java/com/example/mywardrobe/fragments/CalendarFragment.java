@@ -49,6 +49,7 @@ public class CalendarFragment extends Fragment {
     private CompactCalendarView ccvCalendar;
     private SimpleDateFormat dataFormatMonth;
     private TextView tvMonthYear;
+    private TextView tvOutfitInfo;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -96,6 +97,9 @@ public class CalendarFragment extends Fragment {
         ccvCalendar = view.findViewById(R.id.ccvCalendar);
         tvMonthYear = view.findViewById(R.id.tvMonthYear);
         dataFormatMonth = new SimpleDateFormat("MMM-YYYY", Locale.getDefault());
+        tvOutfitInfo = view.findViewById(R.id.tvOutfitInfo);
+        tvOutfitInfo.setVisibility(View.INVISIBLE);
+
         final Clothing exampleClothing = new Clothing();
         exampleClothing.setClothingName("exampleClo1");
         final Event ev1 = new Event(Color.WHITE, 1595833200000L, exampleClothing);
@@ -105,10 +109,15 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onDayClick(Date dateClicked) {
                 long time = dateClicked.getTime();
-                Toast.makeText(getContext(), Long.toString(time), Toast.LENGTH_SHORT).show();
-                if(dateClicked.getTime()==1595833200000L){
+                //Toast.makeText(getContext(), Long.toString(time), Toast.LENGTH_SHORT).show();
+                if(time==1595833200000L){
                     Clothing eventclothing = (Clothing) ev1.getData();
-                    Toast.makeText(getContext(), eventclothing.getClothingName(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), eventclothing.getClothingName(), Toast.LENGTH_SHORT).show();
+                    tvOutfitInfo.setVisibility(View.VISIBLE);
+                    tvOutfitInfo.setText(eventclothing.getClothingName());
+                }
+                else {
+                    tvOutfitInfo.setVisibility(View.INVISIBLE);
                 }
             }
 
