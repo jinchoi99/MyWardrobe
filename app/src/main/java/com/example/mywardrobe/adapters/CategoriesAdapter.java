@@ -89,8 +89,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 cbDeleteCategory.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // Remove from categories list
-                        categories.remove(getAdapterPosition());
+                        // Remove clothes with that category from Parse
+                        removeClothesOfCategory(category.getCategoryName());
 
                         // Remove category from Parse
                         try {
@@ -99,8 +99,10 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        // Remove clothes with that category from Parse
-                        removeClothesOfCategory(category.getCategoryName());
+
+                        // Remove from categories list
+                        categories.remove(getAdapterPosition());
+
                         CategoriesFragment.deleteCategoryMode=false;
                         cbDeleteCategory.setChecked(false);
                         notifyDataSetChanged();

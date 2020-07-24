@@ -69,7 +69,6 @@ public class CalendarFragment extends Fragment {
         client.get(CURRENT_WEATHER_URL, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
-                Log.d(TAG, "onSuccess");
                 JSONObject jsonObject = json.jsonObject;
                 try {
                     JSONObject main = jsonObject.getJSONObject("main");

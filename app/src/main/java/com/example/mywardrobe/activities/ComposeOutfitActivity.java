@@ -83,14 +83,13 @@ public class ComposeOutfitActivity extends AppCompatActivity {
     public static void makeSelection(View view, Clothing currentClothing) {
         if(((CheckBox)view).isChecked()){
             selectedClothings.add(currentClothing);
-            Log.i(TAG, selectedClothings.toString());
             selectedCheckboxes.add(((CheckBox)view));
         }
         else{
             selectedClothings.remove(currentClothing);
-            Log.i(TAG, selectedClothings.toString());
             selectedCheckboxes.remove(((CheckBox)view));
         }
+        Log.i(TAG, selectedClothings.toString());
     }
 
     private void queryComposeOutfitsCategories() {

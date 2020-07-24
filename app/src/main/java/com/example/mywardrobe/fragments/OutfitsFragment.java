@@ -82,9 +82,6 @@ public class OutfitsFragment extends Fragment {
                     Log.e(TAG, "Issue with getting outfits",e);
                     return;
                 }
-                for(final Outfit outfit : outfits){
-                    Log.i(TAG, "Outfit Name: " + outfit.getOutfitName());
-                }
                 allOutfits.addAll(outfits);
                 adapter.notifyDataSetChanged();
             }
