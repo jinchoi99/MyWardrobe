@@ -4,19 +4,19 @@
 
     <item
         android:id="@+id/action_clothes"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_category"
         android:title="Clothes"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_outfits"
-        android:icon="@android:drawable/ic_menu_compass"
+        android:icon="@drawable/ic_outfit"
         android:title="Outfits"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_calendar"
-        android:icon="@android:drawable/checkbox_off_background"
+        android:icon="@drawable/ic_calendar"
         android:title="Calendar"
         app:showAsAction="always" />
 </menu>
