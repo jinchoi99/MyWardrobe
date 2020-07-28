@@ -8,4 +8,7 @@
     <color name="black">#000000</color>
     <color name="backgroundcolor">#00FFFFFF</color>
     <color name="red">#FF0000</color>
+    <color name="pink">#fa49a6</color>
+    <color name="light_pink">#fde8fd</color>
+    <color name="brown">#503d3d</color>
 </resources>

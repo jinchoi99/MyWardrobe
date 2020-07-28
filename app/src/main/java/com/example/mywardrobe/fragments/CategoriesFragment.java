@@ -1,10 +1,13 @@
 package com.example.mywardrobe.fragments;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +19,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
@@ -80,15 +82,13 @@ public class CategoriesFragment extends Fragment {
                     Log.e(TAG, "Issue with getting categories",e);
                     return;
                 }
-                for(Category category : categories){
-                    Log.i(TAG, "Category Name: " + category.getCategoryName());
-                }
                 allCategories.addAll(categories);
                 adapter.notifyDataSetChanged();
             }
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);

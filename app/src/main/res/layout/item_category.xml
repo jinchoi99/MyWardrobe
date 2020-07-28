@@ -8,11 +8,15 @@
     android:layout_margin="8dp">
 
     <Button
-        android:stateListAnimator="@null"
         android:id="@+id/btnCategory"
+        android:textColor="@color/black"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:text="Category1"></Button>
+        android:background="@color/light_pink"
+        android:fontFamily="sans-serif-medium"
+        android:stateListAnimator="@null"
+        android:text="Category1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"></Button>
 
     <CheckBox
         android:id="@+id/cbDeleteCategory"
