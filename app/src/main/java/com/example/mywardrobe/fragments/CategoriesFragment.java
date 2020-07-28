@@ -19,6 +19,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -48,6 +50,7 @@ public class CategoriesFragment extends Fragment {
     private LinearLayout categoriesOverbox;
     private Button btnDeleteCatYes;
     private Button btnDeleteCatNo;
+    Animation fromsmall;
 
     //RV
     private RecyclerView rvCategories;
@@ -78,17 +81,19 @@ public class CategoriesFragment extends Fragment {
         //Check Click Listeners
         popUpDeleteDialog = view.findViewById(R.id.popUpDeleteDialog);
         categoriesOverbox = view.findViewById(R.id.categoriesOverbox);
-        popUpDeleteDialog.setVisibility(View.GONE);
         categoriesOverbox.setVisibility(View.GONE);
 
         btnDeleteCatYes = view.findViewById(R.id.btnDeleteCatYes);
         btnDeleteCatNo = view.findViewById(R.id.btnDeleteCatNo);
 
+        fromsmall = AnimationUtils.loadAnimation(getContext(), R.anim.fromsmall);
+        popUpDeleteDialog.setAlpha(0);
 
         CategoriesAdapter.OnCheckDeleteClickListener onCheckDeleteClickListener = new CategoriesAdapter.OnCheckDeleteClickListener() {
             @Override
             public void onCheckDeleteClicked(final int position, final CheckBox cb) {
-                popUpDeleteDialog.setVisibility(View.VISIBLE);
+                popUpDeleteDialog.setAlpha(1);
+                popUpDeleteDialog.startAnimation(fromsmall);
                 categoriesOverbox.setVisibility(View.VISIBLE);
 
                 final Category currentCategory = allCategories.get(position);
@@ -111,8 +116,8 @@ public class CategoriesFragment extends Fragment {
                         // Remove from categories list
                         allCategories.remove(position);
 
-                        popUpDeleteDialog.setVisibility(View.GONE);
                         categoriesOverbox.setVisibility(View.GONE);
+                        popUpDeleteDialog.setAlpha(0);
                         CategoriesFragment.deleteCategoryMode=false;
                         cb.setChecked(false);
                         adapter.notifyDataSetChanged();
@@ -123,7 +128,7 @@ public class CategoriesFragment extends Fragment {
                 btnDeleteCatNo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        popUpDeleteDialog.setVisibility(View.GONE);
+                        popUpDeleteDialog.setAlpha(0);
                         categoriesOverbox.setVisibility(View.GONE);
                         CategoriesFragment.deleteCategoryMode=false;
                         cb.setChecked(false);
