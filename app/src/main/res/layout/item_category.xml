@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="14dp"
+    android:layout_marginBottom="25dp">
 
     <Button
         android:id="@+id/btnCategory"
-        android:textColor="@color/black"
-        android:layout_width="140dp"
+        android:layout_width="160dp"
         android:layout_height="140dp"
-        android:background="@color/light_pink"
+        android:background="@color/light_green"
         android:fontFamily="sans-serif-medium"
         android:stateListAnimator="@null"
         android:text="Category1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"></Button>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"></Button>
 
     <CheckBox
         android:id="@+id/cbDeleteCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:layout_marginTop="6dp"/>
+        android:layout_marginTop="6dp" />
 
     <CheckBox
         android:id="@+id/cbEditCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:layout_marginTop="6dp"/>
+        android:layout_marginTop="6dp" />
 </RelativeLayout>
