@@ -95,24 +95,15 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 cbDeleteCategory.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        //call the onCheckDeleteClicked method, which is one of the methods of checkDeleteClickListener,
+                        // which is an instance of the OnCheckDeleteClickListener interface created in the CatFragment
+                        //and passed to the adapter when calling adapter constructor, and
+                        //"this.checkDeleteClickListener = checkDeleteClickListener;"
+                        //so this checkDeleteClickListener is an instance of OnCheckDeleteClickListener interface,
+                        // where its method onCheckDeleteClicked is defined (/overwritten) when instance is created
+                        //so when checkDeleteClickListener.onCheckDeleteClicked(getAdapterPosition(), cbDeleteCategory); is called,
+                        //the onCheckDeleteClicked function defined in CatFragment is what is processed
                         checkDeleteClickListener.onCheckDeleteClicked(getAdapterPosition(), cbDeleteCategory);
-                        // Remove clothes with that category from Parse
-                        removeClothesOfCategory(category.getCategoryName());
-
-                        // Remove category from Parse
-                        try {
-                            category.delete();
-                            Toast.makeText(view.getContext(), "successfully deleted category", Toast.LENGTH_SHORT).show();
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-
-                        // Remove from categories list
-                        categories.remove(getAdapterPosition());
-
-                        CategoriesFragment.deleteCategoryMode=false;
-                        cbDeleteCategory.setChecked(false);
-                        notifyDataSetChanged();
                     }
                 });
             }
@@ -138,29 +129,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             else {
                 cbEditCategory.setVisibility(View.GONE);
             }
-        }
-
-        private void removeClothesOfCategory(String categoryName) {
-            ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
-            query.whereEqualTo(Clothing.KEY_CLOTHING_OWNER, ParseUser.getCurrentUser());
-            query.whereEqualTo(Clothing.KEY_CLOTHING_CATEGORY, categoryName);
-            query.findInBackground(new FindCallback<Clothing>() {
-                @Override
-                public void done(List<Clothing> clothesOfCategory, ParseException e) {
-                    if(e!=null){
-                        Log.e(TAG, "Issue with getting clothes of the category",e);
-                        return;
-                    }
-                    for(Clothing clothing : clothesOfCategory){
-                        try {
-                            clothing.delete();
-                        } catch (ParseException ex) {
-                            ex.printStackTrace();
-                        }
-                        Log.i(TAG, "Clothing Name: " + clothing.getClothingName());
-                    }
-                }
-            });
         }
     }
 }
