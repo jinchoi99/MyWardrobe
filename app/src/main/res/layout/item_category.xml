@@ -12,7 +12,7 @@
         android:id="@+id/btnCategory"
         android:layout_width="160dp"
         android:layout_height="140dp"
-        android:background="@color/light_green"
+        android:background="@drawable/category_corners"
         android:fontFamily="sans-serif-medium"
         android:stateListAnimator="@null"
         android:text="Category1"
