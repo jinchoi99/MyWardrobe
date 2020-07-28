@@ -203,6 +203,7 @@ public class CategoriesFragment extends Fragment {
             case R.id.composeCategory:
                 Intent intent = new Intent(getActivity(), ComposeCategoryActivity.class);
                 startActivity(intent);
+                getActivity().finish();
                 break;
             case R.id.deleteCategory:
                 deleteCategoryMode = true;
