@@ -19,6 +19,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
@@ -35,6 +38,10 @@ import java.util.List;
 
 public class CategoriesFragment extends Fragment {
     public static final String TAG = "CategoriesFragment";
+
+    private RelativeLayout popUpDeleteDialog;
+    private LinearLayout categoriesOverbox;
+
     private RecyclerView rvCategories;
     private CategoriesAdapter adapter;
     private List<Category> allCategories;
@@ -62,9 +69,27 @@ public class CategoriesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //Check Click Listeners
+        popUpDeleteDialog = view.findViewById(R.id.popUpDeleteDialog);
+        categoriesOverbox = view.findViewById(R.id.categoriesOverbox);
+        popUpDeleteDialog.setVisibility(View.GONE);
+        categoriesOverbox.setVisibility(View.GONE);
+
+        CategoriesAdapter.OnCheckDeleteClickListener onCheckDeleteClickListener = new CategoriesAdapter.OnCheckDeleteClickListener() {
+            @Override
+            public void onCheckDeleteClicked(int position, CheckBox cb) {
+                Toast.makeText(getContext(), "okayokay", Toast.LENGTH_SHORT).show();
+//                popUpDeleteDialog.setVisibility(View.VISIBLE);
+//                categoriesOverbox.setVisibility(View.VISIBLE);
+                cb.setChecked(false);
+            }
+        };
+
+        //RV, Query
         rvCategories = view.findViewById(R.id.rvCategories);
         allCategories = new ArrayList<>();
-        adapter = new CategoriesAdapter(getContext(), allCategories);
+        adapter = new CategoriesAdapter(getContext(), allCategories, onCheckDeleteClickListener);
         rvCategories.setAdapter(adapter);
         rvCategories.setLayoutManager(new GridLayoutManager(getContext(), 2));
         queryCategories();

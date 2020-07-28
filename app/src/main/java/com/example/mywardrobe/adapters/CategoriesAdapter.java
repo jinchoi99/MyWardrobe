@@ -29,14 +29,20 @@ import java.util.List;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
 
+    public interface OnCheckDeleteClickListener{
+        void onCheckDeleteClicked(int position, CheckBox cb);
+    }
+
     public static final String TAG = "CategoriesAdapter";
 
     private Context context;
     private List<Category> categories;
+    OnCheckDeleteClickListener checkDeleteClickListener;
 
-    public CategoriesAdapter(Context context, List<Category> categories) {
+    public CategoriesAdapter(Context context, List<Category> categories, OnCheckDeleteClickListener checkDeleteClickListener) {
         this.context = context;
         this.categories = categories;
+        this.checkDeleteClickListener = checkDeleteClickListener;
     }
 
     @NonNull
@@ -89,6 +95,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 cbDeleteCategory.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        checkDeleteClickListener.onCheckDeleteClicked(getAdapterPosition(), cbDeleteCategory);
                         // Remove clothes with that category from Parse
                         removeClothesOfCategory(category.getCategoryName());
 
