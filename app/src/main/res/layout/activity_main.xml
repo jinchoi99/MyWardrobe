@@ -46,9 +46,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 app:itemIconSize="30dp"
-                app:itemIconTint="@color/pink"
-                app:itemTextColor="@color/pink"
-                android:background="@color/light_pink"
+                app:itemIconTint="@color/white"
+                app:itemTextColor="@color/white"
+                android:background="@color/brown"
                 app:menu="@menu/menu_bottom_navigation" />
             
         </RelativeLayout>
