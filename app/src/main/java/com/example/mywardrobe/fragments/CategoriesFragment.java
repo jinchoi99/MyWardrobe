@@ -98,14 +98,15 @@ public class CategoriesFragment extends Fragment {
                 popUpDeleteDialog.setAlpha(1);
                 popUpDeleteDialog.startAnimation(fromsmall);
                 categoriesOverbox.setVisibility(View.VISIBLE);
+                categoriesOverbox.animate().alpha(1.0f).setDuration(800);
 
                 final Category currentCategory = allCategories.get(position);
                 tvDeleteMessage.setText("Are you sure you want to delete \"" + currentCategory.getCategoryName() + "\" ?");
 
+                //Remove Category
                 btnDeleteCatYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //Remove Category
                         // Remove clothes with that category from Parse
                         removeClothesOfCategory(currentCategory.getCategoryName());
 
@@ -120,11 +121,8 @@ public class CategoriesFragment extends Fragment {
                         // Remove from categories list
                         allCategories.remove(position);
 
-                        categoriesOverbox.setVisibility(View.GONE);
-                        popUpDeleteDialog.setAlpha(0);
-                        CategoriesFragment.deleteCategoryMode=false;
                         cb.setChecked(false);
-                        adapter.notifyDataSetChanged();
+                        closeDialog();
                     }
                 });
 
@@ -132,11 +130,8 @@ public class CategoriesFragment extends Fragment {
                 btnDeleteCatNo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        popUpDeleteDialog.setAlpha(0);
-                        categoriesOverbox.setVisibility(View.GONE);
-                        CategoriesFragment.deleteCategoryMode=false;
                         cb.setChecked(false);
-                        adapter.notifyDataSetChanged();
+                        closeDialog();
                     }
                 });
             }
@@ -150,6 +145,14 @@ public class CategoriesFragment extends Fragment {
         rvCategories.setLayoutManager(new GridLayoutManager(getContext(), 2));
         queryCategories();
     }
+
+    private void closeDialog() {
+        categoriesOverbox.animate().alpha(0.0f).setDuration(800);
+        popUpDeleteDialog.animate().alpha(0.0f).setDuration(800);
+        deleteCategoryMode=false;
+        adapter.notifyDataSetChanged();
+    }
+
 
     private void removeClothesOfCategory(String categoryName) {
         ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
