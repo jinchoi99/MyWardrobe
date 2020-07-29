@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
@@ -50,6 +51,7 @@ public class CategoriesFragment extends Fragment {
     private LinearLayout categoriesOverbox;
     private Button btnDeleteCatYes;
     private Button btnDeleteCatNo;
+    private TextView tvDeleteMessage;
     Animation fromsmall;
 
     //RV
@@ -85,6 +87,7 @@ public class CategoriesFragment extends Fragment {
 
         btnDeleteCatYes = view.findViewById(R.id.btnDeleteCatYes);
         btnDeleteCatNo = view.findViewById(R.id.btnDeleteCatNo);
+        tvDeleteMessage = view.findViewById(R.id.tvDeleteMessage);
 
         fromsmall = AnimationUtils.loadAnimation(getContext(), R.anim.fromsmall);
         popUpDeleteDialog.setAlpha(0);
@@ -97,6 +100,7 @@ public class CategoriesFragment extends Fragment {
                 categoriesOverbox.setVisibility(View.VISIBLE);
 
                 final Category currentCategory = allCategories.get(position);
+                tvDeleteMessage.setText("Are you sure you want to delete \"" + currentCategory.getCategoryName() + "\" ?");
 
                 btnDeleteCatYes.setOnClickListener(new View.OnClickListener() {
                     @Override

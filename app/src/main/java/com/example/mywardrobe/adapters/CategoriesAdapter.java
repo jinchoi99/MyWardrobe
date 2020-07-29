@@ -17,12 +17,6 @@ import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ClothesActivity;
 import com.example.mywardrobe.fragments.CategoriesFragment;
 import com.example.mywardrobe.models.Category;
-import com.example.mywardrobe.models.Clothing;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-
 import org.parceler.Parcels;
 
 import java.util.List;
