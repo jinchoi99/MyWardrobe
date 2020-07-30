@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/light_brown"
     tools:context=".fragments.CalendarFragment">
 
     <TextView
@@ -29,9 +30,9 @@
         android:layout_marginTop="38dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        app:compactCalendarBackgroundColor="#ffe95451"
-        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+        app:compactCalendarBackgroundColor="@color/brown"
+        app:compactCalendarCurrentDayBackgroundColor="@color/mid_brown"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/light_green"
         app:compactCalendarMultiEventIndicatorColor="#fff"
         app:compactCalendarTargetHeight="250dp"
         app:compactCalendarTextColor="#fff"
