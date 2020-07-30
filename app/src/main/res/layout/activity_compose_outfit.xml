@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="#CFCCCC"
+        android:background="@color/mid_brown"
         android:textColor="@color/black"
         android:text="Done" />
 

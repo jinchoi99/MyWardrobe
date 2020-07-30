@@ -43,7 +43,7 @@
             android:layout_below="@+id/tvDeleteMessage"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="26dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="You cannot undo this step after deletion."></TextView>
 
         <Button
@@ -54,7 +54,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="99dp"
             android:layout_marginEnd="53dp"
-            android:background="#F1B2C1"
+            android:background="@color/mid_brown"
+            android:textColor="@color/brown"
             android:text="Yes" />
 
         <Button
@@ -65,7 +66,8 @@
             android:layout_marginTop="98dp"
             android:layout_marginEnd="20dp"
             android:layout_toStartOf="@+id/btnDeleteCatYes"
-            android:background="#B4F698"
+            android:background="@color/brown"
+            android:textColor="@color/white"
             android:text="Cancel" />
     </RelativeLayout>
 

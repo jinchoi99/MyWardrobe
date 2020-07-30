@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:background="@color/light_brown"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,11 +20,14 @@
             android:id="@+id/tvMyWardrobe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp"
+            android:layout_marginBottom="20dp"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="MyWardrobe"
-            android:textSize="30dp" />
+            android:textColor="@color/brown"
+            android:textSize="32dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/etUsername"
@@ -46,26 +50,31 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
-            android:backgroundTint="#F85D92"
+            android:background="@color/brown"
+            android:textColor="@color/white"
             android:text="log in" />
 
         <Button
             android:id="@+id/btnSignup"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_weight="1"
+            android:background="@color/mid_brown"
             android:text="SIGN UP" />
 
         <Button
             android:id="@+id/btnLoginFB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/com_facebook_blue"
             android:layout_centerVertical="true"
+            android:textColor="@color/white"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorAccent"
             android:text="FB LOG IN" />
 
     </LinearLayout>
