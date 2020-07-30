@@ -6,10 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/light_brown"
     tools:context=".activities.ComposeCategoryActivity">
 
-
     <EditText
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
         android:id="@+id/etCategoryName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,9 +23,14 @@
     </EditText>
 
     <Button
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:id="@+id/btnAddCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADD" />
+        android:background="@color/brown"
+        android:text="ADD"
+        android:textColor="@color/white" />
 
 </LinearLayout>
