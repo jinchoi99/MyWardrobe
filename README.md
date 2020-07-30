@@ -26,27 +26,29 @@ Virtual closet where you can store and organize clothes, and save outfits, and g
 ### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
-* [ ] User can log in/out using gmail/fb account (use Google/FB SDK)
-* [ ] User can sign up
-* [ ] The current signed in user is persisted across app restarts
-* [ ] User can take pictures/load pictures from gallery
-* [ ] User can save pictures of their clothes into different categories
-* [ ] User can add/delete categories
-* [ ] User can add/delete/edit clothes
-* [ ] User can select clothes and create a custom outfit combination
-* [ ] User can view today's weather
-* [ ] User can get recommendations for what to wear based on the weather
-* [ ] User can view calendar
-* [ ] User can log their outfits on specific days on the calendar
-* [ ] User can click on the clothes to see more detail (description, location, price, etc)
-* [ ] User can see the TOP 10 clothes they wear most often (ranking, sorting)
-* [ ] User can add "favorites"
+* [x] User can log in/out using gmail/fb account (use Google/FB SDK)
+* [x] User can sign up
+* [x] The current signed in user is persisted across app restarts
+* [x] User can take pictures pictures
+* [x] User can save pictures of their clothes into different categories
+* [x] User can add/delete categories
+* [x] User can add/delete/edit clothes
+* [x] User can select clothes and create a custom outfit combination
+* [x] User can view today's weather
+* [x] User can view calendar
+* [x] User can log their outfits on specific days on the calendar
+* [x] User can click on the clothes to see more detail (description, location, price, etc)
+* [x] Gesture recognition (can swipe to open drawer menu)
+* [x] Animation (Dialog messages bounce, fade in/out)
 
 **Optional Nice-to-have Stories**
-* [ ] Pretty UI
+* [x] Pretty UI
+* [ ] User can add "favorites"
+* [ ] User can see the TOP 10 clothes they wear most often (ranking, sorting)
+* [ ] User can get recommendations for what to wear based on the weather
+* [ ] AI recommendations
 * [ ] Delete background for clothes pictures
 * [ ] AR/XR features
-* [ ] AI recommendations
 * [ ] Social media features (post, share, like, comment on others' closets/outfits)
 * [ ] Marketplace (users can exchange/buy clothes from others)
 
