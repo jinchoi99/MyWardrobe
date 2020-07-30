@@ -1,10 +1,13 @@
 package com.example.mywardrobe.fragments;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -88,10 +91,12 @@ public class OutfitsFragment extends Fragment {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_outfit, menu);
+        menu.getItem(0).setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
     }
 
     @Override
