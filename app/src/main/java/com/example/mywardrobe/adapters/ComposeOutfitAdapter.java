@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,7 +64,7 @@ public class ComposeOutfitAdapter extends RecyclerView.Adapter<ComposeOutfitAdap
             allComposeOutfitClothes = new ArrayList<>();
             adapter = new ComposeOutfitClothesAdapter(context, allComposeOutfitClothes);
             rvComposeOutfitClothes.setAdapter(adapter);
-            rvComposeOutfitClothes.setLayoutManager(new LinearLayoutManager(context));
+            rvComposeOutfitClothes.setLayoutManager(new GridLayoutManager(context,2));
         }
 
         public void bind(Category category) {
@@ -76,15 +77,15 @@ public class ComposeOutfitAdapter extends RecyclerView.Adapter<ComposeOutfitAdap
             query.findInBackground(new FindCallback<Clothing>() {
                 @Override
                 public void done(List<Clothing> clothes, ParseException e) {
-                    if(e!=null){
-                        Log.e(TAG, "Issue with getting clothes",e);
-                        return;
-                    }
-                    for(Clothing clothing : clothes){
-                        Log.i(TAG, "Clothing Name: " + clothing.getClothingName());
-                    }
-                    allComposeOutfitClothes.addAll(clothes);
-                    adapter.notifyDataSetChanged();
+                if(e!=null){
+                    Log.e(TAG, "Issue with getting clothes",e);
+                    return;
+                }
+                for(Clothing clothing : clothes){
+                    Log.i(TAG, "Clothing Name: " + clothing.getClothingName());
+                }
+                allComposeOutfitClothes.addAll(clothes);
+                adapter.notifyDataSetChanged();
                 }
             });
         }

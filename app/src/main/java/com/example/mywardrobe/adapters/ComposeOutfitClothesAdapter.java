@@ -5,14 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ComposeOutfitActivity;
 import com.example.mywardrobe.models.Clothing;
+import com.parse.ParseFile;
 
 import java.util.List;
 
@@ -47,6 +50,7 @@ public class ComposeOutfitClothesAdapter extends RecyclerView.Adapter<ComposeOut
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvComposeOutfitClothingName;
         private CheckBox cbComposeOutfitClothing;
+        private ImageView ivComposeOutfitClothingImage;
         Clothing currentClothing;
 
         public ViewHolder(@NonNull View itemView) {
@@ -59,11 +63,16 @@ public class ComposeOutfitClothesAdapter extends RecyclerView.Adapter<ComposeOut
                     ComposeOutfitActivity.makeSelection(view, currentClothing);
                 }
             });
+            ivComposeOutfitClothingImage = itemView.findViewById(R.id.ivComposeOutfitClothingImage);
         }
 
         public void bind(Clothing composeOutfitClothing) {
             currentClothing=composeOutfitClothing;
             tvComposeOutfitClothingName.setText(composeOutfitClothing.getClothingName());
+            ParseFile image = composeOutfitClothing.getClothingImage();
+            if(image!=null){
+                Glide.with(context).load(image.getUrl()).into(ivComposeOutfitClothingImage);
+            }
         }
     }
 }

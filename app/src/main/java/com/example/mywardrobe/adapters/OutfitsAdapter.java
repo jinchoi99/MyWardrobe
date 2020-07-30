@@ -72,12 +72,12 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
             queryRelations.findInBackground(new FindCallback<Clothing>() {
                 @Override
                 public void done(List<Clothing> clothesRelations, ParseException e) {
-                    if(e!=null){
-                        Log.e(TAG, "Issue with getting clothesRelations",e);
-                        return;
-                    }
-                    allClothesRelations.addAll(clothesRelations);
-                    adapter.notifyDataSetChanged();
+                if(e!=null){
+                    Log.e(TAG, "Issue with getting clothesRelations",e);
+                    return;
+                }
+                allClothesRelations.addAll(clothesRelations);
+                adapter.notifyDataSetChanged();
                 }
             });
         }
