@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,7 +63,7 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
             allClothesRelations = new ArrayList<>();
             adapter = new ClothesRelationsAdapter(context, allClothesRelations);
             rvClothesRelationList.setAdapter(adapter);
-            rvClothesRelationList.setLayoutManager(new LinearLayoutManager(context));
+            rvClothesRelationList.setLayoutManager(new GridLayoutManager(context, 3));
         }
 
         public void bind(Outfit outfit) {
@@ -74,9 +75,6 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
                     if(e!=null){
                         Log.e(TAG, "Issue with getting clothesRelations",e);
                         return;
-                    }
-                    for(Clothing clothing : clothesRelations) {
-                        Log.i(TAG, "Clothing Name: " + clothing.getClothingName());
                     }
                     allClothesRelations.addAll(clothesRelations);
                     adapter.notifyDataSetChanged();

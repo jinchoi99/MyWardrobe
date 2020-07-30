@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Outfit1"
-        android:textColor="@color/black"
+        android:textColor="@color/brown"
+        android:gravity="center"
+        android:textStyle="bold"
         android:textSize="30dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -21,6 +23,8 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:background="?android:attr/listDivider" />
 
 </LinearLayout>
