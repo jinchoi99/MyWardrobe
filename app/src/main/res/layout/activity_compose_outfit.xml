@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/light_brown"
     tools:context=".activities.ComposeOutfitActivity">
 
     <Button
+        android:layout_margin="20dp"
         android:id="@+id/btnAddOutfit"
+        android:background="@color/brown"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Outfit" />
@@ -18,18 +20,27 @@
         android:id="@+id/btnDoneComposeOutfit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#CFCCCC"
+        android:textColor="@color/black"
         android:text="Done" />
-    
+
     <EditText
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/etNewOutfitName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Outfit Name"></EditText>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/rvComposeOutfitsCategories"
-        android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:padding="8dp" />
 
 </LinearLayout>
