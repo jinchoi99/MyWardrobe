@@ -1,12 +1,16 @@
 package com.example.mywardrobe.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -35,12 +39,14 @@ public class ClothesActivity extends AppCompatActivity {
     private ClothesAdapter adapter;
     private List<Clothing> allClothes;
 
+    Toolbar clothesToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothes);
 
-        Toolbar clothesToolbar = findViewById(R.id.clothesToolbar);
+        clothesToolbar = findViewById(R.id.clothesToolbar);
         setSupportActionBar(clothesToolbar);
 
         rvClothesList = findViewById(R.id.rvClothesList);
@@ -59,6 +65,7 @@ public class ClothesActivity extends AppCompatActivity {
         }
 
         getSupportActionBar().setTitle(currentCategory.getCategoryName());
+        clothesToolbar.setTitleTextColor(Color.WHITE);
 
         queryClothes();
     }
@@ -85,9 +92,11 @@ public class ClothesActivity extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_clothing, menu);
+        menu.getItem(0).setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
         return true;
     }
 
