@@ -147,8 +147,8 @@ public class CategoriesFragment extends Fragment {
     }
 
     private void closeDialog() {
-        categoriesOverbox.animate().alpha(0.0f).setDuration(800);
-        popUpDeleteDialog.animate().alpha(0.0f).setDuration(800);
+        categoriesOverbox.animate().alpha(0.0f).setDuration(500);
+        popUpDeleteDialog.animate().alpha(0.0f).setDuration(500);
         deleteCategoryMode=false;
         adapter.notifyDataSetChanged();
     }

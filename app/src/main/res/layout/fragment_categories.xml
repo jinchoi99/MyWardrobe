@@ -7,13 +7,79 @@
     android:background="@color/light_brown"
     tools:context=".fragments.CategoriesFragment">
 
+    <!-- Delete Dialog -->
+        <RelativeLayout
+            android:id="@+id/popUpDeleteCategoryDialog"
+            android:elevation="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:id="@+id/vDeleteCategoryDialogBox"
+                android:layout_width="377dp"
+                android:layout_height="362dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/dialog_box">
+            </View>
+
+            <TextView
+                android:id="@+id/tvDeleteCategoryMessage"
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/vDeleteCategoryDialogBox"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="81dp"
+                android:text="Are you sure you want to delete this item?"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDeleteCategorySubMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDeleteCategoryMessage"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="26dp"
+                android:textSize="16sp"
+                android:text="You cannot undo this step after deletion."></TextView>
+
+            <Button
+                android:id="@+id/btnDeleteCategoryYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDeleteCategoryMessage"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="99dp"
+                android:layout_marginEnd="53dp"
+                android:background="@color/mid_brown"
+                android:textColor="@color/brown"
+                android:text="Yes" />
+
+            <Button
+                android:id="@+id/btnDeleteCategoryNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDeleteCategoryMessage"
+                android:layout_marginTop="98dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toStartOf="@+id/btnDeleteCategoryYes"
+                android:background="@color/brown"
+                android:textColor="@color/white"
+                android:text="Cancel" />
+        </RelativeLayout>
+
+    <!-- Edit Dialog -->
     <RelativeLayout
-        android:id="@+id/popUpDeleteDialog"
+        android:id="@+id/popUpEditCategoryDialog"
         android:elevation="3dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <View
-            android:id="@+id/vDeleteDialogBox"
+            android:id="@+id/vEditCategoryDialogBox"
             android:layout_width="377dp"
             android:layout_height="362dp"
             android:layout_centerHorizontal="true"
@@ -23,69 +89,71 @@
         </View>
 
         <TextView
-            android:id="@+id/tvDeleteMessage"
+            android:id="@+id/tvEditCategoryMessage"
             android:layout_width="292dp"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/vDeleteDialogBox"
+            android:layout_alignTop="@+id/vEditCategoryDialogBox"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="58dp"
             android:layout_marginTop="81dp"
-            android:text="Are you sure you want to delete this item?"
+            android:text="Change Name of the Category"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvDeleteSubMessage"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/etNewCategoryName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvDeleteMessage"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="26dp"
-            android:textSize="16sp"
-            android:text="You cannot undo this step after deletion."></TextView>
+            android:layout_below="@+id/tvEditCategoryMessage"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="25dp"
+            android:text="CategoryName" />
 
         <Button
-            android:id="@+id/btnDeleteCatYes"
+            android:id="@+id/btnEditCategorySave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvDeleteMessage"
+            android:layout_below="@+id/tvEditCategoryMessage"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="99dp"
             android:layout_marginEnd="53dp"
             android:background="@color/mid_brown"
             android:textColor="@color/brown"
-            android:text="Yes" />
+            android:text="Save" />
 
         <Button
-            android:id="@+id/btnDeleteCatNo"
+            android:id="@+id/btnEditCategoryCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvDeleteMessage"
+            android:layout_below="@+id/tvEditCategoryMessage"
             android:layout_marginTop="98dp"
             android:layout_marginEnd="20dp"
-            android:layout_toStartOf="@+id/btnDeleteCatYes"
+            android:layout_toStartOf="@+id/btnEditCategorySave"
             android:background="@color/brown"
             android:textColor="@color/white"
             android:text="Cancel" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/categoriesOverbox"
-        android:elevation="2dp"
-        android:background="@drawable/overbox"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/categoriesOverbox"
+            android:elevation="2dp"
+            android:background="@drawable/overbox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCategories"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="4dp"
-        android:padding="8dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="4dp"
+            android:padding="8dp" />
 
-</RelativeLayout>
+    </RelativeLayout>
