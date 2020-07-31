@@ -27,16 +27,22 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         void onCheckDeleteClicked(int position, CheckBox cb);
     }
 
+    public interface OnCheckEditClickListener{
+        void onCheckEditClicked(int position, CheckBox cb);
+    }
+
     public static final String TAG = "CategoriesAdapter";
 
     private Context context;
     private List<Category> categories;
     OnCheckDeleteClickListener checkDeleteClickListener;
+    OnCheckEditClickListener checkEditClickListener;
 
-    public CategoriesAdapter(Context context, List<Category> categories, OnCheckDeleteClickListener checkDeleteClickListener) {
+    public CategoriesAdapter(Context context, List<Category> categories, OnCheckDeleteClickListener checkDeleteClickListener, OnCheckEditClickListener checkEditClickListener) {
         this.context = context;
         this.categories = categories;
         this.checkDeleteClickListener = checkDeleteClickListener;
+        this.checkEditClickListener = checkEditClickListener;
     }
 
     @NonNull
@@ -110,13 +116,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 cbEditCategory.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // TODO:
-                        // Input new name for category
-                        // btnCategory.setText(new name)
-                        // Save changes for the category in Parse
-                        CategoriesFragment.editCategoryMode=false;
-                        cbEditCategory.setChecked(false);
-                        notifyDataSetChanged();
+                        checkEditClickListener.onCheckEditClicked(getAdapterPosition(), cbEditCategory);
                     }
                 });
             }

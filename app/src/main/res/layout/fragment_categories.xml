@@ -9,7 +9,7 @@
 
     <!-- Delete Dialog -->
         <RelativeLayout
-            android:id="@+id/popUpDeleteCategoryDialog"
+            android:id="@+id/rlPopUpDeleteCategoryDialog"
             android:elevation="4dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -74,7 +74,7 @@
 
     <!-- Edit Dialog -->
     <RelativeLayout
-        android:id="@+id/popUpEditCategoryDialog"
+        android:id="@+id/rlPopUpEditCategoryDialog"
         android:elevation="3dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

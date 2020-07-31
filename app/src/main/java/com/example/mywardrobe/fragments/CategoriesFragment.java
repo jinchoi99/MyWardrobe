@@ -23,6 +23,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -47,11 +48,16 @@ public class CategoriesFragment extends Fragment {
     public static boolean editCategoryMode = false;
 
     //Delete Category
-    private RelativeLayout popUpDeleteDialog;
+    private RelativeLayout rlPopUpDeleteCategoryDialog;
     private LinearLayout categoriesOverbox;
-    private Button btnDeleteCatYes;
-    private Button btnDeleteCatNo;
-    private TextView tvDeleteMessage;
+    private Button btnDeleteCategoryYes;
+    private Button btnDeleteCategoryNo;
+    private TextView tvDeleteCategoryMessage;
+    //Edit Category
+    private RelativeLayout rlPopUpEditCategoryDialog;
+    private Button btnEditCategorySave;
+    private Button btnEditCategoryCancel;
+    private EditText etNewCategoryName;
     Animation fromsmall;
 
     //RV
@@ -80,31 +86,30 @@ public class CategoriesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //Check Click Listeners
-        popUpDeleteDialog = view.findViewById(R.id.popUpDeleteDialog);
         categoriesOverbox = view.findViewById(R.id.categoriesOverbox);
         categoriesOverbox.setVisibility(View.GONE);
-
-        btnDeleteCatYes = view.findViewById(R.id.btnDeleteCatYes);
-        btnDeleteCatNo = view.findViewById(R.id.btnDeleteCatNo);
-        tvDeleteMessage = view.findViewById(R.id.tvDeleteMessage);
-
         fromsmall = AnimationUtils.loadAnimation(getContext(), R.anim.fromsmall);
-        popUpDeleteDialog.setAlpha(0);
+
+        // Delete Category
+        rlPopUpDeleteCategoryDialog = view.findViewById(R.id.rlPopUpDeleteCategoryDialog);
+        btnDeleteCategoryYes = view.findViewById(R.id.btnDeleteCategoryYes);
+        btnDeleteCategoryNo = view.findViewById(R.id.btnDeleteCategoryNo);
+        tvDeleteCategoryMessage = view.findViewById(R.id.tvDeleteCategoryMessage);
+        rlPopUpDeleteCategoryDialog.setAlpha(0);
 
         CategoriesAdapter.OnCheckDeleteClickListener onCheckDeleteClickListener = new CategoriesAdapter.OnCheckDeleteClickListener() {
             @Override
             public void onCheckDeleteClicked(final int position, final CheckBox cb) {
-                popUpDeleteDialog.setAlpha(1);
-                popUpDeleteDialog.startAnimation(fromsmall);
+                rlPopUpDeleteCategoryDialog.setAlpha(1);
+                rlPopUpDeleteCategoryDialog.startAnimation(fromsmall);
                 categoriesOverbox.setVisibility(View.VISIBLE);
                 categoriesOverbox.animate().alpha(1.0f).setDuration(800);
 
                 final Category currentCategory = allCategories.get(position);
-                tvDeleteMessage.setText("Are you sure you want to delete \"" + currentCategory.getCategoryName() + "\" ?");
+                tvDeleteCategoryMessage.setText("Are you sure you want to delete \"" + currentCategory.getCategoryName() + "\" ?");
 
                 //Remove Category
-                btnDeleteCatYes.setOnClickListener(new View.OnClickListener() {
+                btnDeleteCategoryYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         // Remove clothes with that category from Parse
@@ -122,16 +127,62 @@ public class CategoriesFragment extends Fragment {
                         allCategories.remove(position);
 
                         cb.setChecked(false);
-                        closeDialog();
+                        closeDeleteDialog();
                     }
                 });
 
                 //Cancel deletion
-                btnDeleteCatNo.setOnClickListener(new View.OnClickListener() {
+                btnDeleteCategoryNo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         cb.setChecked(false);
-                        closeDialog();
+                        closeDeleteDialog();
+                    }
+                });
+            }
+        };
+
+        // Edit Category
+        rlPopUpEditCategoryDialog = view.findViewById(R.id.rlPopUpEditCategoryDialog);
+        btnEditCategorySave = view.findViewById(R.id.btnEditCategorySave);
+        btnEditCategoryCancel = view.findViewById(R.id.btnEditCategoryCancel);
+        etNewCategoryName = view.findViewById(R.id.etNewCategoryName);
+        rlPopUpEditCategoryDialog.setAlpha(0);
+
+        CategoriesAdapter.OnCheckEditClickListener onCheckEditClickListener = new CategoriesAdapter.OnCheckEditClickListener() {
+            @Override
+            public void onCheckEditClicked(final int position, final CheckBox cb) {
+                rlPopUpEditCategoryDialog.setAlpha(1);
+                rlPopUpEditCategoryDialog.startAnimation(fromsmall);
+                categoriesOverbox.setVisibility(View.VISIBLE);
+                categoriesOverbox.animate().alpha(1.0f).setDuration(800);
+
+                final Category currentCategory = allCategories.get(position);
+                etNewCategoryName.setText(currentCategory.getCategoryName());
+
+                //Save New CategoryName
+                btnEditCategorySave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(), "edsave", Toast.LENGTH_SHORT).show();
+                        //save new category name in Parse
+                        currentCategory.setCategoryName(etNewCategoryName.getText().toString());
+                        currentCategory.saveInBackground();
+
+                        //set new category name in categories list
+                        allCategories.set(position, currentCategory);
+
+                        cb.setChecked(false);
+                        closeEditDialog();
+                    }
+                });
+
+                //Cancel Edit
+                btnEditCategoryCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cb.setChecked(false);
+                        closeEditDialog();
                     }
                 });
             }
@@ -140,19 +191,25 @@ public class CategoriesFragment extends Fragment {
         //RV, Query
         rvCategories = view.findViewById(R.id.rvCategories);
         allCategories = new ArrayList<>();
-        adapter = new CategoriesAdapter(getContext(), allCategories, onCheckDeleteClickListener);
+        adapter = new CategoriesAdapter(getContext(), allCategories, onCheckDeleteClickListener, onCheckEditClickListener);
         rvCategories.setAdapter(adapter);
         rvCategories.setLayoutManager(new GridLayoutManager(getContext(), 2));
         queryCategories();
     }
 
-    private void closeDialog() {
+    private void closeDeleteDialog() {
         categoriesOverbox.animate().alpha(0.0f).setDuration(500);
-        popUpDeleteDialog.animate().alpha(0.0f).setDuration(500);
+        rlPopUpDeleteCategoryDialog.animate().alpha(0.0f).setDuration(500);
         deleteCategoryMode=false;
         adapter.notifyDataSetChanged();
     }
 
+    private void closeEditDialog() {
+        categoriesOverbox.animate().alpha(0.0f).setDuration(500);
+        rlPopUpEditCategoryDialog.animate().alpha(0.0f).setDuration(500);
+        editCategoryMode=false;
+        adapter.notifyDataSetChanged();
+    }
 
     private void removeClothesOfCategory(String categoryName) {
         ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
@@ -210,14 +267,13 @@ public class CategoriesFragment extends Fragment {
             case R.id.composeCategory:
                 Intent intent = new Intent(getActivity(), ComposeCategoryActivity.class);
                 startActivity(intent);
-//                getActivity().finish();
+                // getActivity().finish();
                 break;
             case R.id.deleteCategory:
                 deleteCategoryMode = true;
                 adapter.notifyDataSetChanged();
                 break;
             case R.id.editCategory:
-                Toast.makeText(getContext(), "edit category", Toast.LENGTH_SHORT).show();
                 editCategoryMode = true;
                 adapter.notifyDataSetChanged();
                 break;
