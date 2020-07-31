@@ -164,8 +164,13 @@ public class CategoriesFragment extends Fragment {
                 btnEditCategorySave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        String newCategoryName = etNewCategoryName.getText().toString();
+
+                        //save new category name for all clothes with that category name in Parse
+                        changeClothesOfCategory(currentCategory.getCategoryName(), newCategoryName);
+
                         //save new category name in Parse
-                        currentCategory.setCategoryName(etNewCategoryName.getText().toString());
+                        currentCategory.setCategoryName(newCategoryName);
                         currentCategory.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
@@ -178,7 +183,6 @@ public class CategoriesFragment extends Fragment {
                                 Toast.makeText(getContext(), "Category was saved successfully!", Toast.LENGTH_SHORT).show();
                             }
                         });
-                        etNewCategoryName.setText("");
 
                         //set new category name in categories list
                         allCategories.set(position, currentCategory);
@@ -206,6 +210,25 @@ public class CategoriesFragment extends Fragment {
         rvCategories.setAdapter(adapter);
         rvCategories.setLayoutManager(new GridLayoutManager(getContext(), 2));
         queryCategories();
+    }
+
+    private void changeClothesOfCategory(String originalCategoryName, final String newCategoryName) {
+        ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
+        query.whereEqualTo(Clothing.KEY_CLOTHING_OWNER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Clothing.KEY_CLOTHING_CATEGORY, originalCategoryName);
+        query.findInBackground(new FindCallback<Clothing>() {
+            @Override
+            public void done(List<Clothing> clothesOfCategory, ParseException e) {
+                if(e!=null){
+                    Log.e(TAG, "Issue with getting clothes of the category",e);
+                    return;
+                }
+                for(Clothing clothing : clothesOfCategory){
+                    clothing.setClothingCategoryName(newCategoryName);
+                    clothing.saveInBackground();
+                }
+            }
+        });
     }
 
     private void closeDeleteDialog() {

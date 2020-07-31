@@ -24,10 +24,10 @@ public class Clothing extends ParseObject {
         put(KEY_CLOTHING_NAME, clothingName);
     }
 
-    public String getClothingCategory(){
+    public String getClothingCategoryName(){
         return getString(KEY_CLOTHING_CATEGORY);
     }
-    public void setClothingCategory(String category){
+    public void setClothingCategoryName(String category){
         put(KEY_CLOTHING_CATEGORY, category);
     }
 

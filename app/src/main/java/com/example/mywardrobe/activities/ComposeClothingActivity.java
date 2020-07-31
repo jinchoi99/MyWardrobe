@@ -177,7 +177,7 @@ public class ComposeClothingActivity extends AppCompatActivity {
         clothing.setClothingPrice(clothingPrice);
         clothing.setClothingBrand(clothingBrand);
         clothing.setClothingOwner(clothingOwner);
-        clothing.setClothingCategory(categoryName);
+        clothing.setClothingCategoryName(categoryName);
         clothing.setClothingImage(new ParseFile(photoFile));
         clothing.saveInBackground(new SaveCallback() {
             @Override
