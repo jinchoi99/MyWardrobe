@@ -21,8 +21,7 @@ public class ClothingDetailsActivity extends AppCompatActivity {
     TextView tvClothingDetailsName;
     ImageView ivClothingDetailsImage;
     TextView tvClothingDetailsDescription;
-    TextView tvClothingDetailsPrice;
-    TextView tvClothingDetailsBrand;
+    TextView tvClothingDetailsBrandPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +32,13 @@ public class ClothingDetailsActivity extends AppCompatActivity {
 
         clothingDetailsToolbar = findViewById(R.id.clothesToolbar);
         setSupportActionBar(clothingDetailsToolbar);
-        getSupportActionBar().setTitle(currentClothing.getClothingName());
+        getSupportActionBar().setTitle(currentClothing.getClothingCategoryName() + " / " + currentClothing.getClothingName());
         clothingDetailsToolbar.setTitleTextColor(Color.WHITE);
 
         tvClothingDetailsName = findViewById(R.id.tvClothingDetailsName);
         ivClothingDetailsImage = findViewById(R.id.ivClothingDetailsImage);
         tvClothingDetailsDescription = findViewById(R.id.tvClothingDetailsDescription);
-        tvClothingDetailsPrice = findViewById(R.id.tvClothingDetailsPrice);
-        tvClothingDetailsBrand = findViewById(R.id.tvClothingDetailsBrand);
+        tvClothingDetailsBrandPrice = findViewById(R.id.tvClothingDetailsBrandPrice);
 
         tvClothingDetailsName.setText(currentClothing.getClothingName());
         ParseFile image = currentClothing.getClothingImage();
@@ -48,7 +46,6 @@ public class ClothingDetailsActivity extends AppCompatActivity {
             Glide.with(this).load(image.getUrl()).into(ivClothingDetailsImage);
         }
         tvClothingDetailsDescription.setText(currentClothing.getClothingDescription());
-        tvClothingDetailsPrice.setText("$"+currentClothing.getClothingPrice());
-        tvClothingDetailsBrand.setText(currentClothing.getClothingBrand());
+        tvClothingDetailsBrandPrice.setText(currentClothing.getClothingBrand() + " | $"+currentClothing.getClothingPrice());
     }
 }

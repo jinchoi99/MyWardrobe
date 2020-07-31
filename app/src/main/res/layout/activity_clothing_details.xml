@@ -13,22 +13,38 @@
         android:id="@+id/clothesToolbar"
         layout="@layout/toolbar_clothes"></include>
 
+    <ImageView
+        android:layout_marginTop="50dp"
+        android:id="@+id/ivClothingDetailsImage"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
+        android:layout_marginTop="25dp"
         android:id="@+id/tvClothingDetailsName"
+        android:textStyle="bold"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textColor="@color/brown"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Clothing Name" />
 
-    <ImageView
-        android:id="@+id/ivClothingDetailsImage"
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/tvClothingDetailsBrandPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:gravity="center"
+        android:textColor="@color/brown"
+        android:textSize="20sp"
+        android:text="ZARA | $10.50" />
 
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/tvClothingDetailsDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,22 +52,4 @@
         android:textColor="@color/brown"
         android:textSize="20sp"
         android:text="Description for this clothing!:)" />
-
-    <TextView
-        android:id="@+id/tvClothingDetailsPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/brown"
-        android:textSize="20sp"
-        android:text="$10.50" />
-
-    <TextView
-        android:id="@+id/tvClothingDetailsBrand"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/brown"
-        android:textSize="20sp"
-        android:text="ZARA" />
 </LinearLayout>
