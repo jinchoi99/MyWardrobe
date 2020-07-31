@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.ComposeOutfitActivity"></activity>
+        <activity android:name=".activities.ClothingDetailsActivity"></activity>
+        <activity android:name=".activities.ComposeOutfitActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
