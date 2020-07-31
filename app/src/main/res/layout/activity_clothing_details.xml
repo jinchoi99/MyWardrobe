@@ -1,16 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_brown"
+    android:orientation="vertical"
     tools:context=".activities.ClothingDetailsActivity">
 
     <include
         android:id="@+id/clothesToolbar"
         layout="@layout/toolbar_clothes"></include>
 
+    <TextView
+        android:id="@+id/tvClothingDetailsName"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="@color/brown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clothing Name" />
 
+    <ImageView
+        android:id="@+id/ivClothingDetailsImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvClothingDetailsDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/brown"
+        android:textSize="20sp"
+        android:text="Description for this clothing!:)" />
+
+    <TextView
+        android:id="@+id/tvClothingDetailsPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/brown"
+        android:textSize="20sp"
+        android:text="$10.50" />
+
+    <TextView
+        android:id="@+id/tvClothingDetailsBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/brown"
+        android:textSize="20sp"
+        android:text="ZARA" />
+</LinearLayout>
