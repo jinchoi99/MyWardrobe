@@ -89,7 +89,7 @@ public class CategoriesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         categoriesOverbox = view.findViewById(R.id.categoriesOverbox);
-        categoriesOverbox.setVisibility(View.GONE);
+        categoriesOverbox.setAlpha(0);
         fromsmall = AnimationUtils.loadAnimation(getContext(), R.anim.fromsmall);
 
         // Delete Category
@@ -98,15 +98,12 @@ public class CategoriesFragment extends Fragment {
         btnDeleteCategoryNo = view.findViewById(R.id.btnDeleteCategoryNo);
         tvDeleteCategoryMessage = view.findViewById(R.id.tvDeleteCategoryMessage);
         rlPopUpDeleteCategoryDialog.setVisibility(View.GONE);
-        rlPopUpDeleteCategoryDialog.setAlpha(0);
 
         CategoriesAdapter.OnCheckDeleteClickListener onCheckDeleteClickListener = new CategoriesAdapter.OnCheckDeleteClickListener() {
             @Override
             public void onCheckDeleteClicked(final int position, final CheckBox cb) {
                 rlPopUpDeleteCategoryDialog.setVisibility(View.VISIBLE);
-                rlPopUpDeleteCategoryDialog.setAlpha(1);
                 rlPopUpDeleteCategoryDialog.startAnimation(fromsmall);
-                categoriesOverbox.setVisibility(View.VISIBLE);
                 categoriesOverbox.animate().alpha(1.0f).setDuration(800);
 
                 final Category currentCategory = allCategories.get(position);
@@ -152,15 +149,12 @@ public class CategoriesFragment extends Fragment {
         btnEditCategoryCancel = view.findViewById(R.id.btnEditCategoryCancel);
         etNewCategoryName = view.findViewById(R.id.etNewCategoryName);
         rlPopUpEditCategoryDialog.setVisibility(View.GONE);
-        rlPopUpEditCategoryDialog.setAlpha(0);
 
         CategoriesAdapter.OnCheckEditClickListener onCheckEditClickListener = new CategoriesAdapter.OnCheckEditClickListener() {
             @Override
             public void onCheckEditClicked(final int position, final CheckBox cb) {
                 rlPopUpEditCategoryDialog.setVisibility(View.VISIBLE);
-                rlPopUpEditCategoryDialog.setAlpha(1);
                 rlPopUpEditCategoryDialog.startAnimation(fromsmall);
-                categoriesOverbox.setVisibility(View.VISIBLE);
                 categoriesOverbox.animate().alpha(1.0f).setDuration(800);
 
                 final Category currentCategory = allCategories.get(position);
@@ -215,18 +209,23 @@ public class CategoriesFragment extends Fragment {
     }
 
     private void closeDeleteDialog() {
+        //categoriesOverbox is not actually GONE, just INVISIBLE transparent
         categoriesOverbox.animate().alpha(0.0f).setDuration(500);
+        //animate transparency, fade out
         rlPopUpDeleteCategoryDialog.animate().alpha(0.0f).setDuration(500);
-        deleteCategoryMode=false;
+        // get the view out of the fragment, diff from INVISIBLE
+        // GONE is actually considered as gone, doesn't exist even as a transparent view
+        // this prevents having the delete and edit dialogs overlap, cause buttons to overlap
         rlPopUpDeleteCategoryDialog.setVisibility(View.GONE);
+        deleteCategoryMode=false;
         adapter.notifyDataSetChanged();
     }
 
     private void closeEditDialog() {
         categoriesOverbox.animate().alpha(0.0f).setDuration(500);
         rlPopUpEditCategoryDialog.animate().alpha(0.0f).setDuration(500);
-        editCategoryMode=false;
         rlPopUpEditCategoryDialog.setVisibility(View.GONE);
+        editCategoryMode=false;
         adapter.notifyDataSetChanged();
     }
 
