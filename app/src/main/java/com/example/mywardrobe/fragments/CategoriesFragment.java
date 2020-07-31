@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ComposeCategoryActivity;
+import com.example.mywardrobe.activities.ComposeClothingActivity;
 import com.example.mywardrobe.adapters.CategoriesAdapter;
 import com.example.mywardrobe.models.Category;
 import com.example.mywardrobe.models.Clothing;
@@ -38,6 +39,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,11 +97,13 @@ public class CategoriesFragment extends Fragment {
         btnDeleteCategoryYes = view.findViewById(R.id.btnDeleteCategoryYes);
         btnDeleteCategoryNo = view.findViewById(R.id.btnDeleteCategoryNo);
         tvDeleteCategoryMessage = view.findViewById(R.id.tvDeleteCategoryMessage);
+        rlPopUpDeleteCategoryDialog.setVisibility(View.GONE);
         rlPopUpDeleteCategoryDialog.setAlpha(0);
 
         CategoriesAdapter.OnCheckDeleteClickListener onCheckDeleteClickListener = new CategoriesAdapter.OnCheckDeleteClickListener() {
             @Override
             public void onCheckDeleteClicked(final int position, final CheckBox cb) {
+                rlPopUpDeleteCategoryDialog.setVisibility(View.VISIBLE);
                 rlPopUpDeleteCategoryDialog.setAlpha(1);
                 rlPopUpDeleteCategoryDialog.startAnimation(fromsmall);
                 categoriesOverbox.setVisibility(View.VISIBLE);
@@ -147,11 +151,13 @@ public class CategoriesFragment extends Fragment {
         btnEditCategorySave = view.findViewById(R.id.btnEditCategorySave);
         btnEditCategoryCancel = view.findViewById(R.id.btnEditCategoryCancel);
         etNewCategoryName = view.findViewById(R.id.etNewCategoryName);
+        rlPopUpEditCategoryDialog.setVisibility(View.GONE);
         rlPopUpEditCategoryDialog.setAlpha(0);
 
         CategoriesAdapter.OnCheckEditClickListener onCheckEditClickListener = new CategoriesAdapter.OnCheckEditClickListener() {
             @Override
             public void onCheckEditClicked(final int position, final CheckBox cb) {
+                rlPopUpEditCategoryDialog.setVisibility(View.VISIBLE);
                 rlPopUpEditCategoryDialog.setAlpha(1);
                 rlPopUpEditCategoryDialog.startAnimation(fromsmall);
                 categoriesOverbox.setVisibility(View.VISIBLE);
@@ -164,10 +170,21 @@ public class CategoriesFragment extends Fragment {
                 btnEditCategorySave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(), "edsave", Toast.LENGTH_SHORT).show();
                         //save new category name in Parse
                         currentCategory.setCategoryName(etNewCategoryName.getText().toString());
-                        currentCategory.saveInBackground();
+                        currentCategory.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if(e!=null){
+                                    Log.e(TAG, "Error while saving category",e);
+                                    Toast.makeText(getContext(), "Error while saving category!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                Log.i(TAG, "Category was saved successfully!");
+                                Toast.makeText(getContext(), "Category was saved successfully!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        etNewCategoryName.setText("");
 
                         //set new category name in categories list
                         allCategories.set(position, currentCategory);
@@ -201,6 +218,7 @@ public class CategoriesFragment extends Fragment {
         categoriesOverbox.animate().alpha(0.0f).setDuration(500);
         rlPopUpDeleteCategoryDialog.animate().alpha(0.0f).setDuration(500);
         deleteCategoryMode=false;
+        rlPopUpDeleteCategoryDialog.setVisibility(View.GONE);
         adapter.notifyDataSetChanged();
     }
 
@@ -208,6 +226,7 @@ public class CategoriesFragment extends Fragment {
         categoriesOverbox.animate().alpha(0.0f).setDuration(500);
         rlPopUpEditCategoryDialog.animate().alpha(0.0f).setDuration(500);
         editCategoryMode=false;
+        rlPopUpEditCategoryDialog.setVisibility(View.GONE);
         adapter.notifyDataSetChanged();
     }
 
