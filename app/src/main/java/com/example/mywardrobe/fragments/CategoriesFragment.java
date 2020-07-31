@@ -102,6 +102,7 @@ public class CategoriesFragment extends Fragment {
         CategoriesAdapter.OnCheckDeleteClickListener onCheckDeleteClickListener = new CategoriesAdapter.OnCheckDeleteClickListener() {
             @Override
             public void onCheckDeleteClicked(final int position, final CheckBox cb) {
+                rlPopUpDeleteCategoryDialog.setAlpha(1);
                 rlPopUpDeleteCategoryDialog.setVisibility(View.VISIBLE);
                 rlPopUpDeleteCategoryDialog.startAnimation(fromsmall);
                 categoriesOverbox.animate().alpha(1.0f).setDuration(800);
@@ -153,6 +154,7 @@ public class CategoriesFragment extends Fragment {
         CategoriesAdapter.OnCheckEditClickListener onCheckEditClickListener = new CategoriesAdapter.OnCheckEditClickListener() {
             @Override
             public void onCheckEditClicked(final int position, final CheckBox cb) {
+                rlPopUpEditCategoryDialog.setAlpha(1);
                 rlPopUpEditCategoryDialog.setVisibility(View.VISIBLE);
                 rlPopUpEditCategoryDialog.startAnimation(fromsmall);
                 categoriesOverbox.animate().alpha(1.0f).setDuration(800);
