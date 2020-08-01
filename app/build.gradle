@@ -59,4 +59,7 @@ dependencies {
 
     // CompactCalendarView
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
+
+    //Pull to Refresh
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 }
