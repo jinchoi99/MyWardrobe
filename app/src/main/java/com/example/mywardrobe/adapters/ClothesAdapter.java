@@ -49,6 +49,12 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
         return clothes.size();
     }
 
+    // Clean all elements of the recycler view list
+    public void clear() {
+        clothes.clear();
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView ivClothing;
         private TextView tvClothingName;
