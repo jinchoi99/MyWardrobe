@@ -4,15 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.models.Clothing;
+import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
@@ -53,6 +57,33 @@ public class ClothingEditActivity extends AppCompatActivity {
         etClothingNewDescription.setText(currentClothing.getClothingDescription());
         etNewPrice.setText("" + currentClothing.getClothingPrice());
         etNewBrand.setText(currentClothing.getClothingBrand());
+
+        btnClothingSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentClothing.setClothingName(etClothingNewName.getText().toString());
+                currentClothing.setClothingDescription(etClothingNewDescription.getText().toString());
+                String rawInputPrice = etNewPrice.getText().toString();
+                Double clothingPrice = Double.valueOf(rawInputPrice);
+                if(rawInputPrice.isEmpty()){
+                    clothingPrice = 0.0;
+                }
+                currentClothing.setClothingPrice(clothingPrice);
+                currentClothing.setClothingBrand(etNewBrand.getText().toString());
+                currentClothing.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if(e!=null){
+                            Log.e(TAG, "Error while saving clothing",e);
+                            Toast.makeText(ClothingEditActivity.this, "Error while saving clothing!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        Toast.makeText(ClothingEditActivity.this, "Clothing was edited successfully!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
         btnNewDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
