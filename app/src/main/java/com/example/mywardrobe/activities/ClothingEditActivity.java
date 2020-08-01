@@ -44,16 +44,15 @@ public class ClothingEditActivity extends AppCompatActivity {
         btnNewDone = findViewById(R.id.btnNewDone);
 
         currentClothing = Parcels.unwrap(getIntent().getParcelableExtra("clothing"));
-//
-//        etClothingNewName.setText(currentClothing.getClothingName());
-//        ParseFile image = currentClothing.getClothingImage();
-//        if(image!=null){
-//            Glide.with(this).load(image.getUrl()).into(ivNewClothing);
-//        }
-//        etClothingNewDescription.setText(currentClothing.getClothingDescription());
-//        etNewPrice.setText(Double.toString((Double) currentClothing.getClothingPrice()));
-//        etNewBrand.setText(currentClothing.getClothingBrand());
 
+        etClothingNewName.setText(currentClothing.getClothingName());
+        ParseFile image = currentClothing.getClothingImage();
+        if(image!=null){
+            Glide.with(this).load(image.getUrl()).into(ivNewClothing);
+        }
+        etClothingNewDescription.setText(currentClothing.getClothingDescription());
+        etNewPrice.setText("" + currentClothing.getClothingPrice());
+        etNewBrand.setText(currentClothing.getClothingBrand());
         btnNewDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
