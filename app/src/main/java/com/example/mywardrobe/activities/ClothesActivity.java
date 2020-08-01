@@ -104,7 +104,6 @@ public class ClothesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.composeClothing){
             Toast.makeText(this, "compose new clothing", Toast.LENGTH_SHORT).show();
-            //getActivity = MainActivity since that's where this fragment lies upon
             Intent intent = new Intent(this, ComposeClothingActivity.class);
             intent.putExtra("categoryName", Parcels.wrap(currentCategory));
             startActivity(intent);

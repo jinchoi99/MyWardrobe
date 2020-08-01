@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_brown"
+    tools:context=".activities.ClothingEditActivity">
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/etClothingNewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Clothing Name" />
+
+    <Button
+        android:background="@color/brown"
+        android:textColor="@color/white"
+        android:layout_margin="15dp"
+        android:id="@+id/btnCaptureNewImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retake Picture" />
+
+    <ImageView
+        android:id="@+id/ivNewClothing"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:srcCompat="@tools:sample/avatars"/>
+
+    <EditText
+        android:layout_margin="15dp"
+        android:id="@+id/etClothingNewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Description..." />
+
+    <EditText
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/etNewPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="$Price"
+        android:inputType="number|numberDecimal"
+        android:text="$" />
+
+    <EditText
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/etNewBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Brand"></EditText>
+
+    <Button
+        android:layout_margin="15dp"
+        android:id="@+id/btnClothingNewSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/brown"
+        android:textColor="@color/white"
+        android:text="Save" />
+
+    <Button
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/btnNewDone"
+        android:background="@color/mid_brown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done" />
+</LinearLayout>

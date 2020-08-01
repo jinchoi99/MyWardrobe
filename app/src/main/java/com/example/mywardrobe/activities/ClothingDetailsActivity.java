@@ -1,12 +1,20 @@
 package com.example.mywardrobe.activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mywardrobe.R;
@@ -47,5 +55,23 @@ public class ClothingDetailsActivity extends AppCompatActivity {
         }
         tvClothingDetailsDescription.setText(currentClothing.getClothingDescription());
         tvClothingDetailsBrandPrice.setText(currentClothing.getClothingBrand() + " | $"+currentClothing.getClothingPrice());
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_clothingdetails, menu);
+        menu.getItem(0).setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.editClothing){
+            Intent intent = new Intent(this, ClothingEditActivity.class);
+            intent.putExtra("clothing", Parcels.wrap(currentClothing));
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
