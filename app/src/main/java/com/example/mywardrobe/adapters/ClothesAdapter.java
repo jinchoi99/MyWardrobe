@@ -63,7 +63,7 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, ClothingDetailsActivity.class);
-                    intent.putExtra("clothing", Parcels.wrap(currentClothing));
+                    intent.putExtra("fromClothes", Parcels.wrap(currentClothing));
                     context.startActivity(intent);
                 }
             });

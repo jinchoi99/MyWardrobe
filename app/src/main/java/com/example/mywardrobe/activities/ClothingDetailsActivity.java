@@ -10,6 +10,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -36,7 +37,14 @@ public class ClothingDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothing_details);
 
-        currentClothing = Parcels.unwrap(getIntent().getParcelableExtra("clothing"));
+        if(getIntent().hasExtra("fromClothes"))
+        {
+            currentClothing = Parcels.unwrap(getIntent().getParcelableExtra("fromClothes"));
+        }
+        else if(getIntent().hasExtra("fromEditClothing"))
+        {
+            currentClothing = Parcels.unwrap(getIntent().getParcelableExtra("fromEditClothing"));
+        }
 
         clothingDetailsToolbar = findViewById(R.id.clothesToolbar);
         setSupportActionBar(clothingDetailsToolbar);
@@ -71,6 +79,7 @@ public class ClothingDetailsActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ClothingEditActivity.class);
             intent.putExtra("clothing", Parcels.wrap(currentClothing));
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

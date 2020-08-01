@@ -9,15 +9,12 @@
     android:background="@color/light_brown"
     tools:context=".activities.ClothingEditActivity">
 
-    <EditText
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:id="@+id/etClothingNewName"
+    <ImageView
+        android:id="@+id/ivNewClothing"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Clothing Name" />
+        android:layout_height="200dp"
+        tools:srcCompat="@tools:sample/avatars"/>
 
     <Button
         android:background="@color/brown"
@@ -28,43 +25,97 @@
         android:layout_height="wrap_content"
         android:text="Retake Picture" />
 
-    <ImageView
-        android:id="@+id/ivNewClothing"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:srcCompat="@tools:sample/avatars"/>
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_margin="15dp"
-        android:id="@+id/etClothingNewDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Description..." />
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/brown"
+            android:text="Name : "></TextView>
 
-    <EditText
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
-        android:id="@+id/etNewPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="$Price"
-        android:inputType="number|numberDecimal"
-        android:text="$" />
+        <EditText
 
-    <EditText
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:id="@+id/etNewBrand"
+            android:layout_marginRight="15dp"
+            android:id="@+id/etClothingNewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Clothing Name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Brand"></EditText>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/brown"
+            android:text="Description : "></TextView>
+
+        <EditText
+            android:layout_marginRight="15dp"
+            android:id="@+id/etClothingNewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Description..." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/brown"
+            android:text="Price ($) : "></TextView>
+        <EditText
+            android:id="@+id/etNewPrice"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="0.00"
+            android:inputType="number|numberDecimal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/brown"
+            android:text="Brand : "></TextView>
+
+        <EditText
+            android:layout_marginRight="15dp"
+            android:id="@+id/etNewBrand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"></EditText>
+    </LinearLayout>
 
     <Button
         android:layout_margin="15dp"
-        android:id="@+id/btnClothingNewSubmit"
+        android:id="@+id/btnClothingSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/brown"
