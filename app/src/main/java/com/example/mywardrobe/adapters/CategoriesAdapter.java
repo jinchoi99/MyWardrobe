@@ -75,7 +75,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         private CheckBox cbDeleteCategory;
         private CheckBox cbEditCategory;
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             btnCategory = itemView.findViewById(R.id.btnCategory);

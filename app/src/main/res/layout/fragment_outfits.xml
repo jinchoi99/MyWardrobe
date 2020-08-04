@@ -6,12 +6,19 @@
     android:background="@color/light_brown"
     tools:context=".fragments.OutfitsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvOutfits"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainerOutfits"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="3dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="5dp"
-        android:padding="8dp" />
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvOutfits"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:padding="8dp" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

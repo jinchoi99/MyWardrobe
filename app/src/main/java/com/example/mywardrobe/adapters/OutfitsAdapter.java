@@ -50,6 +50,12 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
         return outfits.size();
     }
 
+    // Clean all elements of the recycler view list
+    public void clear() {
+        outfits.clear();
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvOutfitName;
         private RecyclerView rvClothesRelationList;
@@ -67,6 +73,7 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
         }
 
         public void bind(Outfit outfit) {
+            allClothesRelations.clear();
             tvOutfitName.setText(outfit.getOutfitName());
             ParseQuery queryRelations = outfit.getClothingRelation().getQuery();
             queryRelations.findInBackground(new FindCallback<Clothing>() {
