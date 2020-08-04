@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mywardrobe.R;
+import com.example.mywardrobe.activities.ClothesActivity;
+import com.example.mywardrobe.fragments.OutfitsFragment;
 import com.example.mywardrobe.models.Clothing;
 import com.example.mywardrobe.models.Outfit;
 import com.parse.FindCallback;
@@ -27,9 +30,16 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
     private List<Outfit> outfits;
     public static final String TAG = "OutfitsAdapter";
 
-    public OutfitsAdapter(Context context, List<Outfit> outfits) {
+    OnCheckDeleteClickListener checkDeleteClickListener;
+
+    public interface OnCheckDeleteClickListener{
+        void onCheckDeleteClicked(int position, CheckBox cb);
+    }
+
+    public OutfitsAdapter(Context context, List<Outfit> outfits, OnCheckDeleteClickListener checkDeleteClickListener) {
         this.context = context;
         this.outfits = outfits;
+        this.checkDeleteClickListener = checkDeleteClickListener;
     }
 
     @NonNull
@@ -61,6 +71,7 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
         private RecyclerView rvClothesRelationList;
         private ClothesRelationsAdapter adapter;
         private List<Clothing> allClothesRelations;
+        private CheckBox cbDeleteOutfit;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +81,8 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
             adapter = new ClothesRelationsAdapter(context, allClothesRelations);
             rvClothesRelationList.setAdapter(adapter);
             rvClothesRelationList.setLayoutManager(new GridLayoutManager(context, 3));
+
+            cbDeleteOutfit = itemView.findViewById(R.id.cbDeleteOutfit);
         }
 
         public void bind(Outfit outfit) {
@@ -87,6 +100,19 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
                 adapter.notifyDataSetChanged();
                 }
             });
+
+            if(OutfitsFragment.deleteOutfitMode){
+                cbDeleteOutfit.setVisibility(View.VISIBLE);
+                cbDeleteOutfit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        checkDeleteClickListener.onCheckDeleteClicked(getAdapterPosition(), cbDeleteOutfit);
+                    }
+                });
+            }
+            else {
+                cbDeleteOutfit.setVisibility(View.GONE);
+            }
         }
     }
 }

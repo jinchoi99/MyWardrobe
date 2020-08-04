@@ -20,11 +20,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ComposeCategoryActivity;
 import com.example.mywardrobe.activities.ComposeOutfitActivity;
+import com.example.mywardrobe.adapters.ClothesAdapter;
 import com.example.mywardrobe.adapters.OutfitsAdapter;
 import com.example.mywardrobe.models.Category;
 import com.example.mywardrobe.models.Clothing;
@@ -48,6 +56,15 @@ public class OutfitsFragment extends Fragment {
     //pull-to-refresh
     private SwipeRefreshLayout swipeContainer;
 
+    //Delete Outfit
+    public static boolean deleteOutfitMode = false;
+    private RelativeLayout rlPopUpDeleteOutfitDialog;
+    private LinearLayout outfitsOverbox;
+    private Button btnDeleteOutfitYes;
+    private Button btnDeleteOutfitNo;
+    private TextView tvDeleteOutfitMessage;
+    Animation fromsmall;
+
     public OutfitsFragment() {
         // Required empty public constructor
     }
@@ -67,11 +84,63 @@ public class OutfitsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
+
+        // Delete Outfit
+        fromsmall = AnimationUtils.loadAnimation(getContext(), R.anim.fromsmall);
+        outfitsOverbox = view.findViewById(R.id.outfitsOverbox);
+        outfitsOverbox.setAlpha(0);
+        rlPopUpDeleteOutfitDialog = view.findViewById(R.id.rlPopUpDeleteOutfitDialog);
+        btnDeleteOutfitYes = view.findViewById(R.id.btnDeleteOutfitYes);
+        btnDeleteOutfitNo = view.findViewById(R.id.btnDeleteOutfitNo);
+        tvDeleteOutfitMessage = view.findViewById(R.id.tvDeleteOutfitMessage);
+        rlPopUpDeleteOutfitDialog.setVisibility(View.GONE);
+
+        OutfitsAdapter.OnCheckDeleteClickListener onCheckDeleteClickListener = new OutfitsAdapter.OnCheckDeleteClickListener() {
+            @Override
+            public void onCheckDeleteClicked(final int position, final CheckBox cb) {
+                rlPopUpDeleteOutfitDialog.setAlpha(1);
+                rlPopUpDeleteOutfitDialog.setVisibility(View.VISIBLE);
+                rlPopUpDeleteOutfitDialog.startAnimation(fromsmall);
+                outfitsOverbox.animate().alpha(1.0f).setDuration(800);
+
+                final Outfit currentOutfit = allOutfits.get(position);
+                tvDeleteOutfitMessage.setText("Are you sure you want to delete \"" + currentOutfit.getOutfitName() + "\" ?");
+
+                //Remove Outfit
+                btnDeleteOutfitYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Remove clothing from Parse
+                        try {
+                            currentOutfit.delete();
+                            Toast.makeText(view.getContext(), "successfully deleted outfit", Toast.LENGTH_SHORT).show();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        // Remove from clothes list
+                        allOutfits.remove(position);
+
+                        cb.setChecked(false);
+                        closeDeleteDialog();
+                    }
+                });
+
+                //Cancel deletion
+                btnDeleteOutfitNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cb.setChecked(false);
+                        closeDeleteDialog();
+                    }
+                });
+            }
+        };
+
         rvOutfits = view.findViewById(R.id.rvOutfits);
         allOutfits = new ArrayList<>();
-        adapter = new OutfitsAdapter(getContext(), allOutfits);
+        adapter = new OutfitsAdapter(getContext(), allOutfits, onCheckDeleteClickListener);
         rvOutfits.setAdapter(adapter);
         rvOutfits.setLayoutManager(new LinearLayoutManager(getContext()));
         queryOutfits();
@@ -91,6 +160,14 @@ public class OutfitsFragment extends Fragment {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+    }
+
+    private void closeDeleteDialog() {
+        outfitsOverbox.animate().alpha(0.0f).setDuration(500);
+        rlPopUpDeleteOutfitDialog.animate().alpha(0.0f).setDuration(500);
+        rlPopUpDeleteOutfitDialog.setVisibility(View.GONE);
+        deleteOutfitMode=false;
+        adapter.notifyDataSetChanged();
     }
 
     private void queryOutfits() {
@@ -118,14 +195,21 @@ public class OutfitsFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_outfit, menu);
         menu.getItem(0).setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+        menu.getItem(1).setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.composeOutfit){
-            Toast.makeText(getContext(), "compose new outfit", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), ComposeOutfitActivity.class);
-            startActivity(intent);
+        switch (item.getItemId()) {
+            case R.id.composeOutfit:
+                Toast.makeText(getContext(), "compose new outfit", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), ComposeOutfitActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.deleteOutfit:
+                deleteOutfitMode = true;
+                adapter.notifyDataSetChanged();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
