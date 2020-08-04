@@ -48,6 +48,7 @@ public class ClothesActivity extends AppCompatActivity {
     private RecyclerView rvClothesList;
     private ClothesAdapter adapter;
     private List<Clothing> allClothes;
+    private TextView tvNoClothingMessage;
 
     Toolbar clothesToolbar;
 
@@ -123,6 +124,8 @@ public class ClothesActivity extends AppCompatActivity {
         clothesToolbar = findViewById(R.id.clothesToolbar);
         setSupportActionBar(clothesToolbar);
 
+        tvNoClothingMessage = findViewById(R.id.tvNoClothingMessage);
+
         rvClothesList = findViewById(R.id.rvClothesList);
         allClothes = new ArrayList<>();
         adapter = new ClothesAdapter(this, allClothes, onCheckDeleteClickListener);
@@ -182,6 +185,12 @@ public class ClothesActivity extends AppCompatActivity {
                     return;
                 }
                 allClothes.addAll(clothes);
+                if(allClothes.isEmpty()){
+                    tvNoClothingMessage.setVisibility(View.VISIBLE);
+                }
+                else {
+                    tvNoClothingMessage.setVisibility(View.GONE);
+                }
                 adapter.notifyDataSetChanged();
             }
         });
@@ -200,9 +209,14 @@ public class ClothesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.deleteClothing:
-                deleteClothingMode = true;
-                Toast.makeText(this, "delete clothing", Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
+                if(allClothes.size()!=0)
+                {
+                    deleteClothingMode = true;
+                    adapter.notifyDataSetChanged();
+                }
+                else {
+                    Toast.makeText(this, "There is no clothing yet!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.composeClothing:
                 Toast.makeText(this, "compose new clothing", Toast.LENGTH_SHORT).show();
