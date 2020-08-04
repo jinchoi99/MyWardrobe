@@ -90,7 +90,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             currentCategory = category;
             btnCategory.setText(category.getCategoryName());
 
-            if(CategoriesFragment.deleteCategoryMode){
+            if(ClothesActivity.deleteClothingMode){
                 cbDeleteCategory.setVisibility(View.VISIBLE);
                 cbDeleteCategory.setOnClickListener(new View.OnClickListener() {
                     @Override

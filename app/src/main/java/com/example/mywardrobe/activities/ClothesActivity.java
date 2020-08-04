@@ -16,9 +16,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
+import com.example.mywardrobe.adapters.CategoriesAdapter;
 import com.example.mywardrobe.adapters.ClothesAdapter;
 import com.example.mywardrobe.models.Category;
 import com.example.mywardrobe.models.Clothing;
@@ -45,17 +54,78 @@ public class ClothesActivity extends AppCompatActivity {
     //pull-to-refresh
     private SwipeRefreshLayout swipeContainer;
 
+    //Delete Clothing
+    public static boolean deleteClothingMode = false;
+    private RelativeLayout rlPopUpDeleteClothingDialog;
+    private LinearLayout clothesOverbox;
+    private Button btnDeleteClothingYes;
+    private Button btnDeleteClothingNo;
+    private TextView tvDeleteClothingMessage;
+    Animation fromsmall;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothes);
+
+        // Delete Clothing
+        fromsmall = AnimationUtils.loadAnimation(this, R.anim.fromsmall);
+        clothesOverbox = findViewById(R.id.clothesOverbox);
+        clothesOverbox.setAlpha(0);
+        rlPopUpDeleteClothingDialog = findViewById(R.id.rlPopUpDeleteClothingDialog);
+        btnDeleteClothingYes = findViewById(R.id.btnDeleteClothingYes);
+        btnDeleteClothingNo = findViewById(R.id.btnDeleteClothingNo);
+        tvDeleteClothingMessage = findViewById(R.id.tvDeleteClothingMessage);
+        rlPopUpDeleteClothingDialog.setVisibility(View.GONE);
+
+        ClothesAdapter.OnCheckDeleteClickListener onCheckDeleteClickListener = new ClothesAdapter.OnCheckDeleteClickListener() {
+            @Override
+            public void onCheckDeleteClicked(final int position, final CheckBox cb) {
+                rlPopUpDeleteClothingDialog.setAlpha(1);
+                rlPopUpDeleteClothingDialog.setVisibility(View.VISIBLE);
+                rlPopUpDeleteClothingDialog.startAnimation(fromsmall);
+                clothesOverbox.animate().alpha(1.0f).setDuration(800);
+
+                final Clothing currentClothing = allClothes.get(position);
+                tvDeleteClothingMessage.setText("Are you sure you want to delete \"" + currentClothing.getClothingName() + "\" ?");
+
+                //Remove Clothing
+                btnDeleteClothingYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Remove clothing from Parse
+                        try {
+                            currentClothing.delete();
+                            Toast.makeText(view.getContext(), "successfully deleted clothing", Toast.LENGTH_SHORT).show();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        // Remove from clothes list
+                        allClothes.remove(position);
+
+                        cb.setChecked(false);
+                        closeDeleteDialog();
+                    }
+                });
+
+                //Cancel deletion
+                btnDeleteClothingNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cb.setChecked(false);
+                        closeDeleteDialog();
+                    }
+                });
+            }
+        };
 
         clothesToolbar = findViewById(R.id.clothesToolbar);
         setSupportActionBar(clothesToolbar);
 
         rvClothesList = findViewById(R.id.rvClothesList);
         allClothes = new ArrayList<>();
-        adapter = new ClothesAdapter(this, allClothes);
+        adapter = new ClothesAdapter(this, allClothes, onCheckDeleteClickListener);
         rvClothesList.setAdapter(adapter);
         rvClothesList.setLayoutManager(new GridLayoutManager(this, 3));
 
@@ -90,6 +160,14 @@ public class ClothesActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
     }
 
+    private void closeDeleteDialog() {
+        clothesOverbox.animate().alpha(0.0f).setDuration(500);
+        rlPopUpDeleteClothingDialog.animate().alpha(0.0f).setDuration(500);
+        rlPopUpDeleteClothingDialog.setVisibility(View.GONE);
+        deleteClothingMode=false;
+        adapter.notifyDataSetChanged();
+    }
+
     protected void queryClothes() {
         ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
         query.setLimit(20);
@@ -103,9 +181,6 @@ public class ClothesActivity extends AppCompatActivity {
                     Log.e(TAG, "Issue with getting clothes",e);
                     return;
                 }
-                for(Clothing clothing : clothes){
-                    Log.i(TAG, "Clothing Name: " + clothing.getClothingName());
-                }
                 allClothes.addAll(clothes);
                 adapter.notifyDataSetChanged();
             }
@@ -117,17 +192,25 @@ public class ClothesActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_clothing, menu);
         menu.getItem(0).setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+        menu.getItem(1).setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.composeClothing){
-            Toast.makeText(this, "compose new clothing", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ComposeClothingActivity.class);
-            intent.putExtra("categoryName", Parcels.wrap(currentCategory));
-            startActivity(intent);
-            finish();
+        switch (item.getItemId()){
+            case R.id.deleteClothing:
+                deleteClothingMode = true;
+                Toast.makeText(this, "delete clothing", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
+                break;
+            case R.id.composeClothing:
+                Toast.makeText(this, "compose new clothing", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ComposeClothingActivity.class);
+                intent.putExtra("categoryName", Parcels.wrap(currentCategory));
+                startActivity(intent);
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

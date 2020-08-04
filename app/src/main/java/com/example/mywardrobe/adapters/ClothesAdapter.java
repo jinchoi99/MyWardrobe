@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ClothesActivity;
 import com.example.mywardrobe.activities.ClothingDetailsActivity;
+import com.example.mywardrobe.fragments.CategoriesFragment;
 import com.example.mywardrobe.models.Clothing;
 import com.parse.ParseFile;
 
@@ -25,10 +27,16 @@ import java.util.List;
 public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHolder> {
     private Context context;
     private List<Clothing> clothes;
+    OnCheckDeleteClickListener checkDeleteClickListener;
 
-    public ClothesAdapter(Context context, List<Clothing> clothes) {
+    public interface OnCheckDeleteClickListener{
+        void onCheckDeleteClicked(int position, CheckBox cb);
+    }
+
+    public ClothesAdapter(Context context, List<Clothing> clothes, OnCheckDeleteClickListener checkDeleteClickListener) {
         this.context = context;
         this.clothes = clothes;
+        this.checkDeleteClickListener = checkDeleteClickListener;
     }
 
     @NonNull
@@ -59,11 +67,13 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
         private ImageView ivClothing;
         private TextView tvClothingName;
         private Clothing currentClothing;
+        private CheckBox cbDeleteClothing;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivClothing = itemView.findViewById(R.id.ivClothing);
             tvClothingName = itemView.findViewById(R.id.tvClothingName);
+            cbDeleteClothing = itemView.findViewById(R.id.cbDeleteClothing);
 
             ivClothing.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,6 +91,19 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
             ParseFile image = clothing.getClothingImage();
             if(image!=null){
                 Glide.with(context).load(image.getUrl()).into(ivClothing);
+            }
+
+            if(ClothesActivity.deleteClothingMode){
+                cbDeleteClothing.setVisibility(View.VISIBLE);
+                cbDeleteClothing.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        checkDeleteClickListener.onCheckDeleteClicked(getAdapterPosition(), cbDeleteClothing);
+                    }
+                });
+            }
+            else {
+                cbDeleteClothing.setVisibility(View.GONE);
             }
         }
     }
