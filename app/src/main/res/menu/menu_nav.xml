@@ -5,7 +5,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_username"
-            android:title="Profile">
+            android:title="Welcome to my wardrobe!">
             <menu>
                 <item
                     android:id="@+id/nav_profile"
@@ -22,6 +22,5 @@
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="Settings" />
     </group>
-
 
 </menu>

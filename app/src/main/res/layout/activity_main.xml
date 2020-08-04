@@ -15,7 +15,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:headerLayout="@layout/header"
+        android:background="@color/light_brown"
         android:layout_gravity = "start"
+        app:itemIconTint="@color/brown"
+        app:itemTextColor="@color/brown"
         app:menu="@menu/menu_nav">
     </com.google.android.material.navigation.NavigationView>
 

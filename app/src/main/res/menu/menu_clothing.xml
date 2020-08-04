@@ -3,9 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/deleteClothing"
+        android:icon="@drawable/ic_baseline_edit_24"
+        android:title="DeleteClothing"
+        android:visible="true"
+        app:showAsAction="always"></item>
+
+    <item
         android:id="@+id/composeClothing"
         android:icon="@drawable/ic_addplus"
-        android:title="Compose"
+        android:title="ComposeClothing"
         android:visible="true"
         app:showAsAction="always"></item>
 
