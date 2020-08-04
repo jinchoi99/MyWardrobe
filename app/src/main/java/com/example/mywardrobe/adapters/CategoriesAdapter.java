@@ -63,6 +63,12 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         return categories.size();
     }
 
+    // Clean all elements of the recycler view list
+    public void clear() {
+        categories.clear();
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
         private Button btnCategory;
         private Category currentCategory;
