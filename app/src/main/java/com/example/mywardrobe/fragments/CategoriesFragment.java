@@ -68,6 +68,7 @@ public class CategoriesFragment extends Fragment {
     private RecyclerView rvCategories;
     private CategoriesAdapter adapter;
     private List<Category> allCategories;
+    private TextView tvNoCategoryMessage;
 
     //pull-to-refresh
     private SwipeRefreshLayout swipeContainer;
@@ -217,6 +218,7 @@ public class CategoriesFragment extends Fragment {
         };
 
         //RV, Query
+        tvNoCategoryMessage = view.findViewById(R.id.tvNoCategoryMessage);
         rvCategories = view.findViewById(R.id.rvCategories);
         allCategories = new ArrayList<>();
         adapter = new CategoriesAdapter(getContext(), allCategories, onCheckDeleteClickListener, onCheckEditClickListener);
@@ -320,6 +322,12 @@ public class CategoriesFragment extends Fragment {
                     return;
                 }
                 allCategories.addAll(categories);
+                if(allCategories.isEmpty()){
+                    tvNoCategoryMessage.setVisibility(View.VISIBLE);
+                }
+                else {
+                    tvNoCategoryMessage.setVisibility(View.GONE);
+                }
                 adapter.notifyDataSetChanged();
                 pbLoadingCategories.setVisibility(ProgressBar.INVISIBLE);
             }
