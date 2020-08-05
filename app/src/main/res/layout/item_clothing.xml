@@ -16,6 +16,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></CheckBox>
 
+    <ProgressBar
+        android:id="@+id/pbLoadingClothingImage"
+        android:visibility="invisible"
+        android:indeterminateTint="@color/brown"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
     <ImageView
         android:id="@+id/ivClothing"
         android:layout_width="110dp"

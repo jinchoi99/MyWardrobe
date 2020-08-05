@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -68,12 +69,14 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
         private TextView tvClothingName;
         private Clothing currentClothing;
         private CheckBox cbDeleteClothing;
+        private ProgressBar pbLoadingClothingImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivClothing = itemView.findViewById(R.id.ivClothing);
             tvClothingName = itemView.findViewById(R.id.tvClothingName);
             cbDeleteClothing = itemView.findViewById(R.id.cbDeleteClothing);
+            pbLoadingClothingImage = itemView.findViewById(R.id.pbLoadingClothingImage);
 
             ivClothing.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,11 +89,13 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
         }
 
         public void bind(Clothing clothing) {
+            pbLoadingClothingImage.setVisibility(View.VISIBLE);
             currentClothing=clothing;
             tvClothingName.setText(clothing.getClothingName());
             ParseFile image = clothing.getClothingImage();
             if(image!=null){
                 Glide.with(context).load(image.getUrl()).into(ivClothing);
+                pbLoadingClothingImage.setVisibility(View.INVISIBLE);
             }
 
             if(ClothesActivity.deleteClothingMode){
