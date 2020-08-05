@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,6 +71,8 @@ public class CategoriesFragment extends Fragment {
 
     //pull-to-refresh
     private SwipeRefreshLayout swipeContainer;
+    //Progress Bar
+    ProgressBar pbLoadingCategories;
 
     public CategoriesFragment() {
         // Required empty public constructor
@@ -91,6 +94,8 @@ public class CategoriesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        pbLoadingCategories= (ProgressBar) view.findViewById(R.id.pbLoadingCategories);
 
         categoriesOverbox = view.findViewById(R.id.categoriesOverbox);
         categoriesOverbox.setAlpha(0);
@@ -297,6 +302,7 @@ public class CategoriesFragment extends Fragment {
     }
 
     protected void queryCategories() {
+        pbLoadingCategories.setVisibility(ProgressBar.VISIBLE);
         ParseQuery<Category> query = ParseQuery.getQuery(Category.class);
         query.setLimit(20);
         query.whereEqualTo(Category.KEY_CATEGORY_OWNER, ParseUser.getCurrentUser());
@@ -306,10 +312,12 @@ public class CategoriesFragment extends Fragment {
             public void done(List<Category> categories, ParseException e) {
                 if(e!=null){
                     Log.e(TAG, "Issue with getting categories",e);
+                    pbLoadingCategories.setVisibility(ProgressBar.INVISIBLE);
                     return;
                 }
                 allCategories.addAll(categories);
                 adapter.notifyDataSetChanged();
+                pbLoadingCategories.setVisibility(ProgressBar.INVISIBLE);
             }
         });
     }
@@ -334,6 +342,7 @@ public class CategoriesFragment extends Fragment {
                 break;
             case R.id.deleteCategory:
                 deleteCategoryMode = true;
+                Toast.makeText(getContext(), "what", Toast.LENGTH_SHORT).show();
                 adapter.notifyDataSetChanged();
                 break;
             case R.id.editCategory:

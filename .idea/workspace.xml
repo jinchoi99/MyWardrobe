@@ -16,18 +16,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/adapters/OutfitsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/adapters/OutfitsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/OutfitsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/OutfitsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_outfits.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_outfits.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_outfit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_outfit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_outfit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_outfit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/adapters/CategoriesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/adapters/CategoriesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/CategoriesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/CategoriesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_categories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_categories.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="RF8N318ND8E" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_28" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -68,7 +66,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_API_28" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-08-04T08:57:30.550Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-08-05T00:01:01.851Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
@@ -298,14 +296,15 @@
     </state>
     <state x="672" y="345" key="chooseDestDirectoryDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1595948586814" />
     <state x="672" y="338" key="chooseDestDirectoryDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1596525321364" />
-    <state x="100" y="123" width="1592" height="825" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1595613570460">
-      <screen x="0" y="23" width="1792" height="1024" />
+    <state x="100" y="123" width="1592" height="824" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1596585686625">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state x="100" y="110" width="1592" height="900" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594951691846" />
     <state x="100" y="123" width="1592" height="814" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1792.1014@0.23.1792.1014" timestamp="1594706804918" />
     <state x="100" y="123" width="1592" height="816" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1792.1015@0.23.1792.1015" timestamp="1595021583481" />
     <state x="100" y="123" width="1592" height="818" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1595259397995" />
     <state x="100" y="123" width="1592" height="821" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1792.1020@0.23.1792.1020" timestamp="1595364353861" />
+    <state x="100" y="123" width="1592" height="824" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1596585686625" />
     <state x="100" y="123" width="1592" height="825" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1792.1024@0.23.1792.1024" timestamp="1595613570460" />
     <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1595947991741">
       <screen x="0" y="0" width="1792" height="1120" />

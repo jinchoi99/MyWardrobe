@@ -7,6 +7,15 @@
     android:background="@color/light_brown"
     tools:context=".fragments.CategoriesFragment">
 
+    <ProgressBar
+        android:id="@+id/pbLoadingCategories"
+        android:visibility="invisible"
+        android:indeterminateTint="@color/light_green"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
     <!-- Delete Dialog -->
     <RelativeLayout
         android:id="@+id/rlPopUpDeleteCategoryDialog"
