@@ -22,6 +22,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,8 @@ public class ClothesActivity extends AppCompatActivity {
 
     //pull-to-refresh
     private SwipeRefreshLayout swipeContainer;
+    //Progress Bar
+    ProgressBar pbLoadingClothes;
 
     //Delete Clothing
     public static boolean deleteClothingMode = false;
@@ -68,6 +71,8 @@ public class ClothesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothes);
+
+        pbLoadingClothes= (ProgressBar) findViewById(R.id.pbLoadingClothes);
 
         // Delete Clothing
         fromsmall = AnimationUtils.loadAnimation(this, R.anim.fromsmall);
@@ -172,6 +177,7 @@ public class ClothesActivity extends AppCompatActivity {
     }
 
     protected void queryClothes() {
+        pbLoadingClothes.setVisibility(ProgressBar.VISIBLE);
         ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
         query.setLimit(20);
         query.whereEqualTo(Clothing.KEY_CLOTHING_OWNER, ParseUser.getCurrentUser());
@@ -182,6 +188,7 @@ public class ClothesActivity extends AppCompatActivity {
             public void done(List<Clothing> clothes, ParseException e) {
                 if(e!=null){
                     Log.e(TAG, "Issue with getting clothes",e);
+                    pbLoadingClothes.setVisibility(ProgressBar.INVISIBLE);
                     return;
                 }
                 allClothes.addAll(clothes);
@@ -192,6 +199,7 @@ public class ClothesActivity extends AppCompatActivity {
                     tvNoClothingMessage.setVisibility(View.GONE);
                 }
                 adapter.notifyDataSetChanged();
+                pbLoadingClothes.setVisibility(ProgressBar.INVISIBLE);
             }
         });
     }

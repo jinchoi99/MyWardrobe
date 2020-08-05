@@ -11,6 +11,15 @@
         android:id="@+id/clothesToolbar"
         layout="@layout/toolbar_clothes"></include>
 
+    <ProgressBar
+        android:id="@+id/pbLoadingClothes"
+        android:visibility="invisible"
+        android:indeterminateTint="@color/light_green"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
     <TextView
         android:id="@+id/tvNoClothingMessage"
         android:visibility="invisible"
