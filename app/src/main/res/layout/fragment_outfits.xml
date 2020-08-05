@@ -9,7 +9,7 @@
     <ProgressBar
         android:id="@+id/pbLoadingOutfits"
         android:visibility="invisible"
-        android:indeterminateTint="@color/light_green"
+        android:indeterminateTint="@color/brown"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_width="70dp"
