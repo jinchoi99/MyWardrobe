@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.mywardrobe.R;
@@ -48,10 +49,14 @@ public class ComposeClothingActivity extends AppCompatActivity {
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
+    private ProgressBar pbLoadingComposeClothing;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose_clothing);
+
+        pbLoadingComposeClothing = findViewById(R.id.pbLoadingComposeClothing);
 
         etClothingName = findViewById(R.id.etClothingName);
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
@@ -171,6 +176,7 @@ public class ComposeClothingActivity extends AppCompatActivity {
     }
 
     private void saveClothing(String clothingName, String clothingDescription, Number clothingPrice, String clothingBrand, ParseUser clothingOwner, String categoryName, final File photoFile) {
+        pbLoadingComposeClothing.setVisibility(View.VISIBLE);
         Clothing clothing = new Clothing();
         clothing.setClothingName(clothingName);
         clothing.setClothingDescription(clothingDescription);
@@ -185,10 +191,12 @@ public class ComposeClothingActivity extends AppCompatActivity {
                 if(e!=null){
                     Log.e(TAG, "Error while saving clothing",e);
                     Toast.makeText(ComposeClothingActivity.this, "Error while saving clothing!", Toast.LENGTH_SHORT).show();
+                    pbLoadingComposeClothing.setVisibility(View.INVISIBLE);
                     return;
                 }
                 Log.i(TAG, "Clothing was saved successfully!");
                 Toast.makeText(ComposeClothingActivity.this, "Clothing was saved successfully!", Toast.LENGTH_SHORT).show();
+                pbLoadingComposeClothing.setVisibility(View.INVISIBLE);
                 etClothingName.setText("");
                 etClothingDescription.setText("");
                 etPrice.setText("$");

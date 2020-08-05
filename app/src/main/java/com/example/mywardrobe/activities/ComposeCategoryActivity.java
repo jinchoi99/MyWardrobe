@@ -59,7 +59,7 @@ public class ComposeCategoryActivity extends AppCompatActivity {
                     return;
                 }
                 Log.i(TAG, "Category was saved successfully!");
-                Toast.makeText(ComposeCategoryActivity.this, "Category was saved successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ComposeCategoryActivity.this, "New Category has been added!", Toast.LENGTH_SHORT).show();
                 etCategoryName.setText("");
             }
         });
