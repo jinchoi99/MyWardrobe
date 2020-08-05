@@ -24,10 +24,22 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvClothesRelationList"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/pbLoadingOutfitClothesRelations"
+            android:visibility="invisible"
+            android:indeterminateTint="@color/light_green"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvClothesRelationList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
     <View
         android:id="@+id/divider"

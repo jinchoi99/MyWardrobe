@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -72,6 +73,7 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
         private ClothesRelationsAdapter adapter;
         private List<Clothing> allClothesRelations;
         private CheckBox cbDeleteOutfit;
+        private ProgressBar pbLoadingOutfitClothesRelations;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,9 +85,11 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
             rvClothesRelationList.setLayoutManager(new GridLayoutManager(context, 3));
 
             cbDeleteOutfit = itemView.findViewById(R.id.cbDeleteOutfit);
+            pbLoadingOutfitClothesRelations = itemView.findViewById(R.id.pbLoadingOutfitClothesRelations);
         }
 
         public void bind(Outfit outfit) {
+            pbLoadingOutfitClothesRelations.setVisibility(View.VISIBLE);
             allClothesRelations.clear();
             tvOutfitName.setText(outfit.getOutfitName());
             ParseQuery queryRelations = outfit.getClothingRelation().getQuery();
@@ -93,11 +97,13 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
                 @Override
                 public void done(List<Clothing> clothesRelations, ParseException e) {
                 if(e!=null){
+                    pbLoadingOutfitClothesRelations.setVisibility(View.INVISIBLE);
                     Log.e(TAG, "Issue with getting clothesRelations",e);
                     return;
                 }
                 allClothesRelations.addAll(clothesRelations);
                 adapter.notifyDataSetChanged();
+                pbLoadingOutfitClothesRelations.setVisibility(View.INVISIBLE);
                 }
             });
 
