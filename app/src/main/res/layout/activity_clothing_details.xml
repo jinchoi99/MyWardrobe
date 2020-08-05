@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,47 +9,61 @@
     android:orientation="vertical"
     tools:context=".activities.ClothingDetailsActivity">
 
-    <include
-        android:id="@+id/clothesToolbar"
-        layout="@layout/toolbar_clothes"></include>
+    <ProgressBar
+        android:id="@+id/pbLoadingClothingDetails"
+        android:visibility="invisible"
+        android:indeterminateTint="@color/brown"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
 
-    <ImageView
-        android:layout_marginTop="50dp"
-        android:id="@+id/ivClothingDetailsImage"
-        android:layout_width="300dp"
-        android:layout_height="350dp"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:layout_marginTop="25dp"
-        android:id="@+id/tvClothingDetailsName"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:textColor="@color/brown"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Clothing Name" />
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/clothesToolbar"
+            layout="@layout/toolbar_clothes"></include>
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:id="@+id/tvClothingDetailsBrandPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/brown"
-        android:textSize="20sp"
-        android:text="ZARA | $10.50" />
+        <ImageView
+            android:layout_marginTop="50dp"
+            android:id="@+id/ivClothingDetailsImage"
+            android:layout_width="300dp"
+            android:layout_height="350dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:id="@+id/tvClothingDetailsDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/brown"
-        android:textSize="20sp"
-        android:text="Description for this clothing!:)" />
-</LinearLayout>
+        <TextView
+            android:layout_marginTop="25dp"
+            android:id="@+id/tvClothingDetailsName"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/brown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clothing Name" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvClothingDetailsBrandPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/brown"
+            android:textSize="20sp"
+            android:text="ZARA | $10.50" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvClothingDetailsDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/brown"
+            android:textSize="20sp"
+            android:text="Description for this clothing!:)" />
+    </LinearLayout>
+</RelativeLayout>

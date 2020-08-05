@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -33,10 +34,14 @@ public class ClothingEditActivity extends AppCompatActivity {
 
     Clothing currentClothing;
 
+    private ProgressBar pbLoadingClothingEdit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothing_edit);
+
+        pbLoadingClothingEdit = findViewById(R.id.pbLoadingClothingEdit);
 
         etClothingNewName = findViewById(R.id.etClothingNewName);
         btnCaptureNewImage = findViewById(R.id.btnCaptureNewImage);
@@ -61,6 +66,7 @@ public class ClothingEditActivity extends AppCompatActivity {
         btnClothingSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pbLoadingClothingEdit.setVisibility(View.VISIBLE);
                 currentClothing.setClothingName(etClothingNewName.getText().toString());
                 currentClothing.setClothingDescription(etClothingNewDescription.getText().toString());
                 String rawInputPrice = etNewPrice.getText().toString();
@@ -76,14 +82,15 @@ public class ClothingEditActivity extends AppCompatActivity {
                         if(e!=null){
                             Log.e(TAG, "Error while saving clothing",e);
                             Toast.makeText(ClothingEditActivity.this, "Error while saving clothing!", Toast.LENGTH_SHORT).show();
+                            pbLoadingClothingEdit.setVisibility(View.INVISIBLE);
                             return;
                         }
                         Toast.makeText(ClothingEditActivity.this, "Clothing was edited successfully!", Toast.LENGTH_SHORT).show();
+                        pbLoadingClothingEdit.setVisibility(View.INVISIBLE);
                     }
                 });
             }
         });
-
         btnNewDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
