@@ -53,13 +53,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_clothes:
+                        toolbar.setTitle("MyWardrobe");
                         fragment = new CategoriesFragment();
                         break;
                     case R.id.action_outfits:
+                        toolbar.setTitle("Outfits");
                         fragment = new OutfitsFragment();
                         break;
                     case R.id.action_calendar:
                     default:
+                        toolbar.setTitle("Calendar");
                         fragment = new CalendarFragment();
                         break;
                 }
@@ -71,13 +74,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             // Set default menu item selection so that there is fragment showing, never empty
             bottomNavigationView.setSelectedItemId(R.id.action_clothes);
-            Log.i(TAG, "here1" + getIntent().getStringExtra("EXTRA"));
+            toolbar.setTitle("MyWardrobe");
 
         }
         else{
             bottomNavigationView.setSelectedItemId(R.id.action_outfits);
-            //getIntent().getStringExtra("EXTRA") = "open OutfitsFragment"
-            Log.i(TAG, "here2" + getIntent().getStringExtra("EXTRA"));
+            toolbar.setTitle("Outfits");
         }
 
         dlDrawerLayout = findViewById(R.id.dlDrawerLayout);
