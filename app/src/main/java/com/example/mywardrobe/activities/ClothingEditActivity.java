@@ -70,10 +70,10 @@ public class ClothingEditActivity extends AppCompatActivity {
                 currentClothing.setClothingName(etClothingNewName.getText().toString());
                 currentClothing.setClothingDescription(etClothingNewDescription.getText().toString());
                 String rawInputPrice = etNewPrice.getText().toString();
-                Double clothingPrice = Double.valueOf(rawInputPrice);
                 if(rawInputPrice.isEmpty()){
-                    clothingPrice = 0.0;
+                    rawInputPrice="0";
                 }
+                Double clothingPrice = Double.valueOf(rawInputPrice);
                 currentClothing.setClothingPrice(clothingPrice);
                 currentClothing.setClothingBrand(etNewBrand.getText().toString());
                 currentClothing.saveInBackground(new SaveCallback() {
