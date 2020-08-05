@@ -72,6 +72,7 @@ public class ClothesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothes);
 
+        deleteClothingMode = false;
         pbLoadingClothes= (ProgressBar) findViewById(R.id.pbLoadingClothes);
 
         // Delete Clothing
@@ -156,6 +157,7 @@ public class ClothesActivity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                deleteClothingMode = false;
                 adapter.clear();
                 queryClothes();
                 swipeContainer.setRefreshing(false);
@@ -219,7 +221,12 @@ public class ClothesActivity extends AppCompatActivity {
             case R.id.deleteClothing:
                 if(allClothes.size()!=0)
                 {
-                    deleteClothingMode = true;
+                    if(deleteClothingMode){
+                        deleteClothingMode = false;
+                    }
+                    else{
+                        deleteClothingMode = true;
+                    }
                     adapter.notifyDataSetChanged();
                 }
                 else {

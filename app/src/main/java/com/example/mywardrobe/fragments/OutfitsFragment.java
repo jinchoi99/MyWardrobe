@@ -88,6 +88,7 @@ public class OutfitsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        deleteOutfitMode=false;
         pbLoadingOutfits = view.findViewById(R.id.pbLoadingOutfits);
 
         // Delete Outfit
@@ -154,6 +155,7 @@ public class OutfitsFragment extends Fragment {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                deleteOutfitMode=false;
                 adapter.clear();
                 queryOutfits();
                 swipeContainer.setRefreshing(false);
@@ -214,7 +216,12 @@ public class OutfitsFragment extends Fragment {
                 startActivity(intent);
                 break;
             case R.id.deleteOutfit:
-                deleteOutfitMode = true;
+                if(deleteOutfitMode){
+                    deleteOutfitMode=false;
+                }
+                else {
+                    deleteOutfitMode = true;
+                }
                 adapter.notifyDataSetChanged();
                 break;
         }

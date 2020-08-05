@@ -95,6 +95,8 @@ public class CategoriesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        editCategoryMode = false;
+        deleteCategoryMode = false;
         pbLoadingCategories= (ProgressBar) view.findViewById(R.id.pbLoadingCategories);
 
         categoriesOverbox = view.findViewById(R.id.categoriesOverbox);
@@ -227,6 +229,8 @@ public class CategoriesFragment extends Fragment {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                editCategoryMode = false;
+                deleteCategoryMode = false;
                 adapter.clear();
                 queryCategories();
                 swipeContainer.setRefreshing(false);
@@ -341,12 +345,25 @@ public class CategoriesFragment extends Fragment {
                 // getActivity().finish();
                 break;
             case R.id.deleteCategory:
-                deleteCategoryMode = true;
-                Toast.makeText(getContext(), "what", Toast.LENGTH_SHORT).show();
+                if(deleteCategoryMode){
+                    deleteCategoryMode = false;
+                    editCategoryMode = false;
+                }
+                else {
+                    deleteCategoryMode = true;
+                    editCategoryMode = false;
+                }
                 adapter.notifyDataSetChanged();
                 break;
             case R.id.editCategory:
-                editCategoryMode = true;
+                if(editCategoryMode){
+                    editCategoryMode = false;
+                    deleteCategoryMode = false;
+                }
+                else {
+                    editCategoryMode = true;
+                    deleteCategoryMode = false;
+                }
                 adapter.notifyDataSetChanged();
                 break;
         }
