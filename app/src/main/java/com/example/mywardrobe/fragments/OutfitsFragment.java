@@ -25,6 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class OutfitsFragment extends Fragment {
 
     //pull-to-refresh
     private SwipeRefreshLayout swipeContainer;
+    private ProgressBar pbLoadingOutfits;
 
     //Delete Outfit
     public static boolean deleteOutfitMode = false;
@@ -85,6 +87,8 @@ public class OutfitsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        pbLoadingOutfits = view.findViewById(R.id.pbLoadingOutfits);
 
         // Delete Outfit
         fromsmall = AnimationUtils.loadAnimation(getContext(), R.anim.fromsmall);
@@ -171,6 +175,7 @@ public class OutfitsFragment extends Fragment {
     }
 
     private void queryOutfits() {
+        pbLoadingOutfits.setVisibility(View.VISIBLE);
         ParseQuery<Outfit> query = ParseQuery.getQuery(Outfit.class);
         query.include(Outfit.KEY_OUTFIT_CLOTHES);
         query.setLimit(20);
@@ -181,10 +186,12 @@ public class OutfitsFragment extends Fragment {
             public void done(List<Outfit> outfits, ParseException e) {
                 if(e!=null){
                     Log.e(TAG, "Issue with getting outfits",e);
+                    pbLoadingOutfits.setVisibility(View.INVISIBLE);
                     return;
                 }
                 allOutfits.addAll(outfits);
                 adapter.notifyDataSetChanged();
+                pbLoadingOutfits.setVisibility(View.INVISIBLE);
             }
         });
     }

@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_brown"
     tools:context=".fragments.OutfitsFragment">
+
+    <ProgressBar
+        android:id="@+id/pbLoadingOutfits"
+        android:visibility="invisible"
+        android:indeterminateTint="@color/light_green"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
 
     <!-- Overbox-->
     <LinearLayout
@@ -96,4 +105,4 @@
             android:padding="8dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</FrameLayout>
+</RelativeLayout>
