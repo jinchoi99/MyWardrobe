@@ -53,6 +53,7 @@ public class OutfitsFragment extends Fragment {
     private RecyclerView rvOutfits;
     private OutfitsAdapter adapter;
     private List<Outfit> allOutfits;
+    private TextView tvNoOutfitMessage;
 
     //pull-to-refresh
     private SwipeRefreshLayout swipeContainer;
@@ -143,6 +144,7 @@ public class OutfitsFragment extends Fragment {
             }
         };
 
+        tvNoOutfitMessage = view.findViewById(R.id.tvNoOutfitMessage);
         rvOutfits = view.findViewById(R.id.rvOutfits);
         allOutfits = new ArrayList<>();
         adapter = new OutfitsAdapter(getContext(), allOutfits, onCheckDeleteClickListener);
@@ -192,6 +194,12 @@ public class OutfitsFragment extends Fragment {
                     return;
                 }
                 allOutfits.addAll(outfits);
+                if(allOutfits.isEmpty()){
+                    tvNoOutfitMessage.setVisibility(View.VISIBLE);
+                }
+                else {
+                    tvNoOutfitMessage.setVisibility(View.GONE);
+                }
                 adapter.notifyDataSetChanged();
                 pbLoadingOutfits.setVisibility(View.INVISIBLE);
             }

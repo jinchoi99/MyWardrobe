@@ -12,11 +12,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f07a2dc4-4fd3-4655-9347-510e2398620b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/CategoriesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/CategoriesFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_categories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_categories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/OutfitsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mywardrobe/fragments/OutfitsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_outfits.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_outfits.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,10 +192,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="296" key="#PSD" timestamp="1596231653761">
-      <screen x="0" y="23" width="1792" height="1022" />
+    <state x="421" y="299" key="#PSD" timestamp="1596646398065">
+      <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="421" y="299" key="#PSD/0.0.1792.1120@0.0.1792.1120" timestamp="1595981282080" />
+    <state x="421" y="299" key="#PSD/0.0.1792.1120@0.0.1792.1120" timestamp="1596646398065" />
     <state x="421" y="296" key="#PSD/0.23.1792.1022@0.23.1792.1022" timestamp="1596231653761" />
     <state x="421" y="296" key="#PSD/0.23.1792.1024@0.23.1792.1024" timestamp="1595631309184" />
     <state x="589" y="170" key="#app" timestamp="1595020244878">
