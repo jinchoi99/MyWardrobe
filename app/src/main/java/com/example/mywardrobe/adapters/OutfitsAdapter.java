@@ -1,6 +1,7 @@
 package com.example.mywardrobe.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.ClothesActivity;
+import com.example.mywardrobe.activities.OutfitDetailsActivity;
 import com.example.mywardrobe.fragments.OutfitsFragment;
 import com.example.mywardrobe.models.Clothing;
 import com.example.mywardrobe.models.Outfit;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,20 +79,25 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
         private CheckBox cbDeleteOutfit;
         private ProgressBar pbLoadingOutfitClothesRelations;
 
+        private Outfit currentOutfit;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvOutfitName = itemView.findViewById(R.id.tvOutfitName);
             rvClothesRelationList = itemView.findViewById(R.id.rvClothesRelationList);
             allClothesRelations = new ArrayList<>();
-            adapter = new ClothesRelationsAdapter(context, allClothesRelations);
+            adapter = new ClothesRelationsAdapter(context, allClothesRelations, currentOutfit);
             rvClothesRelationList.setAdapter(adapter);
             rvClothesRelationList.setLayoutManager(new GridLayoutManager(context, 3));
 
             cbDeleteOutfit = itemView.findViewById(R.id.cbDeleteOutfit);
             pbLoadingOutfitClothesRelations = itemView.findViewById(R.id.pbLoadingOutfitClothesRelations);
+
+
         }
 
         public void bind(Outfit outfit) {
+            currentOutfit = outfit;
             pbLoadingOutfitClothesRelations.setVisibility(View.VISIBLE);
             allClothesRelations.clear();
             tvOutfitName.setText(outfit.getOutfitName());

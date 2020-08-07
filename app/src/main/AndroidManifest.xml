@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.ClothingEditActivity"></activity>
+        <activity android:name=".activities.OutfitDetailsActivity"></activity>
+        <activity android:name=".activities.ClothingEditActivity" />
         <activity android:name=".activities.ClothingDetailsActivity" />
         <activity android:name=".activities.ComposeOutfitActivity" />
 
@@ -34,6 +35,7 @@
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

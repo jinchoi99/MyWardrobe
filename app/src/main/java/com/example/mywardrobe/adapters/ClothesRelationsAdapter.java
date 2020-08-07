@@ -1,6 +1,7 @@
 package com.example.mywardrobe.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mywardrobe.R;
+import com.example.mywardrobe.activities.OutfitDetailsActivity;
 import com.example.mywardrobe.models.Clothing;
 import com.example.mywardrobe.models.Outfit;
 import com.parse.ParseFile;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -22,10 +26,12 @@ public class ClothesRelationsAdapter extends RecyclerView.Adapter<ClothesRelatio
 
     private Context context;
     private List<Clothing> clothesRelations;
+    private Outfit currentOutfit;
 
-    public ClothesRelationsAdapter(Context context, List<Clothing> clothesRelations) {
+    public ClothesRelationsAdapter(Context context, List<Clothing> clothesRelations, Outfit currentOutfit) {
         this.context = context;
         this.clothesRelations = clothesRelations;
+        this.currentOutfit = currentOutfit;
     }
 
     @NonNull
@@ -48,10 +54,21 @@ public class ClothesRelationsAdapter extends RecyclerView.Adapter<ClothesRelatio
 
     class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView ivClothingRelation;
+        private Outfit outfit;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivClothingRelation = itemView.findViewById(R.id.ivClothingRelation);
+            outfit = currentOutfit;
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, OutfitDetailsActivity.class);
+                    intent.putExtra("currentOutfit", Parcels.wrap(outfit));
+                    context.startActivity(intent);
+                }
+            });
         }
 
         public void bind(Clothing clothingRelation) {
