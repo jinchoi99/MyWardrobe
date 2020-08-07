@@ -7,103 +7,115 @@
     android:background="@color/light_brown"
     tools:context=".fragments.CalendarFragment">
 
-    <ImageView
-        android:id="@+id/ivWeatherIcon"
-        android:layout_width="104dp"
-        android:layout_height="102dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="51dp"
-        tools:srcCompat="@tools:sample/avatars"></ImageView>
-
-    <TextView
-    android:id="@+id/tvWeatherDegree"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:layout_marginStart="21dp"
-    android:layout_marginTop="56dp"
-    android:layout_toEndOf="@+id/ivWeatherIcon"
-    android:text="20°C"
-    android:textColor="@color/brown"
-    android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvWeatherMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="110dp"
-        android:layout_toEndOf="@+id/ivWeatherIcon"
-        android:text="Clear"
-        android:textColor="@color/brown"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvWeatherDescription"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainerCalendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="110dp"
-        android:layout_toEndOf="@+id/tvWeatherMain"
-        android:text="Clear Sky"
-        android:textColor="@color/brown"
-        android:textSize="30sp" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvSuggestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvWeatherDescription"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="How about a jacket?"
-        android:textAlignment="center"
-        android:textColor="@color/brown"
-        android:textSize="17sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvMonthYear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvSuggestion"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="July, 2020"
-        android:textColor="@color/brown"
-        android:textSize="30sp" />
+            <ImageView
+                android:id="@+id/ivWeatherIcon"
+                android:layout_width="104dp"
+                android:layout_height="102dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="51dp"
+                tools:srcCompat="@tools:sample/avatars"></ImageView>
 
-    <com.github.sundeepk.compactcalendarview.CompactCalendarView
-        android:id="@+id/ccvCalendar"
-        android:layout_width="350dp"
-        android:layout_height="250dp"
-        android:layout_below="@+id/tvMonthYear"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="38dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:compactCalendarBackgroundColor="@color/brown"
-        app:compactCalendarCurrentDayBackgroundColor="@color/mid_brown"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/light_green"
-        app:compactCalendarMultiEventIndicatorColor="#fff"
-        app:compactCalendarTargetHeight="250dp"
-        app:compactCalendarTextColor="#fff"
-        app:compactCalendarTextSize="12sp" />
+            <TextView
+                android:id="@+id/tvWeatherDegree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="56dp"
+                android:layout_toEndOf="@+id/ivWeatherIcon"
+                android:text="20°C"
+                android:textColor="@color/brown"
+                android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/tvOutfitInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="174dp"
-        android:layout_marginBottom="57dp"
-        android:text="Outfit info" />
+            <TextView
+                android:id="@+id/tvWeatherMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="110dp"
+                android:layout_toEndOf="@+id/ivWeatherIcon"
+                android:text="Clear"
+                android:textColor="@color/brown"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/tvWeatherDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="110dp"
+                android:layout_toEndOf="@+id/tvWeatherMain"
+                android:text="Clear Sky"
+                android:textColor="@color/brown"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/tvSuggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvWeatherDescription"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="How about a jacket?"
+                android:textAlignment="center"
+                android:textColor="@color/brown"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tvMonthYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvSuggestion"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="July, 2020"
+                android:textColor="@color/brown"
+                android:textSize="30sp" />
+
+            <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                android:id="@+id/ccvCalendar"
+                android:layout_width="350dp"
+                android:layout_height="250dp"
+                android:layout_below="@+id/tvMonthYear"
+                android:layout_alignParentStart="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="38dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                app:compactCalendarBackgroundColor="@color/brown"
+                app:compactCalendarCurrentDayBackgroundColor="@color/mid_brown"
+                app:compactCalendarCurrentSelectedDayBackgroundColor="@color/light_green"
+                app:compactCalendarMultiEventIndicatorColor="#fff"
+                app:compactCalendarTargetHeight="250dp"
+                app:compactCalendarTextColor="#fff"
+                app:compactCalendarTextSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvOutfitInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="174dp"
+                android:layout_marginBottom="57dp"
+                android:text="Outfit info" />
+
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

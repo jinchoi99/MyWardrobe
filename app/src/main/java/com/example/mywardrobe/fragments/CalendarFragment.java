@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,8 +24,13 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.mywardrobe.R;
 import com.example.mywardrobe.activities.MainActivity;
 import com.example.mywardrobe.models.Clothing;
+import com.example.mywardrobe.models.Outfit;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +39,7 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import okhttp3.Headers;
@@ -59,6 +66,9 @@ public class CalendarFragment extends Fragment {
     private TextView tvMonthYear;
     private TextView tvOutfitInfo;
 
+    //pull-to-refresh
+    private SwipeRefreshLayout swipeContainer;
+
     public CalendarFragment() {
         // Required empty public constructor
     }
@@ -73,6 +83,20 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainerCalendar);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeContainer.setRefreshing(false);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(R.color.brown,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         //Weather and temperature
         tvWeatherDegree = view.findViewById(R.id.tvWeatherDegree);
@@ -129,6 +153,7 @@ public class CalendarFragment extends Fragment {
         tvOutfitInfo = view.findViewById(R.id.tvOutfitInfo);
         tvOutfitInfo.setVisibility(View.INVISIBLE);
 
+        //Add Event
         final Clothing exampleClothing = new Clothing();
         exampleClothing.setClothingName("exampleClo1");
         final Event ev1 = new Event(Color.WHITE, 1595833200000L, exampleClothing);
@@ -155,7 +180,5 @@ public class CalendarFragment extends Fragment {
                 tvMonthYear.setText(dataFormatMonth.format(firstDayOfNewMonth));
             }
         });
-
-
     }
 }
