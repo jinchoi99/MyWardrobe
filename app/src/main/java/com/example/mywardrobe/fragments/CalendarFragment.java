@@ -50,6 +50,8 @@ public class CalendarFragment extends Fragment {
     private ImageView ivWeatherIcon;
     String weathericonLink = "http://openweathermap.org/img/wn/";
     //"http://openweathermap.org/img/wn/10d@2x.png";
+    private TextView tvWeatherMain, tvWeatherDescription;
+    private TextView tvSuggestion;
 
     //Calendar
     private CompactCalendarView ccvCalendar;
@@ -75,6 +77,9 @@ public class CalendarFragment extends Fragment {
         //Weather and temperature
         tvWeatherDegree = view.findViewById(R.id.tvWeatherDegree);
         ivWeatherIcon = view.findViewById(R.id.ivWeatherIcon);
+        tvWeatherMain = view.findViewById(R.id.tvWeatherMain);
+        tvWeatherDescription = view.findViewById(R.id.tvWeatherDescription);
+        tvSuggestion = view.findViewById(R.id.tvSuggestion);
 
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -90,10 +95,23 @@ public class CalendarFragment extends Fragment {
                     JSONObject main = jsonObject.getJSONObject("main");
                     double temp = main.getDouble("temp");
                     tvWeatherDegree.setText(Double.toString(temp) + "°C");
+                    if(temp<10){
+                        tvSuggestion.setText("It's quite chilly today!\nDon't forget to bring a jacket when you go out :)!");
+                    }
+                    else if(temp<20){
+                        tvSuggestion.setText("How about a light jacket or a light scarf :)?");
+                    }
+                    else{
+                        tvSuggestion.setText("Nice weather today! A light T-shirt should be great:)!");
+                    }
 
                     JSONArray weather = jsonObject.getJSONArray("weather");
                     String icon = weather.getJSONObject(0).getString("icon");
                     Glide.with(getContext()).load(weathericonLink+ icon + "@2x.png").into(ivWeatherIcon);
+                    String weatherMain = weather.getJSONObject(0).getString("main");
+                    String weatherDescription = weather.getJSONObject(0).getString("description");
+                    tvWeatherMain.setText(weatherMain + ", ");
+                    tvWeatherDescription.setText(weatherDescription);
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception",e);
                 }
