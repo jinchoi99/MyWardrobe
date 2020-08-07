@@ -4,20 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/light_brown"
     tools:context=".fragments.CalendarFragment">
+
+    <ImageView
+        android:id="@+id/ivWeatherIcon"
+        android:layout_width="104dp"
+        android:layout_height="102dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="51dp"
+        tools:srcCompat="@tools:sample/avatars"></ImageView>
 
     <TextView
         android:id="@+id/tvWeatherDegree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="76dp"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="80dp"
+        android:layout_toEndOf="@+id/ivWeatherIcon"
+        android:textColor="@color/brown"
         android:text="20°C"
-        android:textSize="20sp" />
-
+        android:textSize="30sp" />
 
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/ccvCalendar"
@@ -42,10 +54,11 @@
         android:id="@+id/tvMonthYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvWeatherDegree"
+        android:layout_below="@+id/ivWeatherIcon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="69dp"
         android:text="July, 2020"
+        android:textColor="@color/brown"
         android:textSize="30sp" />
 
     <TextView

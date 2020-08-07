@@ -12,9 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -41,9 +43,13 @@ public class CalendarFragment extends Fragment {
     public static final String TAG = "CalendarFragment";
 
     //Weather
+    //make sure to use https not http
     public static final String CURRENT_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
     //api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
     private TextView tvWeatherDegree;
+    private ImageView ivWeatherIcon;
+    String weathericonLink = "http://openweathermap.org/img/wn/";
+    //"http://openweathermap.org/img/wn/10d@2x.png";
 
     //Calendar
     private CompactCalendarView ccvCalendar;
@@ -68,6 +74,8 @@ public class CalendarFragment extends Fragment {
 
         //Weather and temperature
         tvWeatherDegree = view.findViewById(R.id.tvWeatherDegree);
+        ivWeatherIcon = view.findViewById(R.id.ivWeatherIcon);
+
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("appid", getString(R.string.weather_api_key));
@@ -81,8 +89,11 @@ public class CalendarFragment extends Fragment {
                 try {
                     JSONObject main = jsonObject.getJSONObject("main");
                     double temp = main.getDouble("temp");
-                    Log.d(TAG, "temp: " + temp);
-                    tvWeatherDegree.setText("The currect temperature is " + Double.toString(temp) + "°C");
+                    tvWeatherDegree.setText(Double.toString(temp) + "°C");
+
+                    JSONArray weather = jsonObject.getJSONArray("weather");
+                    String icon = weather.getJSONObject(0).getString("icon");
+                    Glide.with(getContext()).load(weathericonLink+ icon + "@2x.png").into(ivWeatherIcon);
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception",e);
                 }
