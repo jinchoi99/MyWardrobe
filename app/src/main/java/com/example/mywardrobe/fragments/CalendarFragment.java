@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,9 +66,7 @@ public class CalendarFragment extends Fragment {
     private SimpleDateFormat dataFormatMonth;
     private TextView tvMonthYear;
     private TextView tvOutfitInfo;
-
-    //pull-to-refresh
-    private SwipeRefreshLayout swipeContainer;
+    private Button btnAddEvent;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -83,20 +82,6 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainerCalendar);
-        // Setup refresh listener which triggers new data loading
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeContainer.setRefreshing(false);
-            }
-        });
-        // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(R.color.brown,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
 
         //Weather and temperature
         tvWeatherDegree = view.findViewById(R.id.tvWeatherDegree);
@@ -152,6 +137,7 @@ public class CalendarFragment extends Fragment {
         dataFormatMonth = new SimpleDateFormat("MMM-YYYY", Locale.getDefault());
         tvOutfitInfo = view.findViewById(R.id.tvOutfitInfo);
         tvOutfitInfo.setVisibility(View.INVISIBLE);
+        btnAddEvent = view.findViewById(R.id.btnAddEvent);
 
         //Add Event
         final Clothing exampleClothing = new Clothing();
