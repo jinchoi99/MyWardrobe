@@ -3,11 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/light_brown"
     tools:context=".fragments.CalendarFragment">
 
         <RelativeLayout
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -18,7 +21,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="51dp"
+                android:layout_marginTop="10dp"
                 tools:srcCompat="@tools:sample/avatars"></ImageView>
 
             <TextView
@@ -27,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="21dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="20dp"
                 android:layout_toEndOf="@+id/ivWeatherIcon"
                 android:text="20°C"
                 android:textColor="@color/brown"
@@ -39,11 +42,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="21dp"
-                android:layout_marginTop="110dp"
+                android:layout_marginTop="64dp"
                 android:layout_toEndOf="@+id/ivWeatherIcon"
                 android:text="Clear"
                 android:textColor="@color/brown"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/tvWeatherDescription"
@@ -51,19 +54,18 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="110dp"
+                android:layout_marginTop="64dp"
                 android:layout_toEndOf="@+id/tvWeatherMain"
                 android:text="Clear Sky"
                 android:textColor="@color/brown"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/tvSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvWeatherDescription"
+                android:layout_below="@+id/ivWeatherIcon"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
                 android:text="How about a jacket?"
                 android:textAlignment="center"
                 android:textColor="@color/brown"
@@ -74,8 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvSuggestion"
+                android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
                 android:text="July, 2020"
                 android:textColor="@color/brown"
                 android:textSize="30sp" />
@@ -85,10 +87,9 @@
                 android:layout_width="350dp"
                 android:layout_height="250dp"
                 android:layout_below="@+id/tvMonthYear"
-                android:layout_alignParentStart="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="31dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="3dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 app:compactCalendarBackgroundColor="@color/brown"
@@ -106,7 +107,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/ccvCalendar"
                 android:layout_marginTop="18dp"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="18dp"
                 android:layout_toLeftOf="@+id/btnAddEvent"
                 android:paddingLeft="10dp"
                 android:hint="What to wear" />
@@ -117,10 +118,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ccvCalendar"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginTop="14dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginBottom="52dp"
+                android:layout_marginEnd="12dp"
                 android:text="Add" />
 
         </RelativeLayout>

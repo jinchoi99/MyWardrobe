@@ -106,13 +106,13 @@ public class CalendarFragment extends Fragment {
                     double temp = main.getDouble("temp");
                     tvWeatherDegree.setText(Double.toString(temp) + "°C");
                     if(temp<10){
-                        tvSuggestion.setText("It's quite chilly today!\nDon't forget to bring a jacket when you go out :)!");
+                        tvSuggestion.setText("Don't forget to bring a jacket when you go out :)!");
                     }
                     else if(temp<20){
                         tvSuggestion.setText("How about a light jacket or a light scarf :)?");
                     }
                     else{
-                        tvSuggestion.setText("Nice weather today! A light T-shirt should be great:)!");
+                        tvSuggestion.setText("A light T-shirt should be great:)!");
                     }
 
                     JSONArray weather = jsonObject.getJSONArray("weather");
