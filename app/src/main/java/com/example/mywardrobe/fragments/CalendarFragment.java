@@ -142,6 +142,12 @@ public class CalendarFragment extends Fragment {
         ccvCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(final Date dateClicked) {
+                List<Event> events = ccvCalendar.getEvents(dateClicked.getTime());
+                if(events.size()>0){
+                    for (Event e:events) {
+                        Toast.makeText(getContext(), "" + e.getData(), Toast.LENGTH_SHORT).show();
+                    }
+                }
                 btnAddEvent.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -153,6 +159,8 @@ public class CalendarFragment extends Fragment {
                         }
                         Event event = new Event(Color.WHITE, time, eventName);
                         ccvCalendar.addEvent(event);
+                        Toast.makeText(getContext(), "New Event has been added!", Toast.LENGTH_SHORT).show();
+                        etOutfitEvent.setText("");
                     }
                 });
             }

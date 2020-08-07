@@ -109,7 +109,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_toLeftOf="@+id/btnAddEvent"
                 android:paddingLeft="10dp"
-                android:hint="Event Name" />
+                android:hint="What to wear" />
 
             <Button
                 android:id="@+id/btnAddEvent"
