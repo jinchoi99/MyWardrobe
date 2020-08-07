@@ -69,7 +69,7 @@ public class AddOptionClothesCategoriesAdapter extends RecyclerView.Adapter<AddO
 
         public void bind(Category category) {
             tvAddOutfitCategoryName.setText(category.getCategoryName());
-
+            allAddOptionClothes.clear();
             ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
             query.whereEqualTo(Clothing.KEY_CLOTHING_OWNER, ParseUser.getCurrentUser());
             query.whereEqualTo(Clothing.KEY_CLOTHING_CATEGORY, category.getCategoryName());
