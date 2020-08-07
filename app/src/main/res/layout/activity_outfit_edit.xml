@@ -8,9 +8,20 @@
     tools:context=".activities.OutfitEditActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/btnDoneEditOutfit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/mid_brown"
+            android:text="Done"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/etOutfitEditName"
@@ -25,15 +36,24 @@
             android:id="@+id/rvOutfitEditCurrentClothes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:padding="8dp"
-            android:layout_centerHorizontal="true" />
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/btnAddEditOutfit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/brown"
+            android:text="Add to Outfit"
+            android:textColor="@color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvOutfitsEditCategories"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:padding="8dp" />

@@ -46,16 +46,15 @@ public class OutfitDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outfit_details);
 
-        currentOutfit = Parcels.unwrap(getIntent().getParcelableExtra("fromOutfits"));
-//        if(getIntent().hasExtra("fromOutfits"))
-//        {
-//            currentOutfit = Parcels.unwrap(getIntent().getParcelableExtra("fromOutfits"));
-//        }
-////        else if(getIntent().hasExtra("fromEditOutfit"))
-////        {
-////            currentOutfit = Parcels.unwrap(getIntent().getParcelableExtra("fromEditOutfit"));
-////        }
-//
+        if(getIntent().hasExtra("fromOutfits"))
+        {
+            currentOutfit = Parcels.unwrap(getIntent().getParcelableExtra("fromOutfits"));
+        }
+        else if(getIntent().hasExtra("fromEditOutfit"))
+        {
+            currentOutfit = Parcels.unwrap(getIntent().getParcelableExtra("fromEditOutfit"));
+        }
+
         outfitDetailsToolbar = findViewById(R.id.outfitDetailsToolbar);
         setSupportActionBar(outfitDetailsToolbar);
         getSupportActionBar().setTitle(currentOutfit.getOutfitName());

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mywardrobe.R;
+import com.example.mywardrobe.activities.ComposeOutfitActivity;
+import com.example.mywardrobe.activities.OutfitEditActivity;
 import com.example.mywardrobe.models.Clothing;
 import com.parse.ParseFile;
 
@@ -50,15 +52,24 @@ public class AddOptionClothesAdapter extends RecyclerView.Adapter<AddOptionCloth
         private TextView tvAddOutfitClothingName;
         private CheckBox cbAddOutfitClothing;
         private ImageView ivAddOutfitClothingImage;
+        Clothing currentClothing;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvAddOutfitClothingName = itemView.findViewById(R.id.tvAddOutfitClothingName);
             cbAddOutfitClothing = itemView.findViewById(R.id.cbAddOutfitClothing);
             ivAddOutfitClothingImage = itemView.findViewById(R.id.ivAddOutfitClothingImage);
+
+            cbAddOutfitClothing.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    OutfitEditActivity.makeSelection(view, currentClothing);
+                }
+            });
         }
 
         public void bind(Clothing addOptionClothing) {
+            currentClothing = addOptionClothing;
             tvAddOutfitClothingName.setText(addOptionClothing.getClothingName());
             ParseFile image = addOptionClothing.getClothingImage();
             if(image!=null){
