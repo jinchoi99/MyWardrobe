@@ -75,7 +75,13 @@ public class OutfitEditActivity extends AppCompatActivity {
         btnAddEditOutfit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                for (int i = 0; i < selectedClothings.size(); i++) {
+                    currentOutfit.addClothing(selectedClothings.get(i));
+                    selectedCheckboxes.get(i).setChecked(false);
+                }
+                selectedClothings.clear();
+                selectedCheckboxes.clear();
+                Toast.makeText(OutfitEditActivity.this, "Clothes have been added successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 
