@@ -43,9 +43,7 @@ Virtual closet where you can store and organize clothes, and save outfits, and g
 
 **Optional Nice-to-have Stories**
 * [x] Pretty UI
-* [ ] User can add "favorites"
-* [ ] User can see the TOP 10 clothes they wear most often (ranking, sorting)
-* [ ] User can get recommendations for what to wear based on the weather
+* [x] User can get recommendations for what to wear based on the weather
 * [ ] AI recommendations
 * [ ] Delete background for clothes pictures
 * [ ] AR/XR features
