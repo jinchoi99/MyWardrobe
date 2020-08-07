@@ -91,9 +91,9 @@ public class AddOptionClothesCategoriesAdapter extends RecyclerView.Adapter<AddO
             //make sure clothes.size() doesn't change; remove from allAddOptionClothes, not clothes
             for (int k = 0; k < clothes.size(); k++) {
                 for (int i = 0; i < check.size(); i++) {
-                    String checkName = clothes.get(k).getClothingName();
-                    String hasName = check.get(i).getClothingName();
-                    boolean eq = checkName.equals(hasName);
+                    String checkID = clothes.get(k).getObjectId() ;
+                    String hasID = check.get(i).getObjectId();
+                    boolean eq = checkID.equals(hasID);
                     if(eq){
                         allAddOptionClothes.remove(clothes.get(k));
                     }
