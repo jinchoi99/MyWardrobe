@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,7 +66,7 @@ public class CalendarFragment extends Fragment {
     private CompactCalendarView ccvCalendar;
     private SimpleDateFormat dataFormatMonth;
     private TextView tvMonthYear;
-    private TextView tvOutfitInfo;
+    private EditText etOutfitEvent;
     private Button btnAddEvent;
 
     public CalendarFragment() {
@@ -135,30 +136,25 @@ public class CalendarFragment extends Fragment {
         ccvCalendar = view.findViewById(R.id.ccvCalendar);
         tvMonthYear = view.findViewById(R.id.tvMonthYear);
         dataFormatMonth = new SimpleDateFormat("MMM-YYYY", Locale.getDefault());
-        tvOutfitInfo = view.findViewById(R.id.tvOutfitInfo);
-        tvOutfitInfo.setVisibility(View.INVISIBLE);
+        etOutfitEvent = view.findViewById(R.id.etOutfitEvent);
         btnAddEvent = view.findViewById(R.id.btnAddEvent);
-
-        //Add Event
-        final Clothing exampleClothing = new Clothing();
-        exampleClothing.setClothingName("exampleClo1");
-        final Event ev1 = new Event(Color.WHITE, 1595833200000L, exampleClothing);
-        ccvCalendar.addEvent(ev1);
 
         ccvCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
-            public void onDayClick(Date dateClicked) {
-                long time = dateClicked.getTime();
-                //Toast.makeText(getContext(), Long.toString(time), Toast.LENGTH_SHORT).show();
-                if(time==1595833200000L){
-                    Clothing eventclothing = (Clothing) ev1.getData();
-                    //Toast.makeText(getContext(), eventclothing.getClothingName(), Toast.LENGTH_SHORT).show();
-                    tvOutfitInfo.setVisibility(View.VISIBLE);
-                    tvOutfitInfo.setText(eventclothing.getClothingName());
-                }
-                else {
-                    tvOutfitInfo.setVisibility(View.INVISIBLE);
-                }
+            public void onDayClick(final Date dateClicked) {
+                btnAddEvent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        long time = dateClicked.getTime();
+                        //Toast.makeText(getContext(), Long.toString(time), Toast.LENGTH_SHORT).show();
+                        String eventName = etOutfitEvent.getText().toString();
+                        if(eventName.isEmpty()){
+                            return;
+                        }
+                        Event event = new Event(Color.WHITE, time, eventName);
+                        ccvCalendar.addEvent(event);
+                    }
+                });
             }
 
             @Override

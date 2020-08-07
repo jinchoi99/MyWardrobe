@@ -99,16 +99,17 @@
                 app:compactCalendarTextColor="#fff"
                 app:compactCalendarTextSize="12sp" />
 
-            <TextView
-                android:id="@+id/tvOutfitInfo"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/etOutfitEvent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="174dp"
-                android:layout_marginBottom="57dp"
-                android:text="Outfit info" />
+                android:layout_below="@id/ccvCalendar"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="50dp"
+                android:layout_toLeftOf="@+id/btnAddEvent"
+                android:paddingLeft="10dp"
+                android:hint="Event Name" />
 
             <Button
                 android:id="@+id/btnAddEvent"
