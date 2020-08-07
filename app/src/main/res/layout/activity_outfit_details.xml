@@ -4,10 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_brown"
     tools:context=".activities.OutfitDetailsActivity">
 
     <include
         android:id="@+id/outfitDetailsToolbar"
         layout="@layout/toolbar_clothes"></include>
+
+    <LinearLayout
+        android:layout_below="@id/outfitDetailsToolbar"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvOutfitDetailsName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="@color/brown"
+            android:text="Outfit1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvOutfitDetailsClothes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true" />
+
+    </LinearLayout>
 
 </RelativeLayout>
