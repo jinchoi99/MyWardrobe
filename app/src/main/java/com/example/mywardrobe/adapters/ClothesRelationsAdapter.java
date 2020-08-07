@@ -54,18 +54,16 @@ public class ClothesRelationsAdapter extends RecyclerView.Adapter<ClothesRelatio
 
     class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView ivClothingRelation;
-        private Outfit outfit;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivClothingRelation = itemView.findViewById(R.id.ivClothingRelation);
-            outfit = currentOutfit;
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, OutfitDetailsActivity.class);
-                    intent.putExtra("currentOutfit", Parcels.wrap(outfit));
+                    intent.putExtra("fromOutfits", Parcels.wrap(currentOutfit));
                     context.startActivity(intent);
                 }
             });

@@ -85,19 +85,17 @@ public class OutfitsAdapter extends RecyclerView.Adapter<OutfitsAdapter.ViewHold
             super(itemView);
             tvOutfitName = itemView.findViewById(R.id.tvOutfitName);
             rvClothesRelationList = itemView.findViewById(R.id.rvClothesRelationList);
-            allClothesRelations = new ArrayList<>();
-            adapter = new ClothesRelationsAdapter(context, allClothesRelations, currentOutfit);
-            rvClothesRelationList.setAdapter(adapter);
-            rvClothesRelationList.setLayoutManager(new GridLayoutManager(context, 3));
 
             cbDeleteOutfit = itemView.findViewById(R.id.cbDeleteOutfit);
             pbLoadingOutfitClothesRelations = itemView.findViewById(R.id.pbLoadingOutfitClothesRelations);
-
-
         }
 
         public void bind(Outfit outfit) {
             currentOutfit = outfit;
+            allClothesRelations = new ArrayList<>();
+            adapter = new ClothesRelationsAdapter(context, allClothesRelations, currentOutfit);
+            rvClothesRelationList.setAdapter(adapter);
+            rvClothesRelationList.setLayoutManager(new GridLayoutManager(context, 3));
             pbLoadingOutfitClothesRelations.setVisibility(View.VISIBLE);
             allClothesRelations.clear();
             tvOutfitName.setText(outfit.getOutfitName());
