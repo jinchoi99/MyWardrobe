@@ -150,9 +150,12 @@ public class CalendarFragment extends Fragment {
             public void onDayClick(final Date dateClicked) {
                 List<Event> events = ccvCalendar.getEvents(dateClicked.getTime());
                 if(events.size()>0){
+                    String edata="What to wear:";
                     for (Event e:events) {
-                        Toast.makeText(getContext(), "" + e.getData(), Toast.LENGTH_SHORT).show();
+                        edata = edata + "\n - " + e.getData().toString();
+                        //Toast.makeText(getContext(), "" + e.getData(), Toast.LENGTH_SHORT).show();
                     }
+                    Toast.makeText(getContext(), edata, Toast.LENGTH_SHORT).show();
                 }
                 btnAddEvent.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -165,7 +168,7 @@ public class CalendarFragment extends Fragment {
                         }
                         Event event = new Event(Color.WHITE, time, eventName);
                         ccvCalendar.addEvent(event);
-                        Toast.makeText(getContext(), "New Event has been added!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "New Outfit has been added!", Toast.LENGTH_SHORT).show();
                         etOutfitEvent.setText("");
                     }
                 });
