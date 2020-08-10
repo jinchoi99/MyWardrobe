@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,7 +156,17 @@ public class CalendarFragment extends Fragment {
                         edata = edata + "\n - " + e.getData().toString();
                         //Toast.makeText(getContext(), "" + e.getData(), Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(getContext(), edata, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), edata, Toast.LENGTH_SHORT).show();
+
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.custom_toast, (ViewGroup) getView().findViewById(R.id.custom_toast_container));
+                    TextView text = (TextView) layout.findViewById(R.id.text);
+                    text.setText(edata);
+                    Toast toast = new Toast(getApplicationContext());
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 100);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.setView(layout);
+                    toast.show();
                 }
                 btnAddEvent.setOnClickListener(new View.OnClickListener() {
                     @Override
