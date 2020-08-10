@@ -38,14 +38,15 @@
 
             <TextView
                 android:id="@+id/tvWeatherDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvWeatherDegree"
                 android:layout_marginStart="21dp"
                 android:layout_toEndOf="@+id/ivWeatherIcon"
                 android:text="Clear Sky"
+                android:layout_marginTop="2dp"
                 android:textColor="@color/brown"
-                android:textSize="25sp" />
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/tvSuggestion"
@@ -54,6 +55,7 @@
                 android:layout_below="@+id/ivWeatherIcon"
                 android:layout_centerHorizontal="true"
                 android:text="How about a jacket?"
+                android:textStyle="italic"
                 android:textAlignment="center"
                 android:textColor="@color/brown"
                 android:textSize="17sp" />

@@ -71,6 +71,8 @@ public class CalendarFragment extends Fragment {
     private EditText etOutfitEvent;
     private Button btnAddEvent;
 
+    public static String userLocation = "";
+
     public CalendarFragment() {
         // Required empty public constructor
     }
@@ -96,7 +98,11 @@ public class CalendarFragment extends Fragment {
         RequestParams params = new RequestParams();
         params.put("appid", getString(R.string.weather_api_key));
 //        params.put("q", "Los Angeles");
-        params.put("q", SettingsFragment.userLocation);
+        userLocation = SettingsFragment.userLocation;
+        if(userLocation.equals("")){
+            userLocation = "Los Angeles";
+        }
+        params.put("q", userLocation);
         params.put("units", "metric");
 
         client.get(CURRENT_WEATHER_URL, params, new JsonHttpResponseHandler() {

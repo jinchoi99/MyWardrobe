@@ -36,6 +36,8 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         etLocation = view.findViewById(R.id.etLocation);
+        userLocation = CalendarFragment.userLocation;
+        etLocation.setText(userLocation);
 
         btnSaveLocation = view.findViewById(R.id.btnSaveLocation);
         btnSaveLocation.setOnClickListener(new View.OnClickListener() {
