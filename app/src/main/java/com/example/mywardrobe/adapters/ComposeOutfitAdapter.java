@@ -69,6 +69,7 @@ public class ComposeOutfitAdapter extends RecyclerView.Adapter<ComposeOutfitAdap
 
         public void bind(Category category) {
             tvComposeOutfitCategoryName.setText(category.getCategoryName());
+            allComposeOutfitClothes.clear();
             ParseQuery<Clothing> query = ParseQuery.getQuery(Clothing.class);
             query.setLimit(20);
             query.whereEqualTo(Clothing.KEY_CLOTHING_OWNER, ParseUser.getCurrentUser());
