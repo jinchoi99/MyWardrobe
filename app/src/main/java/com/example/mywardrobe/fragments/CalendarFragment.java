@@ -95,7 +95,8 @@ public class CalendarFragment extends Fragment {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("appid", getString(R.string.weather_api_key));
-        params.put("q", "Los Angeles");
+//        params.put("q", "Los Angeles");
+        params.put("q", SettingsFragment.userLocation);
         params.put("units", "metric");
 
         client.get(CURRENT_WEATHER_URL, params, new JsonHttpResponseHandler() {
