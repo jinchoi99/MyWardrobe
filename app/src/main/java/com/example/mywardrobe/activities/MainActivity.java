@@ -22,6 +22,7 @@ import com.example.mywardrobe.R;
 import com.example.mywardrobe.fragments.CalendarFragment;
 import com.example.mywardrobe.fragments.CategoriesFragment;
 import com.example.mywardrobe.fragments.OutfitsFragment;
+import com.example.mywardrobe.fragments.ProfileFragment;
 import com.example.mywardrobe.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_profile:
-                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
+                fragmentManager.beginTransaction().replace(R.id.flContainer, new ProfileFragment()).commit();
                 break;
             case R.id.nav_logot:
                 ParseUser.logOut();
