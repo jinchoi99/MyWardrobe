@@ -59,7 +59,7 @@ public class CalendarFragment extends Fragment {
     private ImageView ivWeatherIcon;
     String weathericonLink = "http://openweathermap.org/img/wn/";
     //"http://openweathermap.org/img/wn/10d@2x.png";
-    private TextView tvWeatherMain, tvWeatherDescription;
+    private TextView tvWeatherDescription;
     private TextView tvSuggestion;
 
     //Calendar
@@ -87,7 +87,6 @@ public class CalendarFragment extends Fragment {
         //Weather and temperature
         tvWeatherDegree = view.findViewById(R.id.tvWeatherDegree);
         ivWeatherIcon = view.findViewById(R.id.ivWeatherIcon);
-        tvWeatherMain = view.findViewById(R.id.tvWeatherMain);
         tvWeatherDescription = view.findViewById(R.id.tvWeatherDescription);
         tvSuggestion = view.findViewById(R.id.tvSuggestion);
 
@@ -120,7 +119,6 @@ public class CalendarFragment extends Fragment {
                     Glide.with(getContext()).load(weathericonLink+ icon + "@2x.png").into(ivWeatherIcon);
                     String weatherMain = weather.getJSONObject(0).getString("main");
                     String weatherDescription = weather.getJSONObject(0).getString("description");
-                    tvWeatherMain.setText(weatherMain + ", ");
                     tvWeatherDescription.setText(weatherDescription);
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception",e);
