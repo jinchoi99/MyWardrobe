@@ -40,6 +40,7 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -134,8 +135,15 @@ public class CalendarFragment extends Fragment {
         ccvCalendar = view.findViewById(R.id.ccvCalendar);
         tvMonthYear = view.findViewById(R.id.tvMonthYear);
         dataFormatMonth = new SimpleDateFormat("MMM-YYYY", Locale.getDefault());
+        String monyear = dataFormatMonth.format(Calendar.getInstance().getTime());
+        tvMonthYear.setText(monyear);
         etOutfitEvent = view.findViewById(R.id.etOutfitEvent);
         btnAddEvent = view.findViewById(R.id.btnAddEvent);
+
+        Event event1 = new Event(Color.WHITE, 1597993200000L, "Pink T-shirt");
+        ccvCalendar.addEvent(event1);
+        Event event2 = new Event(Color.WHITE, 1600326000000L, "Denim Jacket");
+        ccvCalendar.addEvent(event2);
 
         ccvCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
