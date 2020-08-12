@@ -119,8 +119,11 @@ public class CalendarFragment extends Fragment {
                     else if(temp<20){
                         tvSuggestion.setText("How about a light jacket or a light scarf :)?");
                     }
+                    else if(temp<30){
+                        tvSuggestion.setText("A light T-shirt should be great :)!");
+                    }
                     else{
-                        tvSuggestion.setText("A light T-shirt should be great:)!");
+                        tvSuggestion.setText("It's hot outside! How about a linen dress :)?");
                     }
 
                     JSONArray weather = jsonObject.getJSONArray("weather");
@@ -158,7 +161,17 @@ public class CalendarFragment extends Fragment {
             public void onDayClick(final Date dateClicked) {
                 List<Event> events = ccvCalendar.getEvents(dateClicked.getTime());
                 if(events.size()>0){
-                    String edata="What to wear:";
+                    String edata;
+                    Calendar calendar = Calendar.getInstance();
+                    int day = calendar.get(Calendar.DAY_OF_MONTH);
+                    int day2 = dateClicked.getDate();
+//                    Toast.makeText(getContext(), "day: " + day + ", day2: " + day2, Toast.LENGTH_SHORT).show();
+                    if(day<day2){
+                        edata="What to wear:";
+                    }
+                    else {
+                        edata="What I wore:";
+                    }
                     for (Event e:events) {
                         edata = edata + "\n - " + e.getData().toString();
                         //Toast.makeText(getContext(), "" + e.getData(), Toast.LENGTH_SHORT).show();

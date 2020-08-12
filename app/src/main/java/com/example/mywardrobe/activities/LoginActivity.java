@@ -88,6 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Log.d("MyApp", "User logged in through Facebook!");
                 }
+                user.setUsername("Jinny");
+                user.saveInBackground();
                 goMainActivity();
             }
         });
